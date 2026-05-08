@@ -34,20 +34,21 @@
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
         .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 12, 0.75); backdrop-filter: blur(8px); z-index: -1; }
 
-        nav { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%; background: transparent; z-index: 1000; }
-        .nav-container { position: relative; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 80px; }
+        /* ✅ УМЕНЬШЕНО РАССТОЯНИЕ В 2 РАЗА (было 1.5rem) */
+        nav { position: fixed; top: 0; left: 0; width: 100%; padding: 0.8rem 5%; background: transparent; z-index: 1000; }
+        .nav-container { position: relative; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 60px; }
 
         .nav-brand { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; pointer-events: auto; }
         .nav-brand.scrolled { opacity: 0; transform: translate(-50%, -30px); pointer-events: none; }
-        .logo img { height: 360px; width: auto; }
+        .logo img { height: 280px; width: auto; } /* Чуть уменьшил, чтобы гармонично смотрелось с новым отступом */
 
         .nav-controls { margin-left: auto; display: flex; align-items: center; gap: 1rem; }
         .nav-links { display: flex; gap: 0.8rem; list-style: none; transition: all 0.3s ease; opacity: 1; transform: translateY(0); pointer-events: auto; }
         .nav-links.scrolled { opacity: 0; transform: translateY(-10px); pointer-events: none; }
-        .nav-links a { display: inline-block; padding: 0.5rem 1.2rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05); }
+        .nav-links a { display: inline-block; padding: 0.4rem 1rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05); }
         .nav-links a:hover { color: white; background: var(--green); }
 
-        .burger-btn { display: none; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; width: 44px; height: 44px; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        .burger-btn { display: none; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; width: 40px; height: 40px; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
         .burger-btn.visible { display: flex; opacity: 1; pointer-events: auto; }
         .burger-btn span { display: block; width: 22px; height: 2px; background: var(--green); margin: 4px auto; transition: all 0.3s ease; border-radius: 2px; }
         .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
@@ -56,30 +57,31 @@
 
         .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(25px); z-index: 1001; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(-100%); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; transform: translateY(0); }
-        
         .mobile-nav-item { opacity: 0; transform: translateY(-30px); transition: all 0.5s ease; }
         .mobile-menu-overlay.active .mobile-nav-item { opacity: 1; transform: translateY(0); }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
-        
-        .mobile-nav-item a { padding: 1.5rem 2rem; color: var(--text-primary); text-decoration: none; font-size: 1.5rem; font-weight: 700; transition: all 0.3s; border: none; width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px; }
+        .mobile-nav-item a { padding: 1.2rem 2rem; color: var(--text-primary); text-decoration: none; font-size: 1.4rem; font-weight: 700; transition: all 0.3s; border: none; width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px; }
         .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); border-radius: 12px; }
-        
         .mobile-nav-socials { display: flex; gap: 1rem; margin-top: 2rem; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .mobile-menu-overlay.active .mobile-nav-socials { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
         .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
-        .section { position: relative; padding: 5rem 5%; width: 100%; }
-        .hero { min-height: 100vh; display: flex; align-items: center; }
+        /* ✅ УМЕНЬШЕНЫ ОТСТУПЫ СЕКЦИЙ В 2 РАЗА (было 5rem) */
+        .section { position: relative; padding: 2.5rem 5%; width: 100%; }
+        /* ✅ УМЕНЬШЕНА ВЫСОТА HERO ДЛЯ БОЛЕЕ ПЛОТНОЙ КОМПОНОВКИ */
+        .hero { min-height: 80vh; display: flex; align-items: center; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-        .hero-content { max-width: 700px; }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-primary); text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        /* ✅ ВЫРАВНИВАНИЕ ПО ЦЕНТРУ */
+        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; padding-top: 1rem; }
+        .hero-content h1 { font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; color: var(--text-primary); text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .hero-content h1 span { color: var(--green); }
+        .hero-content p { font-size: 1.2rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; max-width: 650px; line-height: 1.6; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-        .btn { padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+        .btn { padding: 0.9rem 1.8rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
         .btn-primary { background: var(--red); color: white; box-shadow: 0 5px 20px rgba(248, 113, 113, 0.4); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(248, 113, 113, 0.6); }
         .btn-secondary { background: rgba(34,197,94,0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
@@ -88,94 +90,95 @@
         .btn-error { background: #ef4444 !important; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4) !important; }
 
         .container { max-width: 1400px; margin: 0 auto; width: 100%; }
-        .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .section-title p { color: var(--text-secondary); font-size: 1.125rem; }
+        .section-title { text-align: center; margin-bottom: 2rem; }
+        .section-title h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .section-title p { color: var(--text-secondary); font-size: 1rem; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .service-card { background: rgba(25,30,40,0.4); padding: 2.5rem 2rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
-        .service-card:hover { transform: translateY(-8px); border-color: var(--green); background: rgba(25,30,40,0.6); }
-        .service-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; background: var(--green); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-        .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
-        .service-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .service-card { background: rgba(25,30,40,0.4); padding: 2rem 1.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--green); background: rgba(25,30,40,0.6); }
+        .service-icon { width: 70px; height: 70px; margin: 0 auto 1.2rem; background: var(--green); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
-        .portfolio { padding: 4rem 0; overflow: visible !important; width: 100%; }
-        .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 460px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
+        .portfolio { padding: 2.5rem 0; overflow: visible !important; width: 100%; }
+        .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 420px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
         .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
         .carousel-track:active { cursor: grabbing; }
-        .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; }
+        .carousel-slide { position: absolute; width: 300px; height: 360px; left: 50%; top: 50%; margin-left: -150px; margin-top: -180px; }
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
-        .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 30px rgba(34, 197, 94, 0.2); }
-        .portfolio-image { width: 100%; height: 180px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .portfolio-content { padding: 1.2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-        .portfolio-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .portfolio-content p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.8rem; line-height: 1.5; flex: 1; }
-        .portfolio-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-        .tag { padding: 0.2rem 0.5rem; border-radius: 15px; font-size: 0.7rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
-        .carousel-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+        .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 25px rgba(34, 197, 94, 0.2); }
+        .portfolio-image { width: 100%; height: 160px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
+        .portfolio-content { padding: 1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
+        .portfolio-content h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .portfolio-content p { color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.6rem; line-height: 1.4; flex: 1; }
+        .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .tag { padding: 0.2rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
+        .carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
         .dot.active { background: var(--green); border-color: #fff; transform: scale(1.2); }
 
-        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .contact-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--green); }
-        .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-        .contact-icon { width: 40px; height: 40px; background: var(--green); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-        .contact-text h4 { margin-bottom: 0.2rem; font-size: 1.1rem; }
-        .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        .contact-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .contact-info h3 { font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--green); }
+        .contact-item { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .contact-icon { width: 36px; height: 36px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .contact-text h4 { margin-bottom: 0.2rem; font-size: 1rem; }
+        .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
         .contact-text a:hover { color: var(--green); }
-        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 300px; }
+        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 260px; }
         .map-container iframe, .map-container script { width: 100%; height: 100%; border: none; display: block; }
 
-        .contact-form { background: rgba(25,30,40,0.4); padding: 2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
-        .form-group { margin-bottom: 1.5rem; position: relative; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .contact-form { background: rgba(25,30,40,0.4); padding: 1.5rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
+        .form-group { margin-bottom: 1.2rem; position: relative; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem; }
+        /* ✅ ИСПРАВЛЕННОЕ ПОЛЕ ИМЕНИ (стандартный стиль без лишних отступов) */
+        .form-group input:not([type="tel"]), .form-group select, .form-group textarea { width: 100%; padding: 0.9rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.95rem; }
         .input-wrapper { position: relative; }
-        .input-wrapper input { width: 100%; padding: 1rem; padding-right: 130px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem; }
-        .input-wrapper select, .form-group select, .form-group textarea { width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem; }
-        .input-hint { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.85rem; opacity: 0.6; pointer-events: none; white-space: nowrap; transition: opacity 0.3s; }
+        .input-wrapper input { width: 100%; padding: 0.9rem; padding-right: 110px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.95rem; }
+        .input-hint { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5; pointer-events: none; white-space: nowrap; transition: opacity 0.3s; }
         .input-wrapper input:focus + .input-hint, .input-wrapper input:not(:placeholder-shown) + .input-hint { opacity: 0; }
-        .tg-hint { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.9rem; opacity: 0.6; pointer-events: none; transition: opacity 0.3s; }
+        .tg-hint { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.85rem; opacity: 0.5; pointer-events: none; transition: opacity 0.3s; }
         .tg-hint.hidden { opacity: 0; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .contact-form .btn { width: 100%; justify-content: center; }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .contact-form .btn { width: 100%; justify-content: center; padding: 0.9rem; }
 
-        footer { padding: 3rem 5%; text-align: center; width: 100%; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        footer { padding: 2rem 5%; text-align: center; width: 100%; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
         .footer-links a:hover { color: var(--green); }
-        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .social-links { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
         .social-links a:hover { background: var(--green); color: white; transform: translateY(-3px); }
-        footer p { color: var(--text-secondary); font-size: 0.9rem; }
+        footer p { color: var(--text-secondary); font-size: 0.85rem; }
 
-        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .fade-in { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .carousel-stage { height: 360px; }
-            .carousel-slide { width: 270px; height: 330px; margin-left: -135px; margin-top: -165px; }
-            .portfolio-image { height: 150px; font-size: 2.5rem; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .carousel-stage { height: 340px; }
+            .carousel-slide { width: 250px; height: 300px; margin-left: -125px; margin-top: -150px; }
+            .portfolio-image { height: 130px; font-size: 2.2rem; }
             .nav-links { display: none !important; }
-            .logo img { height: 140px; }
+            .logo img { height: 110px; }
             .burger-btn { display: flex; opacity: 1; pointer-events: auto; }
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
-            .hero-content h1 { font-size: 2rem; }
-            .section-title h2 { font-size: 1.75rem; }
-            .section { padding: 3rem 5%; }
-            .contact-form { padding: 1.5rem; }
-            .service-card { padding: 2rem 1.5rem; }
-            .carousel-stage { height: 310px; }
-            .carousel-slide { width: 240px; height: 290px; margin-left: -120px; margin-top: -145px; }
-            .portfolio-image { height: 120px; font-size: 2rem; }
-            .portfolio-content { padding: 0.8rem 1rem; }
-            .logo img { height: 100px; }
-            .input-wrapper input { padding-right: 100px; }
-            .input-hint { right: 0.5rem; font-size: 0.75rem; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .section-title h2 { font-size: 1.5rem; }
+            .section { padding: 2rem 4%; }
+            .contact-form { padding: 1.2rem; }
+            .service-card { padding: 1.5rem 1rem; }
+            .carousel-stage { height: 280px; }
+            .carousel-slide { width: 220px; height: 260px; margin-left: -110px; margin-top: -130px; }
+            .portfolio-image { height: 100px; font-size: 1.8rem; }
+            .portfolio-content { padding: 0.7rem 0.8rem; }
+            .logo img { height: 80px; }
+            .input-wrapper input { padding-right: 90px; }
+            .input-hint { right: 0.5rem; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -205,7 +208,17 @@
     </div>
 
     <section class="section hero">
-        <div class="hero-container"><div class="hero-content fade-in"><h1>Студия Подкаста 513</h1><p>Профессиональная запись и производство подкастов в Москве.</p><div class="hero-buttons"><a href="#contact" class="btn btn-primary">Записаться на съёмку →</a><a href="#portfolio" class="btn btn-secondary">Наши работы</a></div></div></div>
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <!-- ✅ 513 ВЫНЕСЕНО ПОД НАЗВАНИЕ -->
+                <h1>Студия Подкаста<br><span>513</span></h1>
+                <p>Профессиональная запись и производство подкастов в Москве.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
+                    <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="section" id="services">
@@ -242,7 +255,7 @@
                 </div>
 
                 <div class="contact-form fade-in">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
+                    <h3 style="margin-bottom: 1.2rem; font-size: 1.3rem;">Записаться на съёмку</h3>
                     <form id="contactForm">
                         <div class="form-group"><label>Ваше имя</label><input type="text" id="input-name" placeholder="Иван Иванов" required></div>
                         <div class="form-group">
@@ -260,7 +273,7 @@
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
                                 <option>Под ключ</option>
-                                <option>Консультация</option> <!-- ✅ Вернул пункт -->
+                                <option>Консультация</option>
                             </select>
                         </div>
                         <div class="form-group"><label>Комментарий</label><textarea id="input-message" placeholder="О проекте..."></textarea></div>
@@ -278,7 +291,6 @@
     </footer>
 
     <script>
-        // === ЛОГИКА МЕНЮ ===
         const navBrand = document.getElementById('navBrand');
         const navLinks = document.getElementById('navLinks');
         const burgerBtn = document.getElementById('burgerBtn');
@@ -291,7 +303,6 @@
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
 
-        // === СКРЫТИЕ ЭЛЕМЕНТОВ ПРИ СКРОЛЛЕ ===
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY >= 50) navBrand.classList.add('scrolled');
@@ -302,7 +313,6 @@
             }
         }, { passive: true });
 
-        // === МАСКА ТЕЛЕФОНА И TELEGRAM ===
         const phoneInput = document.getElementById('input-phone');
         const tgInput = document.getElementById('input-tg-id');
         const tgHint = document.getElementById('tgHint');
@@ -311,7 +321,6 @@
             let digits = value.replace(/\D/g, '');
             if (digits.startsWith('8')) digits = '7' + digits.slice(1);
             if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits;
-            
             let formatted = '+7';
             if (digits.length > 1) formatted += '(' + digits.slice(1, 4);
             if (digits.length >= 4) formatted += ')';
@@ -322,14 +331,10 @@
         }
 
         phoneInput.addEventListener('input', (e) => {
-            let val = e.target.value;
-            if (val.length === 0) { e.target.value = ''; return; }
-            let cursorPos = e.target.selectionStart;
-            let oldLength = val.length;
-            let formatted = formatPhone(val);
+            let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; }
+            let cursorPos = e.target.selectionStart, oldLength = val.length, formatted = formatPhone(val);
             e.target.value = formatted;
-            let newLength = formatted.length;
-            if (oldLength < newLength && cursorPos > 0) cursorPos += (newLength - oldLength);
+            let newLength = formatted.length; if (oldLength < newLength && cursorPos > 0) cursorPos += (newLength - oldLength);
             if (cursorPos > formatted.length) cursorPos = formatted.length;
             if (formatted[cursorPos] === '(' || formatted[cursorPos] === ')' || formatted[cursorPos] === '-') cursorPos++;
             e.target.setSelectionRange(cursorPos, cursorPos);
@@ -341,87 +346,51 @@
             let val = e.target.value.replace(/\s/g, '');
             if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, '');
             if (e.target.value === '@') e.target.value = '';
-            if (e.target.value.length > 0) tgHint.classList.add('hidden'); else tgHint.classList.remove('hidden');
+            e.target.value.length > 0 ? tgHint.classList.add('hidden') : tgHint.classList.remove('hidden');
         });
         tgInput.addEventListener('focus', () => tgHint.classList.add('hidden'));
         tgInput.addEventListener('blur', () => { if (tgInput.value === '') tgHint.classList.remove('hidden'); });
 
-        // === ОТПРАВКА В TELEGRAM ===
         async function sendToTelegram() {
-            const btn = document.getElementById('btn-send');
-            const originalText = btn.textContent;
-            btn.classList.remove('btn-success', 'btn-error');
-            btn.disabled = true;
-            btn.textContent = '⏳ Отправка...';
-
+            const btn = document.getElementById('btn-send'), originalText = btn.textContent;
+            btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...';
             const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev';
             const name = (document.getElementById('input-name').value || '').trim();
-            const phone = phoneInput.value.trim();
-            const tgId = tgInput.value.trim();
+            const phone = phoneInput.value.trim(), tgId = tgInput.value.trim();
             const service = document.getElementById('input-service').value || 'Не выбрано';
             const message = (document.getElementById('input-message').value || '').trim();
 
-            if (!name) {
-                btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error');
-                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return;
-            }
-            // ✅ ИСПРАВЛЕНИЕ: проверяем количество цифр (11 штук), а не длину строки маски
-            if (phone.replace(/\D/g, '').length < 11) {
-                btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error');
-                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return;
-            }
+            if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
+            if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
 
-            const now = new Date();
-            const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            const formData = { name, phone, tgId, service, message, time: timeStr };
-
+            const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
             try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-                const response = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData), signal: controller.signal });
+                const controller = new AbortController(), timeoutId = setTimeout(() => controller.abort(), 10000);
+                const response = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message, time: timeStr }), signal: controller.signal });
                 clearTimeout(timeoutId);
-                if (response.ok) {
-                    btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success');
-                    document.getElementById('contactForm').reset();
-                    phoneInput.value = '+7'; tgHint.classList.remove('hidden');
-                    setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000);
-                } else {
-                    btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error');
-                    setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000);
-                }
-            } catch (error) {
-                btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error');
-                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000);
-            }
+                if (response.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('contactForm').reset(); phoneInput.value = '+7'; tgHint.classList.remove('hidden'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000); }
+                else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); }
+            } catch (error) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); }
         }
 
-        // === КАРУСЕЛЬ ===
-        const track = document.getElementById('carouselTrack');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const total = slides.length;
-        let target = 0, current = 0;
-        let isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false;
-        let wheelAccumulator = 0;
-        const WHEEL_THRESHOLD = 50; const WHEEL_FACTOR = 0.5;
+        const track = document.getElementById('carouselTrack'), slides = document.querySelectorAll('.carousel-slide'), dots = document.querySelectorAll('.dot'), total = slides.length;
+        let target = 0, current = 0, isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false, wheelAccumulator = 0;
+        const WHEEL_THRESHOLD = 50, WHEEL_FACTOR = 0.5;
 
         function getOffset(i, anim) { let d = i - anim; return ((d + total/2) % total + total) % total - total/2; }
         function updateCarousel() {
             current += (target - current) * 0.12;
             slides.forEach((s, i) => {
-                const off = getOffset(i, current); const abs = Math.abs(off);
+                const off = getOffset(i, current), abs = Math.abs(off);
                 s.style.transform = `translate3d(${off*380}px,0,${-abs*200}px) rotateY(${off*15}deg) scale(${1-abs*0.12})`;
-                s.style.opacity = Math.max(0.15, 1 - abs*0.7);
-                s.style.filter = `blur(${Math.min(10, abs*12)}px)`;
-                s.style.zIndex = Math.round(50 - abs*15);
-                s.style.pointerEvents = abs < 0.5 ? 'auto' : 'none';
-                s.classList.toggle('active', abs < 0.4);
+                s.style.opacity = Math.max(0.15, 1 - abs*0.7); s.style.filter = `blur(${Math.min(10, abs*12)}px)`;
+                s.style.zIndex = Math.round(50 - abs*15); s.style.pointerEvents = abs < 0.5 ? 'auto' : 'none'; s.classList.toggle('active', abs < 0.4);
             });
             const active = Math.round(((current % total) + total) % total);
             dots.forEach((d, i) => d.classList.toggle('active', i === active));
             requestAnimationFrame(updateCarousel);
         }
-        function goToSlide(idx) { let cur = Math.round(((current % total) + total) % total); let diff = idx - cur; if (diff > total/2) diff -= total; if (diff < -total/2) diff += total; target += diff; }
+        function goToSlide(idx) { let cur = Math.round(((current % total) + total) % total), diff = idx - cur; if (diff > total/2) diff -= total; if (diff < -total/2) diff += total; target += diff; }
         track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; }, { passive: true });
         track.addEventListener('touchmove', e => { if (!isDragging) return; const diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY; if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) { isVerticalSwipe = true; return; } if (Math.abs(diffX) > 10) { e.preventDefault(); target = startTarget - (diffX / 200); } }, { passive: false });
         track.addEventListener('touchend', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); } });
