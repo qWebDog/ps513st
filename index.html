@@ -29,6 +29,7 @@
             background-color: var(--bg-primary);
         }
 
+        /* Фон и оверлей */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('images/studio-background.jpg') center/cover no-repeat;
@@ -42,6 +43,7 @@
             z-index: -1;
         }
 
+        /* Навигация */
         nav {
             position: fixed; top: 0; width: 100%; 
             padding: 2rem 5%; 
@@ -51,7 +53,6 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        
         .logo { display: flex; align-items: center; }
         .logo img { height: 180px; width: auto; vertical-align: middle; }
 
@@ -63,9 +64,11 @@
         .nav-links a:hover { color: white; background: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); transform: translateY(-2px); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
+        /* Секции */
         .section { position: relative; padding: 10rem 5%; background: transparent; }
         .parallax-content { will-change: transform; }
 
+        /* Hero */
         .hero { min-height: 100vh; display: flex; align-items: center; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .hero-content { max-width: 700px; }
@@ -73,6 +76,7 @@
         .hero-content p { font-size: 1.35rem; color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
         
+        /* Кнопки */
         .btn { padding: 1.1rem 2.5rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1.05rem; }
         .btn-primary { background: var(--red); color: white; box-shadow: 0 10px 30px rgba(248, 113, 113, 0.3); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(248, 113, 113, 0.5); }
@@ -84,6 +88,7 @@
         .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); }
         .section-title p { color: var(--text-secondary); font-size: 1.125rem; }
 
+        /* Услуги */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .service-card { background: rgba(25,30,40,0.5); padding: 3rem 2.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(4px); position: relative; overflow: hidden; }
         .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transition: transform 0.3s; }
@@ -93,6 +98,7 @@
         .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
         .service-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
 
+        /* Карусель */
         .portfolio { padding: 8rem 0; overflow: visible !important; }
         .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 460px; perspective: 1200px; overflow: visible; }
         .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; }
@@ -114,6 +120,7 @@
         .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(34,197,94,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
         .dot.active { background: var(--cyan); border-color: var(--green); transform: scale(1.2); }
 
+        /* Контакты */
         .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
         .contact-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--green); }
         .contact-details { margin-bottom: 2rem; }
@@ -125,16 +132,40 @@
         .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.2); background: rgba(20,25,35,0.4); }
         .map-container iframe, .map-container script { width: 100%; height: 400px; border: none; display: block; }
         
-        .contact-form { background: rgba(25,30,40,0.5); padding: 2.5rem; border-radius: var(--radius); border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(6px); position: relative; z-index: 10; }
+        /* ИСПРАВЛЕНИЕ ФОРМЫ */
+        .contact-form { 
+            background: rgba(25,30,40,0.5); 
+            padding: 2.5rem; 
+            border-radius: var(--radius); 
+            border: 1px solid rgba(6,182,212,0.2); 
+            backdrop-filter: blur(6px); 
+            position: relative; 
+            z-index: 10; /* Чтобы форма была поверх всего и кликалась */
+        }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; background: rgba(10,10,15,0.5); border: 1px solid rgba(6,182,212,0.2); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem; transition: all 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(6,182,212,0.15); }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; 
+            padding: 1rem; 
+            background: rgba(10,10,15,0.5); 
+            border: 1px solid rgba(6,182,212,0.2); 
+            border-radius: 8px; 
+            color: var(--text-primary); 
+            font-family: inherit; 
+            font-size: 1rem; 
+            transition: all 0.3s; 
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            outline: none; 
+            border-color: var(--cyan); 
+            box-shadow: 0 0 0 3px rgba(6,182,212,0.15); 
+        }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
         
         .btn-submitting { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
 
+        /* Футер */
         footer { padding: 5rem 5%; text-align: center; position: relative; }
         .footer-logo { font-size: 2rem; font-weight: 800; color: var(--green); margin-bottom: 1rem; }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
@@ -313,10 +344,10 @@
                     </div>
                 </div>
 
+                <!-- ✅ ИСПРАВЛЕННАЯ ФОРМА -->
                 <div class="contact-form fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
-                    <!-- ✅ ФОРМА С ID ДЛЯ СКРИПТА -->
-                    <form id="contactForm" onsubmit="sendToTelegram(event)">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Ваше имя</label>
                             <input type="text" id="name" placeholder="Иван Иванов" required>
@@ -339,7 +370,7 @@
                             <label for="message">Комментарий</label>
                             <textarea id="message" placeholder="Расскажите о вашем проекте..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <button type="button" class="btn btn-primary" id="submitBtn" onclick="sendToTelegram()">
                             Отправить заявку →
                         </button>
                     </form>
@@ -362,32 +393,37 @@
 
     <script>
         // ===== ОТПРАВКА В TELEGRAM =====
-        async function sendToTelegram(e) {
-            e.preventDefault();
-
+        async function sendToTelegram() {
             const BOT_TOKEN = '8725488476:AAFO2MR7RqFv9XbSJ_B3ZvDC5h_hBsTNVjw';
             const CHAT_ID = '673594120';
 
-            // ✅ ПОЛУЧАЕМ ЗНАЧЕНИЯ ПО ID
-            const nameEl = document.getElementById('name');
-            const contactEl = document.getElementById('contact');
-            const serviceEl = document.getElementById('service');
-            const messageEl = document.getElementById('message');
+            // Получаем элементы по ID
+            const nameInput = document.getElementById('name');
+            const contactInput = document.getElementById('contact');
+            const serviceInput = document.getElementById('service');
+            const messageInput = document.getElementById('message');
             const submitBtn = document.getElementById('submitBtn');
 
-            if (!nameEl || !contactEl || !serviceEl) {
-                alert('Ошибка: Элементы формы не найдены в HTML.');
+            // Проверка на случай если элементы не найдены
+            if (!nameInput || !contactInput || !serviceInput || !messageInput) {
+                console.error('Элементы формы не найдены!');
                 return;
             }
 
-            const name = nameEl.value.trim();
-            const contact = contactEl.value.trim();
-            const service = serviceEl.value;
-            const message = messageEl.value.trim();
+            const name = nameInput.value.trim();
+            const contact = contactInput.value.trim();
+            const service = serviceInput.value;
+            const message = messageInput.value.trim();
 
-            // ✅ ПРОВЕРКА ЗАПОЛНЕНИЯ
-            if (!name || !contact) {
-                alert('⚠️ Пожалуйста, заполните имя и контакты.');
+            // Валидация
+            if (!name) {
+                alert('Пожалуйста, введите ваше имя.');
+                nameInput.focus();
+                return;
+            }
+            if (!contact) {
+                alert('Пожалуйста, введите телефон или Telegram.');
+                contactInput.focus();
                 return;
             }
 
@@ -402,6 +438,7 @@
 📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU')}
             `.trim();
 
+            // Блокируем кнопку
             submitBtn.disabled = true;
             submitBtn.textContent = 'Отправка...';
             submitBtn.classList.add('btn-submitting');
@@ -422,11 +459,11 @@
                     document.getElementById('contactForm').reset();
                 } else {
                     const err = await response.json();
-                    alert('❌ Ошибка Telegram:\n' + (err.description || response.statusText));
+                    alert('❌ Ошибка Telegram:\n' + (err.description || 'Неизвестная ошибка'));
                 }
             } catch (error) {
-                alert('❌ Ошибка сети.\n\n💡 Совет: Если вы открыли файл двойным кликом (file:///), браузер может блокировать запросы. Запустите через локальный сервер или загрузите на хостинг.');
-                console.error('Telegram Error:', error);
+                alert('❌ Ошибка сети.\n\nСовет: Если открыли файл двойным кликом (file:///), браузер может блокировать запросы. Используйте локальный сервер.');
+                console.error(error);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Отправить заявку →';
