@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Студия Подкаста 513</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,13 +17,20 @@
             --radius: 16px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+            width: 100%;
+        }
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
             background-color: var(--bg-primary);
+            width: 100%;
+            position: relative;
+            touch-action: pan-y; /* Разрешаем вертикальный скролл по умолчанию */
         }
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -55,7 +62,7 @@
         .nav-links a:hover { color: white; background: var(--green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
-        .section { position: relative; padding: 10rem 5%; background: transparent; }
+        .section { position: relative; padding: 10rem 5%; background: transparent; width: 100%; }
         .parallax-content { will-change: transform; }
 
         .hero { min-height: 100vh; display: flex; align-items: center; }
@@ -70,12 +77,10 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(248, 113, 113, 0.5); }
         .btn-secondary { background: rgba(34,197,94,0.15); color: var(--green); border: 2px solid var(--green); }
         .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-3px); }
-
-        /* Стили состояний кнопки */
         .btn-success { background: #22c55e !important; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4) !important; pointer-events: none; }
         .btn-error { background: #ef4444 !important; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4) !important; }
 
-        .container { max-width: 1400px; margin: 0 auto; }
+        .container { max-width: 1400px; margin: 0 auto; width: 100%; }
         .section-title { text-align: center; margin-bottom: 4rem; }
         .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); }
         .section-title p { color: var(--text-secondary); font-size: 1.125rem; }
@@ -87,9 +92,21 @@
         .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
         .service-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
 
-        .portfolio { padding: 8rem 0; overflow: visible !important; }
-        .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 460px; perspective: 1200px; overflow: visible; }
-        .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; }
+        .portfolio { padding: 8rem 0; overflow: visible !important; width: 100%; }
+        .carousel-stage { 
+            position: relative; 
+            width: 100vw; 
+            margin-left: calc(50% - 50vw); 
+            height: 460px; 
+            perspective: 1200px; 
+            overflow: hidden; /* Скрываем выходящий контент */
+            touch-action: pan-y; /* Разрешаем вертикальный скролл */
+        }
+        .carousel-track { 
+            position: absolute; left: 0; top: 0; width: 100%; height: 100%; 
+            cursor: grab; 
+            touch-action: none; /* Карусель сама обрабатывает свайпы */
+        }
         .carousel-track:active { cursor: grabbing; }
         .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; }
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.7); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.15); backdrop-filter: blur(4px); display: flex; flex-direction: column; }
@@ -147,7 +164,7 @@
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
 
-        footer { padding: 5rem 5%; text-align: center; }
+        footer { padding: 5rem 5%; text-align: center; width: 100%; }
         .footer-logo { font-size: 2rem; font-weight: 800; color: var(--green); margin-bottom: 1rem; }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
@@ -160,6 +177,7 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 968px) {
             .hero-content h1 { font-size: 2.5rem; }
             .carousel-stage { height: 360px; }
@@ -180,6 +198,7 @@
             .carousel-slide { width: 240px; height: 290px; margin-left: -120px; margin-top: -145px; }
             .portfolio-image { height: 120px; font-size: 2rem; }
             .portfolio-content { padding: 0.8rem 1rem; }
+            .logo img { height: 120px; }
         }
     </style>
 </head>
@@ -327,15 +346,15 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label>Ваше имя</label>
-                            <input type="text" id="input-name" placeholder="Иван Иванов">
+                            <input type="text" id="input-name" placeholder="Иван Иванов" required>
                         </div>
                         <div class="form-group">
                             <label>Телефон или Telegram</label>
-                            <input type="text" id="input-contact" placeholder="+7 (___) ___-__-__ или @username">
+                            <input type="text" id="input-contact" placeholder="+7 (___) ___-__-__ или @username" required>
                         </div>
                         <div class="form-group">
                             <label>Услуга</label>
-                            <select id="input-service">
+                            <select id="input-service" required>
                                 <option value="">Выберите</option>
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
@@ -376,29 +395,27 @@
             btn.classList.remove('btn-success', 'btn-error');
             btn.disabled = true;
             btn.textContent = '⏳ Отправка...';
-        
-            // ⚠️ ВСТАВЬТЕ СЮДА ССЫЛКУ ИЗ ШАГА 1
+
             const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev'; 
             
             const name = (document.getElementById('input-name').value || '').trim();
             const contact = (document.getElementById('input-contact').value || '').trim();
             const service = document.getElementById('input-service').value || 'Не выбрано';
             const message = (document.getElementById('input-message').value || '').trim();
-        
+
             if (!name || !contact) {
                 btn.textContent = '⚠️ Заполните поля';
                 btn.classList.add('btn-error');
                 setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000);
                 return;
             }
-        
-            // Отправляем данные на НАШУ ПРОКЛАДКУ
+
             const formData = { name, contact, service, message };
-        
+
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
-        
+
                 const response = await fetch(PROXY_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -406,7 +423,7 @@
                     signal: controller.signal
                 });
                 clearTimeout(timeoutId);
-        
+
                 if (response.ok) {
                     btn.textContent = '✅ Отправлено!';
                     btn.classList.add('btn-success');
@@ -424,7 +441,7 @@
             }
         }
 
-        // ===== ОСТАЛЬНОЙ КОД (ПАРАЛЛАКС, КАРУСЕЛЬ) =====
+        // ===== ПАРАЛЛАКС НАВИГАЦИИ =====
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
@@ -433,6 +450,7 @@
             nav.style.transform = `translateY(${-20 * (1 - opacity)}px)`;
         }, { passive: true });
 
+        // ===== ПАРАЛЛАКС СЕКЦИЙ =====
         window.addEventListener('scroll', () => {
             const scrollY = window.pageYOffset;
             const windowHeight = window.innerHeight;
@@ -447,14 +465,20 @@
             });
         }, { passive: true });
 
+        // ===== КАРУСЕЛЬ С ИСПРАВЛЕННЫМИ TOUCH-СОБЫТИЯМИ =====
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
         const total = slides.length;
         let target = 0, current = 0;
-        let dragging = false, startX = 0, startTarget = 0;
+        let isDragging = false, startX = 0, startY = 0, startTarget = 0;
+        let isVerticalSwipe = false;
 
-        function getOffset(i, anim) { let d = i - anim; return ((d + total/2) % total + total) % total - total/2; }
+        function getOffset(i, anim) { 
+            let d = i - anim; 
+            return ((d + total/2) % total + total) % total - total/2; 
+        }
+        
         function updateCarousel() {
             current += (target - current) * 0.12;
             slides.forEach((s, i) => {
@@ -471,6 +495,7 @@
             dots.forEach((d, i) => d.classList.toggle('active', i === active));
             requestAnimationFrame(updateCarousel);
         }
+
         function goToSlide(idx) {
             let cur = Math.round(((current % total) + total) % total);
             let diff = idx - cur;
@@ -478,21 +503,86 @@
             if (diff < -total/2) diff += total;
             target += diff;
         }
-        track.addEventListener('mousedown', e => { dragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
-        track.addEventListener('mousemove', e => { if (dragging) target = startTarget - (e.pageX - startX)/200; });
-        track.addEventListener('mouseup', () => { dragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
-        track.addEventListener('mouseleave', () => { if (dragging) { dragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
-        track.addEventListener('touchstart', e => { dragging = true; startX = e.touches[0].clientX; startTarget = target; }, {passive:true});
-        track.addEventListener('touchmove', e => { if (dragging) target = startTarget - (e.touches[0].clientX - startX)/200; }, {passive:true});
-        track.addEventListener('touchend', () => { dragging = false; target = Math.round(target); });
-        document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
+
+        // Touch события с определением направления свайпа
+        track.addEventListener('touchstart', function(e) {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            startTarget = target;
+            isVerticalSwipe = false;
+            track.style.cursor = 'grabbing';
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = currentX - startX;
+            const diffY = currentY - startY;
+            
+            // Определяем направление свайпа
+            if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
+                // Вертикальный свайп - позволяем странице скроллиться
+                isVerticalSwipe = true;
+                return;
+            }
+            
+            // Горизонтальный свайп - управляем каруселью
+            if (Math.abs(diffX) > 10) {
+                e.preventDefault(); // Предотвращаем скролл страницы
+                target = startTarget - (diffX / 200);
+            }
+        }, { passive: false });
+
+        track.addEventListener('touchend', function() {
+            if (isDragging) {
+                isDragging = false;
+                track.style.cursor = 'grab';
+                if (!isVerticalSwipe) {
+                    target = Math.round(target);
+                }
+            }
+        });
+
+        // Mouse события (для десктопа)
+        track.addEventListener('mousedown', e => { 
+            isDragging = true; 
+            startX = e.pageX; 
+            startTarget = target; 
+            track.style.cursor = 'grabbing'; 
+        });
+        track.addEventListener('mousemove', e => { 
+            if (isDragging) target = startTarget - (e.pageX - startX)/200; 
+        });
+        track.addEventListener('mouseup', () => { 
+            isDragging = false; 
+            track.style.cursor = 'grab'; 
+            target = Math.round(target); 
+        });
+        track.addEventListener('mouseleave', () => { 
+            if (isDragging) { 
+                isDragging = false; 
+                track.style.cursor = 'grab'; 
+                target = Math.round(target); 
+            }
+        });
+
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
+            if (e.key === 'ArrowRight') target = Math.round(target)-1; 
+        });
+
         window.addEventListener('load', updateCarousel);
 
+        // ===== АНИМАЦИИ =====
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+        // ===== МОБИЛЬНОЕ МЕНЮ =====
         document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
             const nav = document.querySelector('.nav-links');
             if (nav.style.display === 'flex') { nav.style.display = 'none'; }
