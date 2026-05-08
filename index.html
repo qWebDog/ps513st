@@ -29,7 +29,6 @@
             width: 100%;
             position: relative;
             touch-action: pan-y;
-            /* ✅ ЗАПРЕТ ВЫДЕЛЕНИЯ И КОНТЕКСТНОГО МЕНЮ НА ВСЁМ САЙТЕ */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -61,42 +60,50 @@
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
-        .mobile-nav-item a { padding: 1.2rem 2rem; color: var(--text-primary); text-decoration: none; font-size: 1.4rem; font-weight: 700; transition: all 0.3s; border: none; width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px; }
-        .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); border-radius: 12px; }
-        .mobile-nav-socials { display: flex; gap: 1rem; margin-top: 2rem; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+        
+        /* ✅ УМЕНЬШЕНЫ ОБЛАСТИ НАЖАТИЯ КНОПОК */
+        .mobile-nav-item a {
+            padding: 0.8rem 1.5rem; /* Было 1.2rem 2rem */
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.3rem; /* Чуть меньше шрифт */
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            width: auto; /* Было 100%, теперь по содержимому */
+            max-width: 280px; /* Ограничение ширины */
+            text-align: center;
+            letter-spacing: 0.5px;
+            margin: 0.4rem 0; /* Чёткий отступ между кнопками */
+            border-radius: 10px; /* Скругление для точного попадания */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); }
+        
+        .mobile-nav-socials {
+            display: flex; gap: 0.8rem; margin-top: 1.5rem;
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
         .mobile-menu-overlay.active .mobile-nav-socials { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
-        .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
+        .mobile-nav-socials a {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--green); text-decoration: none; font-weight: 700;
+            transition: all 0.3s;
+        }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
         .section { position: relative; padding: 1.2rem 5%; width: 100%; }
         .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; }
         .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
         
-        /* ✅ ЗАЩИТА ЛОГОТИПА */
-        .logo-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 0.6rem;
-        }
-        .hero-logo { 
-            height: 480px; 
-            width: auto; 
-            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); 
-            pointer-events: none; /* Запрет взаимодействия с самой картинкой */
-            -webkit-user-drag: none; /* Запрет перетаскивания */
-        }
-        /* ✅ ПРОЗРАЧНЫЙ БЛОК ПОВЕРХ ЛОГО */
-        .logo-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: transparent;
-            z-index: 10;
-            /* Блокируем все действия с изображением под ним */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+        .logo-wrapper { position: relative; display: inline-block; margin-bottom: 0.6rem; }
+        .hero-logo { height: 480px; width: auto; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); pointer-events: none; -webkit-user-drag: none; }
+        .logo-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: transparent; z-index: 10; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
         
         .hero-content { max-width: 700px; margin: 0 auto; }
         .hero-content p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 550px; line-height: 1.5; margin-left: auto; margin-right: auto; }
@@ -147,22 +154,8 @@
         .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.85rem; }
         .contact-text a:hover { color: var(--green); }
         
-        .map-container { 
-            border-radius: var(--radius); 
-            overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            height: 322px;
-            background: rgba(25,30,40,0.4);
-            width: 100%;
-        }
-        .map-container iframe, 
-        .map-container script,
-        .map-container .ymaps-2-1-79-map {
-            width: 100% !important; 
-            height: 100% !important; 
-            border: none; 
-            display: block; 
-        }
+        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 322px; background: rgba(25,30,40,0.4); width: 100%; }
+        .map-container iframe, .map-container script, .map-container .ymaps-2-1-79-map { width: 100% !important; height: 100% !important; border: none; display: block; }
 
         .contact-form { background: rgba(25,30,40,0.4); padding: 1.2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
         .contact-form h3 { margin-bottom: 0.8rem; font-size: 1.1rem; }
@@ -217,6 +210,13 @@
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
+            /* ✅ ЕЩЁ БОЛЕЕ КОМПАКТНЫЕ КНОПКИ НА МОБИЛЬНЫХ */
+            .mobile-nav-item a {
+                padding: 0.7rem 1.2rem;
+                font-size: 1.2rem;
+                margin: 0.3rem 0;
+                max-width: 240px;
+            }
         }
     </style>
 </head>
@@ -239,18 +239,18 @@
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
         <div class="mobile-nav-item"><a href="#contact" onclick="closeMobileMenu()">Контакты</a></div>
-        <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
+        <div class="mobile-nav-socials">
+            <a href="https://t.me/podcast513" target="_blank">TG</a>
+            <a href="https://vk.com/podcast513" target="_blank">VK</a>
+        </div>
     </div>
 
     <section class="section hero">
         <div class="hero-container fade-in">
-            <!-- ✅ ОБЁРТКА ЛОГО С ЗАЩИТНЫМ СЛОЕМ -->
             <div class="logo-wrapper">
                 <img src="logo.png" alt="Студия 513" class="hero-logo">
-                <!-- ✅ ПРОЗРАЧНЫЙ БЛОК ПОВЕРХ ЛОГО -->
                 <div class="logo-overlay" aria-hidden="true"></div>
             </div>
-            
             <div class="hero-content">
                 <p>Профессиональная запись и производство подкастов в Москве.</p>
                 <div class="hero-buttons">
@@ -291,7 +291,6 @@
                 <div class="contact-info fade-in">
                     <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div></div>
                     <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div></div>
-                    
                     <div class="map-container">
                         <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A779276dd9613d80ba01503b9a2de13b96f1c5cf4ceb6925907bd189cb7fda264&amp;width=100%25&amp;height=100%25&amp;lang=ru_RU&amp;scroll=true"></script>
                     </div>
@@ -334,11 +333,7 @@
     </footer>
 
     <script>
-        // ✅ БЛОКИРОВКА КОНТЕКСТНОГО МЕНЮ (ПРАВЫЙ КЛИК) НА ЛОГОТИПЕ
-        document.querySelector('.logo-wrapper')?.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            return false;
-        });
+        document.querySelector('.logo-wrapper')?.addEventListener('contextmenu', (e) => { e.preventDefault(); return false; });
 
         const navLinks = document.getElementById('navLinks');
         const burgerBtn = document.getElementById('burgerBtn');
