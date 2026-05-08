@@ -321,21 +321,24 @@
                     </div>
                 </div>
 
-                <!-- ✅ ПРОСТАЯ И РАБОЧАЯ ФОРМА -->
+                <!-- ✅ ИСПРАВЛЕННАЯ ФОРМА С УНИКАЛЬНЫМИ ID -->
                 <div class="contact-form fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
                     <form id="contactForm">
                         <div class="form-group">
                             <label>Ваше имя</label>
-                            <input type="text" id="name" placeholder="Иван Иванов" required>
+                            <!-- ID изменен на input-name -->
+                            <input type="text" id="input-name" placeholder="Иван Иванов">
                         </div>
                         <div class="form-group">
                             <label>Телефон или Telegram</label>
-                            <input type="text" id="contact" placeholder="+7 (___) ___-__-__ или @username" required>
+                            <!-- ID изменен на input-contact -->
+                            <input type="text" id="input-contact" placeholder="+7 (___) ___-__-__ или @username">
                         </div>
                         <div class="form-group">
                             <label>Услуга</label>
-                            <select id="service" required>
+                            <!-- ID изменен на input-service -->
+                            <select id="input-service">
                                 <option value="">Выберите</option>
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
@@ -345,10 +348,11 @@
                         </div>
                         <div class="form-group">
                             <label>Комментарий</label>
-                            <textarea id="message" placeholder="О проекте..."></textarea>
+                            <!-- ID изменен на input-message -->
+                            <textarea id="input-message" placeholder="О проекте..."></textarea>
                         </div>
-                        <!-- ✅ КНОПКА С type="button" -->
-                        <button type="button" class="btn btn-primary" id="submitBtn" onclick="sendToTelegram()">
+                        <!-- ID кнопки изменен на btn-send -->
+                        <button type="button" class="btn btn-primary" id="btn-send" onclick="sendToTelegram()">
                             Отправить заявку →
                         </button>
                     </form>
@@ -370,67 +374,93 @@
     </footer>
 
     <script>
-        // ===== ОТПРАВКА В TELEGRAM (ПРОСТАЯ И НАДЁЖНАЯ) =====
+        // ===== ОТПРАВКА В TELEGRAM (ИСПРАВЛЕННАЯ) =====
         async function sendToTelegram() {
             console.log('🚀 Начинаем отправку...');
             
             const BOT_TOKEN = '8725488476:AAFO2MR7RqFv9XbSJ_B3ZvDC5h_hBsTNVjw';
             const CHAT_ID = '673594120';
             
-            // Получаем элементы
-            const nameEl = document.getElementById('name');
-            const contactEl = document.getElementById('contact');
-            const serviceEl = document.getElementById('service');
-            const messageEl = document.getElementById('message');
-            const btn = document.getElementById('submitBtn');
+            // Используем querySelector для точного поиска по ID
+            const nameEl = document.querySelector('#input-name');
+            const contactEl = document.querySelector('#input-contact');
+            const serviceEl = document.querySelector('#input-service');
+            const messageEl = document.querySelector('#input-message');
+            const btn = document.querySelector('#btn-send');
             
-            // Проверка
+            // Логируем, что нашли
+            console.log('Найдены элементы:', {
+                name: nameEl ? nameEl.tagName : 'null',
+                contact: contactEl ? contactEl.tagName : 'null',
+                service: serviceEl ? serviceEl.tagName : 'null',
+                message: messageEl ? messageEl.tagName : 'null'
+            });
+
             if (!nameEl || !contactEl || !serviceEl || !messageEl) {
                 console.error('❌ Элементы формы не найдены!');
-                alert('Ошибка: форма не загружена. Обновите страницу.');
+                alert('Ошибка: Форма не загружена. Обновите страницу.');
                 return;
             }
-            
-            // Получаем значения
-            const name = nameEl.value.trim();
-            const contact = contactEl.value.trim();
-            const service = serviceEl.value;
-            const message = messageEl.value.trim();
-            
-            console.log('📝 Данные:', { name, contact, service, message });
-            
-            // Валидация
-            if (!name) { alert('Введите имя'); nameEl.focus(); return; }
-            if (!contact) { alert('Введите контакты'); contactEl.focus(); return; }
-            
-            // Формируем сообщение
-            const text = `🎙️ <b>ЗАЯВКА</b>\n\n👤 ${name}\n📱 ${contact}\n🎯 ${service}\n💬 ${message || '-'}\n📅 ${new Date().toLocaleString('ru-RU')}`;
-            
+
+            // Безопасное получение значений (защита от undefined)
+            const name = (nameEl.value || '').toString().trim();
+            const contact = (contactEl.value || '').toString().trim();
+            const service = serviceEl.value || 'Не выбрано';
+            const message = (messageEl.value || '').toString().trim();
+
+            console.log('Данные формы:', { name, contact, service, message });
+
+            if (!name) {
+                alert('Пожалуйста, введите ваше имя.');
+                nameEl.focus();
+                return;
+            }
+            if (!contact) {
+                alert('Пожалуйста, введите телефон или Telegram.');
+                contactEl.focus();
+                return;
+            }
+
+            const text = `
+🎙️ <b>НОВАЯ ЗАЯВКА</b>
+
+👤 <b>Имя:</b> ${name}
+📱 <b>Контакты:</b> ${contact}
+🎯 <b>Услуга:</b> ${service}
+💬 <b>Комментарий:</b> ${message || 'Не указан'}
+
+📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU')}
+            `.trim();
+
             // Блокируем кнопку
             btn.disabled = true;
             btn.textContent = 'Отправка...';
             btn.classList.add('btn-submitting');
-            
+
             try {
                 console.log('📡 Отправка в Telegram...');
                 const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
                 });
-                
+
                 if (response.ok) {
                     console.log('✅ Успешно отправлено!');
-                    alert('✅ Заявка отправлена!');
+                    alert('✅ Заявка успешно отправлена! Мы свяжемся с вами.');
                     document.getElementById('contactForm').reset();
                 } else {
                     const err = await response.json();
                     console.error('❌ Telegram error:', err);
-                    alert('❌ Ошибка: ' + (err.description || response.statusText));
+                    alert('❌ Ошибка Telegram:\n' + (err.description || 'Неизвестная ошибка'));
                 }
             } catch (error) {
                 console.error('❌ Network error:', error);
-                alert('❌ Ошибка сети.\n\n💡 Если открыли файл двойным кликом (file://), браузер блокирует запросы. Используйте локальный сервер.');
+                alert('❌ Ошибка сети.\n\n💡 Совет: Если открыли файл двойным кликом (file:///), браузер может блокировать запросы. Используйте локальный сервер.');
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Отправить заявку →';
