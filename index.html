@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Студия Подкаста 513</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* === НАСТРОЙКИ ЦВЕТОВ === */
         :root {
             --bg-primary: #0a0a0f;
             --text-primary: #ffffff;
@@ -16,8 +18,11 @@
             --cyan: #06b6d4;
             --radius: 16px;
         }
+
+        /* === БАЗОВЫЕ СТИЛИ === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+        
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
@@ -28,7 +33,8 @@
             position: relative;
             touch-action: pan-y;
         }
-        
+
+        /* Фон сайта (замените путь к картинке, если он отличается) */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('images/studio-background.jpg') center/cover no-repeat;
@@ -36,19 +42,26 @@
         }
         .bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 8, 12, 0.6);
-            backdrop-filter: blur(6px);
+            background: rgba(8, 8, 12, 0.75); /* Чуть темнее для читаемости */
+            backdrop-filter: blur(8px);
             z-index: -1;
         }
+
+        /* === НАВИГАЦИЯ === */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
             background: transparent;
             z-index: 1000;
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
         }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { 
+            max-width: 1400px; margin: 0 auto; 
+            display: flex; justify-content: space-between; align-items: center; 
+        }
         .logo { display: flex; align-items: center; }
-        .logo img { height: 180px; width: auto; }
+        .logo img { height: 100px; width: auto; transition: height 0.3s ease; }
+        
+        /* Ссылки для десктопа */
         .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; }
         .nav-links a {
             display: inline-block; padding: 0.6rem 1.5rem; color: var(--green);
@@ -58,17 +71,11 @@
         }
         .nav-links a:hover { color: white; background: var(--green); }
 
-        /* ✅ БУРГЕР КНОПКА С АНИМАЦИЕЙ */
+        /* Кнопка бургер */
         .mobile-menu-btn { 
-            display: none; 
-            background: none; 
-            border: none; 
-            color: var(--text-primary); 
-            cursor: pointer;
-            width: 48px; height: 48px;
-            position: relative;
-            z-index: 1002;
-            opacity: 1; transform: translateY(0);
+            display: none; background: none; border: none; cursor: pointer;
+            width: 48px; height: 48px; position: relative; z-index: 1002;
+            opacity: 0; transform: translateY(-15px); pointer-events: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .mobile-menu-btn span {
@@ -80,138 +87,139 @@
         .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
         .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* ✅ ШТОРКА */
+        /* === МОБИЛЬНОЕ МЕНЮ (ШТОРКА) === */
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(10, 10, 15, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(25px);
             z-index: 1001;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             opacity: 0; visibility: hidden; transform: translateY(-100%);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; transform: translateY(0); }
         
         .mobile-nav-item {
-            opacity: 0; transform: translateY(-20px);
-            transition: all 0.4s ease;
+            opacity: 0; transform: translateY(-30px);
+            transition: all 0.5s ease;
         }
         .mobile-menu-overlay.active .mobile-nav-item { opacity: 1; transform: translateY(0); }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
         
-        /* ✅ Ссылки без иконок */
         .mobile-nav-item a {
-            padding: 1.2rem 2rem; color: var(--text-primary);
-            text-decoration: none; font-size: 1.4rem; font-weight: 600;
-            transition: all 0.3s; border-bottom: 1px solid rgba(34, 197, 94, 0.1);
-            width: 100%; max-width: 300px; text-align: center;
-            letter-spacing: 0.5px;
+            padding: 1.5rem 2rem; color: var(--text-primary);
+            text-decoration: none; font-size: 1.5rem; font-weight: 700;
+            transition: all 0.3s; border-bottom: 1px solid rgba(255,255,255,0.1);
+            width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px;
         }
-        .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); }
+        .mobile-nav-item a:hover { color: var(--green); }
         
         .mobile-nav-socials {
-            display: flex; gap: 1rem; margin-top: 1.5rem;
+            display: flex; gap: 1rem; margin-top: 2rem;
             opacity: 0; transform: translateY(20px);
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
         }
         .mobile-menu-overlay.active .mobile-nav-socials { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
         .mobile-nav-socials a {
-            width: 48px; height: 48px; border-radius: 50%;
-            background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3);
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center;
-            color: var(--green); text-decoration: none; font-weight: 600;
+            color: var(--green); text-decoration: none; font-weight: 700;
             transition: all 0.3s;
         }
-        .mobile-nav-socials a:hover { background: var(--green); color: white; transform: translateY(-3px); }
+        .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
+        /* === СЕКЦИИ === */
         .section { position: relative; padding: 5rem 5%; width: 100%; }
         .hero { min-height: 100vh; display: flex; align-items: center; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .hero-content { max-width: 700px; }
-        .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-primary); }
-        .hero-content p { font-size: 1.35rem; color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
+        .hero-content h1 { 
+            font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; 
+            color: var(--text-primary); 
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero-content p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-        .btn { padding: 1.1rem 2.5rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1.05rem; }
-        .btn-primary { background: var(--red); color: white; box-shadow: 0 10px 30px rgba(248, 113, 113, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(248, 113, 113, 0.5); }
-        .btn-secondary { background: rgba(34,197,94,0.15); color: var(--green); border: 2px solid var(--green); }
+        .btn { padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+        .btn-primary { background: var(--red); color: white; box-shadow: 0 5px 20px rgba(248, 113, 113, 0.4); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(248, 113, 113, 0.6); }
+        .btn-secondary { background: rgba(34,197,94,0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
         .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-3px); }
         .btn-success { background: #22c55e !important; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4) !important; pointer-events: none; }
         .btn-error { background: #ef4444 !important; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4) !important; }
 
         .container { max-width: 1400px; margin: 0 auto; width: 100%; }
         .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); }
+        .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .section-title p { color: var(--text-secondary); font-size: 1.125rem; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .service-card { background: rgba(25,30,40,0.5); padding: 3rem 2.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(4px); }
-        .service-card:hover { transform: translateY(-8px); border-color: var(--cyan); }
-        .service-icon { width: 90px; height: 90px; margin: 0 auto 2rem; background: var(--green); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .service-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { 
+            background: rgba(25,30,40,0.4); padding: 2.5rem 2rem; border-radius: var(--radius); 
+            text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); 
+        }
+        .service-card:hover { transform: translateY(-8px); border-color: var(--green); background: rgba(25,30,40,0.6); }
+        .service-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; background: var(--green); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .service-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
 
         .portfolio { padding: 4rem 0; overflow: visible !important; width: 100%; }
         .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 460px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
         .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
         .carousel-track:active { cursor: grabbing; }
-        .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; }
-        .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.7); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.15); backdrop-filter: blur(4px); display: flex; flex-direction: column; }
-        .carousel-slide.active .portfolio-item { border-color: var(--cyan); box-shadow: 0 0 40px rgba(6, 182, 212, 0.25); }
-        .portfolio-image { width: 100%; height: 180px; background: rgba(31,41,55,0.6); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; transition: opacity 0.3s; }
+        .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
+        .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 30px rgba(34, 197, 94, 0.2); }
+        .portfolio-image { width: 100%; height: 180px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
         .portfolio-content { padding: 1.2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-        .portfolio-content h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .portfolio-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .portfolio-content p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.8rem; line-height: 1.5; flex: 1; }
         .portfolio-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-        .tag { padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
-        .tag-green { background: rgba(34,197,94,0.15); border: 1px solid var(--green); color: var(--green); }
-        .tag-cyan { background: rgba(6,182,212,0.15); border: 1px solid var(--cyan); color: var(--cyan); }
-        .tag-red { background: rgba(248,113,113,0.15); border: 1px solid var(--red); color: var(--red); }
+        .tag { padding: 0.2rem 0.5rem; border-radius: 15px; font-size: 0.7rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
         .carousel-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(34,197,94,0.3); border: 2px solid transparent; cursor: pointer; }
-        .dot.active { background: var(--cyan); border-color: var(--green); transform: scale(1.2); }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+        .dot.active { background: var(--green); border-color: #fff; transform: scale(1.2); }
 
-        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         .contact-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--green); }
-        .contact-details { margin-bottom: 2rem; }
         .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-        .contact-icon { width: 50px; height: 50px; background: var(--cyan); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
-        .contact-text h4 { margin-bottom: 0.25rem; font-size: 1.125rem; }
+        .contact-icon { width: 40px; height: 40px; background: var(--green); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .contact-text h4 { margin-bottom: 0.2rem; font-size: 1.1rem; }
         .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
-        .contact-text a:hover { color: var(--cyan); }
-        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.2); background: rgba(20,25,35,0.4); }
-        .map-container iframe, .map-container script { width: 100%; height: 400px; border: none; display: block; }
+        .contact-text a:hover { color: var(--green); }
+        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 300px; }
+        .map-container iframe, .map-container script { width: 100%; height: 100%; border: none; display: block; }
 
         .contact-form {
-            background: rgba(25,30,40,0.5); padding: 2.5rem; border-radius: var(--radius);
-            border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(6px); position: relative; z-index: 20;
+            background: rgba(25,30,40,0.4); padding: 2rem; border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20;
         }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 1rem; background: rgba(10,10,15,0.5);
-            border: 1px solid rgba(6,182,212,0.2); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem;
+            width: 100%; padding: 1rem; background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(6,182,212,0.15);
+            outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
         }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
 
-        footer { padding: 3rem 5%; text-align: center; width: 100%; background: rgba(10, 10, 15, 0.8); }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        footer { padding: 3rem 5%; text-align: center; width: 100%; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--cyan); }
-        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-        .social-links a { width: 50px; height: 50px; background: rgba(30,35,45,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); }
-        .social-links a:hover { background: var(--red); color: white; transform: translateY(-3px); }
-        footer p { color: var(--text-secondary); font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--green); }
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .social-links a:hover { background: var(--green); color: white; transform: translateY(-3px); }
+        footer p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
@@ -220,7 +228,8 @@
             .carousel-slide { width: 270px; height: 330px; margin-left: -135px; margin-top: -165px; }
             .portfolio-image { height: 150px; font-size: 2.5rem; }
             .nav-links { display: none; }
-            .mobile-menu-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+            .mobile-menu-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; transform: translateY(0); pointer-events: auto; }
+            .logo img { height: 80px; }
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
         }
@@ -228,13 +237,13 @@
             .hero-content h1 { font-size: 2rem; }
             .section-title h2 { font-size: 1.75rem; }
             .section { padding: 3rem 5%; }
-            .contact-form { padding: 2rem 1.5rem; }
+            .contact-form { padding: 1.5rem; }
             .service-card { padding: 2rem 1.5rem; }
             .carousel-stage { height: 310px; }
             .carousel-slide { width: 240px; height: 290px; margin-left: -120px; margin-top: -145px; }
             .portfolio-image { height: 120px; font-size: 2rem; }
             .portfolio-content { padding: 0.8rem 1rem; }
-            .logo img { height: 120px; }
+            .logo img { height: 70px; }
         }
     </style>
 </head>
@@ -250,7 +259,7 @@
                 <li><a href="#portfolio">Примеры работ</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -258,6 +267,7 @@
         </div>
     </nav>
 
+    <!-- Мобильное меню -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
@@ -272,7 +282,7 @@
         <div class="hero-container">
             <div class="hero-content fade-in">
                 <h1>Студия Подкаста 513</h1>
-                <p>Профессиональная запись и производство подкастов в Москве.</p>
+                <p>Профессиональная запись и производство подкастов в Москве. Современное оборудование и комфортная атмосфера.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
@@ -322,7 +332,7 @@
                         <div class="portfolio-content">
                             <h3>Бизнес-подкаст</h3>
                             <p>Интервью с предпринимателями о развитии бизнеса.</p>
-                            <div class="portfolio-tags"><span class="tag tag-green">Видео</span><span class="tag tag-cyan">Монтаж</span></div>
+                            <div class="portfolio-tags"><span class="tag">Видео</span><span class="tag">Монтаж</span></div>
                         </div>
                     </div>
                 </div>
@@ -332,7 +342,7 @@
                         <div class="portfolio-content">
                             <h3>Музыкальное шоу</h3>
                             <p>Обсуждение новой музыки и интервью с музыкантами.</p>
-                            <div class="portfolio-tags"><span class="tag tag-cyan">Под ключ</span><span class="tag tag-red">Графика</span></div>
+                            <div class="portfolio-tags"><span class="tag">Под ключ</span><span class="tag">Графика</span></div>
                         </div>
                     </div>
                 </div>
@@ -342,7 +352,7 @@
                         <div class="portfolio-content">
                             <h3>Образовательный</h3>
                             <p>Научпоп и образовательный контент для широкой аудитории.</p>
-                            <div class="portfolio-tags"><span class="tag tag-red">Съёмка</span><span class="tag tag-green">Монтаж</span></div>
+                            <div class="portfolio-tags"><span class="tag">Съёмка</span><span class="tag">Монтаж</span></div>
                         </div>
                     </div>
                 </div>
@@ -363,27 +373,18 @@
             </div>
             <div class="contact-container">
                 <div class="contact-info fade-in">
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Адрес</h4>
-                                <p>Москва, ул. Примерная, 123</p>
-                            </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Адрес</h4>
+                            <p>Москва, ул. Примерная, 123</p>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Телефон</h4>
-                                <a href="tel:+79991234567">+7 (999) 123-45-67</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">🕐</div>
-                            <div class="contact-text">
-                                <h4>Режим</h4>
-                                <p>Ежедневно с 10:00 до 22:00</p>
-                            </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
                         </div>
                     </div>
                     <div class="map-container">
@@ -409,7 +410,6 @@
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
                                 <option>Под ключ</option>
-                                <option>Консультация</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -437,7 +437,7 @@
     </footer>
 
     <script>
-        // ===== МОБИЛЬНОЕ МЕНЮ =====
+        // === ЛОГИКА МЕНЮ ===
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
@@ -456,48 +456,34 @@
             document.body.style.overflow = '';
         }
 
-        mobileMenuBtn.addEventListener('click', () => {
-            if (isMenuOpen) { closeMobileMenu(); }
-            else { openMobileMenu(); }
-        });
-
+        mobileMenuBtn.addEventListener('click', () => isMenuOpen ? closeMobileMenu() : openMobileMenu());
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
 
-        // ===== БУРГЕР: ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ВВЕРХ =====
+        // === ПОЯВЛЕНИЕ БУРГЕРА ПРИ СКРОЛЛЕ ВВЕРХ ===
         let lastScrollY = window.scrollY;
         const scrollThreshold = 50;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            
-            // Не меняем состояние, если меню открыто
+            // Если меню открыто, не скрываем кнопку
             if (!isMenuOpen) {
+                // Скролл вниз -> скрываем
                 if (currentScrollY > scrollThreshold && currentScrollY > lastScrollY) {
-                    // Скролл вниз -> скрываем
                     mobileMenuBtn.style.opacity = '0';
                     mobileMenuBtn.style.pointerEvents = 'none';
                     mobileMenuBtn.style.transform = 'translateY(-15px)';
                 } else {
-                    // Скролл вверх или в начале -> показываем
+                    // Скролл вверх -> показываем
                     mobileMenuBtn.style.opacity = '1';
                     mobileMenuBtn.style.pointerEvents = 'auto';
                     mobileMenuBtn.style.transform = 'translateY(0)';
                 }
             }
-            
             lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
         }, { passive: true });
 
-        // ===== НАВИГАЦИЯ (ЗАТЕМНЕНИЕ ПРИ СКРОЛЛЕ) =====
-        const nav = document.getElementById('mainNav');
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const opacity = Math.max(0.15, 1 - scrollY / 50);
-            nav.style.opacity = opacity;
-            nav.style.transform = `translateY(${-15 * (1 - opacity)}px)`;
-        }, { passive: true });
-
+        // === ОТПРАВКА В TELEGRAM ===
         async function sendToTelegram() {
             const btn = document.getElementById('btn-send');
             const originalText = btn.textContent;
@@ -551,7 +537,7 @@
             }
         }
 
-        // ===== КАРУСЕЛЬ =====
+        // === КАРУСЕЛЬ ===
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -590,31 +576,20 @@
             target += diff;
         }
 
-        track.addEventListener('touchstart', function(e) {
-            isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY;
-            startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing';
-        }, { passive: true });
-
-        track.addEventListener('touchmove', function(e) {
+        track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; }, { passive: true });
+        track.addEventListener('touchmove', e => {
             if (!isDragging) return;
-            const currentX = e.touches[0].clientX, currentY = e.touches[0].clientY;
-            const diffX = currentX - startX, diffY = currentY - startY;
+            const diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY;
             if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) { isVerticalSwipe = true; return; }
             if (Math.abs(diffX) > 10) { e.preventDefault(); target = startTarget - (diffX / 200); }
         }, { passive: false });
+        track.addEventListener('touchend', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); } });
 
-        track.addEventListener('touchend', function() {
-            if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); }
-        });
-
-        track.addEventListener('wheel', function(e) {
+        track.addEventListener('wheel', e => {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) {
                 e.preventDefault();
                 wheelAccumulator += e.deltaX * WHEEL_FACTOR;
-                if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) {
-                    if (wheelAccumulator > 0) target += 1; else target -= 1;
-                    wheelAccumulator = 0;
-                }
+                if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) { target += wheelAccumulator > 0 ? 1 : -1; wheelAccumulator = 0; }
             }
         }, { passive: false });
 
@@ -626,6 +601,7 @@
 
         window.addEventListener('load', updateCarousel);
 
+        // === АНИМАЦИИ ===
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
