@@ -45,7 +45,7 @@
 
         /* === НАВИГАЦИЯ === */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 5%;
+            position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%;
             background: transparent;
             z-index: 1000;
         }
@@ -53,10 +53,10 @@
             position: relative;
             max-width: 1400px; margin: 0 auto; 
             display: flex; justify-content: space-between; align-items: center;
-            min-height: 60px;
+            min-height: 80px;
         }
 
-        /* ЛОГОТИПО ПО ЦЕНТРУ */
+        /* ✅ ЛОГОТИП УВЕЛИЧЕН В 4 РАЗА (90px * 4 = 360px) */
         .nav-brand {
             position: absolute;
             left: 50%;
@@ -71,14 +71,28 @@
             transform: translate(-50%, -30px);
             pointer-events: none;
         }
-        .logo img { height: 90px; width: auto; }
+        .logo img { 
+            height: 360px; /* В 4 раза больше */
+            width: auto; 
+        }
 
         /* ЭЛЕМЕНТЫ СПРАВА */
         .nav-controls {
             margin-left: auto;
             display: flex; align-items: center; gap: 1rem;
         }
-        .nav-links { display: flex; gap: 0.8rem; list-style: none; }
+        .nav-links { 
+            display: flex; gap: 0.8rem; list-style: none;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .nav-links.scrolled {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
         .nav-links a {
             display: inline-block; padding: 0.5rem 1.2rem; color: var(--green);
             text-decoration: none; font-weight: 600; font-size: 0.9rem;
@@ -89,12 +103,17 @@
 
         /* БУРГЕР КНОПКА */
         .burger-btn { 
-            display: none;
+            display: none; /* Скрыта на десктопе по умолчанию */
             flex-direction: column; align-items: center; justify-content: center;
             background: none; border: none; cursor: pointer;
             width: 44px; height: 44px;
             opacity: 0; pointer-events: none;
             transition: all 0.3s ease;
+        }
+        .burger-btn.visible {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
         }
         .burger-btn span {
             display: block; width: 22px; height: 2px;
@@ -239,9 +258,11 @@
             .carousel-stage { height: 360px; }
             .carousel-slide { width: 270px; height: 330px; margin-left: -135px; margin-top: -165px; }
             .portfolio-image { height: 150px; font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .logo img { height: 70px; }
-            .burger-btn { display: flex; opacity: 1; pointer-events: auto; } /* На мобильных всегда виден */
+            .nav-links { display: none !important; }
+            /* На мобильных лого поменьше, иначе не влезет */
+            .logo img { height: 140px; } 
+            /* Бургер всегда виден */
+            .burger-btn { display: flex; opacity: 1; pointer-events: auto; }
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
         }
@@ -255,7 +276,7 @@
             .carousel-slide { width: 240px; height: 290px; margin-left: -120px; margin-top: -145px; }
             .portfolio-image { height: 120px; font-size: 2rem; }
             .portfolio-content { padding: 0.8rem 1rem; }
-            .logo img { height: 60px; }
+            .logo img { height: 100px; }
         }
     </style>
 </head>
@@ -270,9 +291,9 @@
                 <a href="#" class="logo"><img src="logo.png" alt="Студия 513"></a>
             </div>
             
-            <!-- ЭЛЕМЕНТЫ СПРАВА -->
+            <!-- ЭЛЕМЕНТЫ СПРАВА: ССЫЛКИ + БУРГЕР -->
             <div class="nav-controls">
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#portfolio">Примеры работ</a></li>
                     <li><a href="#contact">Контакты</a></li>
@@ -366,6 +387,7 @@
     <script>
         // === ЛОГИКА МЕНЮ ===
         const navBrand = document.getElementById('navBrand');
+        const navLinks = document.getElementById('navLinks');
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
@@ -386,25 +408,27 @@
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
 
-        // === СКРЫТИЕ ЛОГО И ПОЯВЛЕНИЕ БУРГЕРА НА ДЕСКТОПЕ ===
+        // === ЛОГИКА СКРЫТИЯ ЭЛЕМЕНТОВ ПРИ СКРОЛЛЕ ===
         const scrollThreshold = 50;
         let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
 
-            // Логотип скрывается при скролле на ЛЮБЫХ устройствах
+            // 1. Логотип скрывается на ВСЕХ устройствах при скролле вниз
             if (currentScrollY >= scrollThreshold) {
                 navBrand.classList.add('scrolled');
             } else {
                 navBrand.classList.remove('scrolled');
             }
 
-            // Бургер появляется ТОЛЬКО на десктопе при скролле
+            // 2. Бургер и ссылки работают ТОЛЬКО на десктопе
             if (window.innerWidth >= 969) {
                 if (currentScrollY >= scrollThreshold) {
+                    navLinks.classList.add('scrolled');
                     burgerBtn.classList.add('visible');
                 } else {
+                    navLinks.classList.remove('scrolled');
                     burgerBtn.classList.remove('visible');
                 }
             }
