@@ -315,7 +315,8 @@
 
                 <div class="contact-form fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
-                    <form id="telegramForm" onsubmit="sendToTelegram(event)">
+                    <!-- ✅ ФОРМА С ID ДЛЯ СКРИПТА -->
+                    <form id="contactForm" onsubmit="sendToTelegram(event)">
                         <div class="form-group">
                             <label for="name">Ваше имя</label>
                             <input type="text" id="name" placeholder="Иван Иванов" required>
@@ -360,31 +361,31 @@
     </footer>
 
     <script>
-        // ===== ОТПРАВКА В TELEGRAM (ИСПРАВЛЕННАЯ И БЕЗОПАСНАЯ) =====
+        // ===== ОТПРАВКА В TELEGRAM =====
         async function sendToTelegram(e) {
             e.preventDefault();
 
             const BOT_TOKEN = '8725488476:AAFO2MR7RqFv9XbSJ_B3ZvDC5h_hBsTNVjw';
             const CHAT_ID = '673594120';
 
-            // Безопасное получение элементов с проверкой
+            // ✅ ПОЛУЧАЕМ ЗНАЧЕНИЯ ПО ID
             const nameEl = document.getElementById('name');
             const contactEl = document.getElementById('contact');
             const serviceEl = document.getElementById('service');
             const messageEl = document.getElementById('message');
             const submitBtn = document.getElementById('submitBtn');
 
-            if (!nameEl || !contactEl || !serviceEl || !messageEl) {
-                alert('⚠️ Ошибка: Поля формы не найдены. Обновите страницу.');
+            if (!nameEl || !contactEl || !serviceEl) {
+                alert('Ошибка: Элементы формы не найдены в HTML.');
                 return;
             }
 
-            // Безопасное извлечение значений (защита от undefined)
-            const name = (nameEl.value || '').trim();
-            const contact = (contactEl.value || '').trim();
-            const service = serviceEl.value || 'Не выбрано';
-            const message = (messageEl.value || '').trim();
+            const name = nameEl.value.trim();
+            const contact = contactEl.value.trim();
+            const service = serviceEl.value;
+            const message = messageEl.value.trim();
 
+            // ✅ ПРОВЕРКА ЗАПОЛНЕНИЯ
             if (!name || !contact) {
                 alert('⚠️ Пожалуйста, заполните имя и контакты.');
                 return;
@@ -418,7 +419,7 @@
 
                 if (response.ok) {
                     alert('✅ Заявка успешно отправлена! Мы свяжемся с вами.');
-                    document.getElementById('telegramForm').reset();
+                    document.getElementById('contactForm').reset();
                 } else {
                     const err = await response.json();
                     alert('❌ Ошибка Telegram:\n' + (err.description || response.statusText));
