@@ -34,26 +34,21 @@
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
         .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 12, 0.75); backdrop-filter: blur(8px); z-index: -1; }
 
-        /* ✅ УМЕНЬШЕНО РАССТОЯНИЕ В 2 РАЗА (было 1.5rem) */
-        nav { position: fixed; top: 0; left: 0; width: 100%; padding: 0.8rem 5%; background: transparent; z-index: 1000; }
-        .nav-container { position: relative; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 60px; }
+        /* ✅ ЛОГО УБРАНО ИЗ NAV, ОСТАЛИСЬ ТОЛЬКО КНОПКИ */
+        nav { position: fixed; top: 0; left: 0; width: 100%; padding: 0.5rem 5%; background: transparent; z-index: 1000; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; min-height: 50px; gap: 0.5rem; }
 
-        .nav-brand { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; pointer-events: auto; }
-        .nav-brand.scrolled { opacity: 0; transform: translate(-50%, -30px); pointer-events: none; }
-        .logo img { height: 280px; width: auto; } /* Чуть уменьшил, чтобы гармонично смотрелось с новым отступом */
-
-        .nav-controls { margin-left: auto; display: flex; align-items: center; gap: 1rem; }
-        .nav-links { display: flex; gap: 0.8rem; list-style: none; transition: all 0.3s ease; opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .nav-links { display: flex; gap: 0.6rem; list-style: none; transition: all 0.3s ease; opacity: 1; transform: translateY(0); pointer-events: auto; }
         .nav-links.scrolled { opacity: 0; transform: translateY(-10px); pointer-events: none; }
-        .nav-links a { display: inline-block; padding: 0.4rem 1rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05); }
+        .nav-links a { display: inline-block; padding: 0.35rem 0.9rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.85rem; border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05); }
         .nav-links a:hover { color: white; background: var(--green); }
 
-        .burger-btn { display: none; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; width: 40px; height: 40px; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        .burger-btn { display: none; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; width: 36px; height: 36px; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
         .burger-btn.visible { display: flex; opacity: 1; pointer-events: auto; }
-        .burger-btn span { display: block; width: 22px; height: 2px; background: var(--green); margin: 4px auto; transition: all 0.3s ease; border-radius: 2px; }
-        .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .burger-btn span { display: block; width: 20px; height: 2px; background: var(--green); margin: 3px auto; transition: all 0.3s ease; border-radius: 2px; }
+        .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
         .burger-btn.active span:nth-child(2) { opacity: 0; }
-        .burger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .burger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
 
         .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(25px); z-index: 1001; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(-100%); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -69,116 +64,115 @@
         .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
-        /* ✅ УМЕНЬШЕНЫ ОТСТУПЫ СЕКЦИЙ В 2 РАЗА (было 5rem) */
-        .section { position: relative; padding: 2.5rem 5%; width: 100%; }
-        /* ✅ УМЕНЬШЕНА ВЫСОТА HERO ДЛЯ БОЛЕЕ ПЛОТНОЙ КОМПОНОВКИ */
-        .hero { min-height: 80vh; display: flex; align-items: center; }
-        .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-        /* ✅ ВЫРАВНИВАНИЕ ПО ЦЕНТРУ */
-        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; padding-top: 1rem; }
-        .hero-content h1 { font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; color: var(--text-primary); text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .hero-content h1 span { color: var(--green); }
-        .hero-content p { font-size: 1.2rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; max-width: 650px; line-height: 1.6; margin-left: auto; margin-right: auto; }
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        /* ✅ УМЕНЬШЕНЫ ВСЕ ОТСТУПЫ ЕЩЁ В 2 РАЗА */
+        .section { position: relative; padding: 1.2rem 5%; width: 100%; }
+        .hero { min-height: 65vh; display: flex; align-items: center; justify-content: center; }
+        .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
+        
+        /* ✅ ЛОГО ВМЕСТО ТЕКСТА В HERO */
+        .hero-logo { height: 160px; width: auto; margin-bottom: 0.6rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); }
+        .hero-content { max-width: 700px; margin: 0 auto; }
+        .hero-content p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 550px; line-height: 1.5; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
-        .btn { padding: 0.9rem 1.8rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
-        .btn-primary { background: var(--red); color: white; box-shadow: 0 5px 20px rgba(248, 113, 113, 0.4); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(248, 113, 113, 0.6); }
+        .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; }
+        .btn-primary { background: var(--red); color: white; box-shadow: 0 4px 15px rgba(248, 113, 113, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(248, 113, 113, 0.6); }
         .btn-secondary { background: rgba(34,197,94,0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
-        .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-3px); }
+        .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-2px); }
         .btn-success { background: #22c55e !important; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4) !important; pointer-events: none; }
         .btn-error { background: #ef4444 !important; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4) !important; }
 
-        .container { max-width: 1400px; margin: 0 auto; width: 100%; }
-        .section-title { text-align: center; margin-bottom: 2rem; }
-        .section-title h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .section-title p { color: var(--text-secondary); font-size: 1rem; }
+        .container { max-width: 1300px; margin: 0 auto; width: 100%; }
+        .section-title { text-align: center; margin-bottom: 1.5rem; }
+        .section-title h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .section-title p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .service-card { background: rgba(25,30,40,0.4); padding: 2rem 1.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
-        .service-card:hover { transform: translateY(-5px); border-color: var(--green); background: rgba(25,30,40,0.6); }
-        .service-icon { width: 70px; height: 70px; margin: 0 auto 1.2rem; background: var(--green); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
-        .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+        .service-card { background: rgba(25,30,40,0.4); padding: 1.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+        .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
+        .service-icon { width: 60px; height: 60px; margin: 0 auto 1rem; background: var(--green); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .service-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4; }
 
-        .portfolio { padding: 2.5rem 0; overflow: visible !important; width: 100%; }
-        .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 420px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
+        .portfolio { padding: 1.2rem 0; overflow: visible !important; width: 100%; }
+        .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 380px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
         .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
         .carousel-track:active { cursor: grabbing; }
-        .carousel-slide { position: absolute; width: 300px; height: 360px; left: 50%; top: 50%; margin-left: -150px; margin-top: -180px; }
+        .carousel-slide { position: absolute; width: 280px; height: 340px; left: 50%; top: 50%; margin-left: -140px; margin-top: -170px; }
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
-        .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 25px rgba(34, 197, 94, 0.2); }
-        .portfolio-image { width: 100%; height: 160px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
-        .portfolio-content { padding: 1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
-        .portfolio-content h3 { font-size: 1rem; margin-bottom: 0.4rem; }
-        .portfolio-content p { color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.6rem; line-height: 1.4; flex: 1; }
+        .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+        .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+        .portfolio-content { padding: 0.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
+        .portfolio-content h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.3; flex: 1; }
         .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-        .tag { padding: 0.2rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
-        .carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+        .tag { padding: 0.15rem 0.3rem; border-radius: 10px; font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
+        .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
         .dot.active { background: var(--green); border-color: #fff; transform: scale(1.2); }
 
-        .contact-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .contact-info h3 { font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--green); }
-        .contact-item { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1.2rem; }
-        .contact-icon { width: 36px; height: 36px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-        .contact-text h4 { margin-bottom: 0.2rem; font-size: 1rem; }
-        .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
+        .contact-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .contact-info h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--green); }
+        .contact-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 1rem; }
+        .contact-icon { width: 32px; height: 32px; background: var(--green); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+        .contact-text h4 { margin-bottom: 0.1rem; font-size: 0.95rem; }
+        .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.85rem; }
         .contact-text a:hover { color: var(--green); }
-        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 260px; }
+        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 220px; }
         .map-container iframe, .map-container script { width: 100%; height: 100%; border: none; display: block; }
 
-        .contact-form { background: rgba(25,30,40,0.4); padding: 1.5rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
-        .form-group { margin-bottom: 1.2rem; position: relative; }
-        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem; }
-        /* ✅ ИСПРАВЛЕННОЕ ПОЛЕ ИМЕНИ (стандартный стиль без лишних отступов) */
-        .form-group input:not([type="tel"]), .form-group select, .form-group textarea { width: 100%; padding: 0.9rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.95rem; }
+        .contact-form { background: rgba(25,30,40,0.4); padding: 1.2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
+        .contact-form h3 { margin-bottom: 0.8rem; font-size: 1.1rem; }
+        .form-group { margin-bottom: 0.9rem; position: relative; }
+        .form-group label { display: block; margin-bottom: 0.3rem; font-weight: 500; font-size: 0.9rem; }
+        .form-group input:not([type="tel"]), .form-group select, .form-group textarea { width: 100%; padding: 0.7rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; font-family: inherit; font-size: 0.9rem; }
         .input-wrapper { position: relative; }
-        .input-wrapper input { width: 100%; padding: 0.9rem; padding-right: 110px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.95rem; }
-        .input-hint { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5; pointer-events: none; white-space: nowrap; transition: opacity 0.3s; }
+        .input-wrapper input { width: 100%; padding: 0.7rem; padding-right: 100px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; font-family: inherit; font-size: 0.9rem; }
+        .input-hint { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.75rem; opacity: 0.5; pointer-events: none; white-space: nowrap; transition: opacity 0.3s; }
         .input-wrapper input:focus + .input-hint, .input-wrapper input:not(:placeholder-shown) + .input-hint { opacity: 0; }
-        .tg-hint { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.85rem; opacity: 0.5; pointer-events: none; transition: opacity 0.3s; }
+        .tg-hint { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5; pointer-events: none; transition: opacity 0.3s; }
         .tg-hint.hidden { opacity: 0; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
-        .form-group textarea { resize: vertical; min-height: 100px; }
-        .contact-form .btn { width: 100%; justify-content: center; padding: 0.9rem; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .contact-form .btn { width: 100%; justify-content: center; padding: 0.7rem; }
 
-        footer { padding: 2rem 5%; text-align: center; width: 100%; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
-        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
+        footer { padding: 1.5rem 5%; text-align: center; width: 100%; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.85rem; }
         .footer-links a:hover { color: var(--green); }
-        .social-links { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 1rem; }
-        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
+        .social-links { display: flex; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem; }
+        .social-links a { width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; }
         .social-links a:hover { background: var(--green); color: white; transform: translateY(-3px); }
-        footer p { color: var(--text-secondary); font-size: 0.85rem; }
+        footer p { color: var(--text-secondary); font-size: 0.8rem; }
 
-        .fade-in { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; }
+        .fade-in { opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .carousel-stage { height: 340px; }
-            .carousel-slide { width: 250px; height: 300px; margin-left: -125px; margin-top: -150px; }
-            .portfolio-image { height: 130px; font-size: 2.2rem; }
+            .hero { min-height: 75vh; padding-top: 2rem; }
+            .hero-logo { height: 120px; }
+            .carousel-stage { height: 320px; }
+            .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
+            .portfolio-image { height: 110px; font-size: 2rem; }
             .nav-links { display: none !important; }
-            .logo img { height: 110px; }
             .burger-btn { display: flex; opacity: 1; pointer-events: auto; }
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
-            .hero-content h1 { font-size: 1.8rem; }
-            .section-title h2 { font-size: 1.5rem; }
-            .section { padding: 2rem 4%; }
-            .contact-form { padding: 1.2rem; }
-            .service-card { padding: 1.5rem 1rem; }
-            .carousel-stage { height: 280px; }
-            .carousel-slide { width: 220px; height: 260px; margin-left: -110px; margin-top: -130px; }
-            .portfolio-image { height: 100px; font-size: 1.8rem; }
-            .portfolio-content { padding: 0.7rem 0.8rem; }
-            .logo img { height: 80px; }
-            .input-wrapper input { padding-right: 90px; }
-            .input-hint { right: 0.5rem; font-size: 0.7rem; }
+            .hero-content h1 { font-size: 1.6rem; }
+            .section-title h2 { font-size: 1.3rem; }
+            .section { padding: 1rem 4%; }
+            .contact-form { padding: 1rem; }
+            .service-card { padding: 1.2rem; }
+            .carousel-stage { height: 260px; }
+            .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
+            .portfolio-image { height: 90px; font-size: 1.6rem; }
+            .portfolio-content { padding: 0.6rem; }
+            .hero-logo { height: 90px; }
+            .input-wrapper input { padding-right: 80px; }
+            .input-hint { right: 0.4rem; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -186,17 +180,15 @@
     <div class="bg-fixed"></div>
     <div class="bg-overlay"></div>
 
+    <!-- ✅ ЛОГО УБРАНО ИЗ NAV, ТОЛЬКО КНОПКИ -->
     <nav id="mainNav">
         <div class="nav-container">
-            <div class="nav-brand" id="navBrand"><a href="#" class="logo"><img src="logo.png" alt="Студия 513"></a></div>
-            <div class="nav-controls">
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#portfolio">Примеры работ</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-                <button class="burger-btn" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
-            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#portfolio">Примеры работ</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -207,11 +199,11 @@
         <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
     </div>
 
+    <!-- ✅ ЛОГО ВМЕСТО ТЕКСТА В HERO -->
     <section class="section hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <!-- ✅ 513 ВЫНЕСЕНО ПОД НАЗВАНИЕ -->
-                <h1>Студия Подкаста<br><span>513</span></h1>
+        <div class="hero-container fade-in">
+            <img src="logo.png" alt="Студия 513" class="hero-logo">
+            <div class="hero-content">
                 <p>Профессиональная запись и производство подкастов в Москве.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
@@ -255,7 +247,7 @@
                 </div>
 
                 <div class="contact-form fade-in">
-                    <h3 style="margin-bottom: 1.2rem; font-size: 1.3rem;">Записаться на съёмку</h3>
+                    <h3 style="margin-bottom: 0.8rem;">Записаться на съёмку</h3>
                     <form id="contactForm">
                         <div class="form-group"><label>Ваше имя</label><input type="text" id="input-name" placeholder="Иван Иванов" required></div>
                         <div class="form-group">
@@ -291,7 +283,6 @@
     </footer>
 
     <script>
-        const navBrand = document.getElementById('navBrand');
         const navLinks = document.getElementById('navLinks');
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -305,10 +296,8 @@
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY >= 50) navBrand.classList.add('scrolled');
-            else navBrand.classList.remove('scrolled');
             if (window.innerWidth >= 969) {
-                if (currentScrollY >= 50) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); }
+                if (currentScrollY >= 30) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); }
                 else { navLinks.classList.remove('scrolled'); burgerBtn.classList.remove('visible'); }
             }
         }, { passive: true });
