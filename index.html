@@ -32,6 +32,8 @@
             position: relative;
             touch-action: pan-y;
         }
+        
+        /* ✅ СТАТИЧНЫЙ ФОН */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('images/studio-background.jpg') center/cover no-repeat;
@@ -62,28 +64,8 @@
         .nav-links a:hover { color: white; background: var(--green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
-        /* ✅ ИСПРАВЛЕНИЕ: Добавлена подложка и отступы */
-        .section { 
-            position: relative; 
-            padding: 10rem 5%; 
-            /* Легкий фон, чтобы текст не накладывался на текст */
-            background: rgba(10, 10, 15, 0.4); 
-            width: 100%; 
-        }
-        
-        /* ✅ ИСПРАВЛЕНИЕ: Разделяем блоки услугами и примерами */
-        #services {
-            margin-bottom: 150px; /* Большой отступ снизу */
-            z-index: 10; /* Услуги всегда выше */
-        }
-        #portfolio {
-            z-index: 5; /* Примеры ниже */
-            position: relative;
-            padding-top: 5rem; /* Чуть меньше отступ сверху, так как есть margin у services */
-        }
-
-        .parallax-content { will-change: transform; }
-
+        /* ✅ СЕКЦИИ БЕЗ ПАРАЛЛАКСА */
+        .section { position: relative; padding: 10rem 5%; width: 100%; }
         .hero { min-height: 100vh; display: flex; align-items: center; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .hero-content { max-width: 700px; }
@@ -237,8 +219,8 @@
         </div>
     </nav>
 
-    <section class="section hero" data-speed="0.15">
-        <div class="parallax-content hero-container">
+    <section class="section hero">
+        <div class="hero-container">
             <div class="hero-content fade-in">
                 <h1>Студия Подкаста 513</h1>
                 <p>Профессиональная запись и производство подкастов в Москве.</p>
@@ -250,9 +232,8 @@
         </div>
     </section>
 
-    <!-- ✅ ДОБАВЛЕН ID services ДЛЯ СТИЛЕЙ -->
-    <section class="section" id="services" data-speed="0.35">
-        <div class="parallax-content container">
+    <section class="section" id="services">
+        <div class="container">
             <div class="section-title fade-in">
                 <h2>Наши услуги</h2>
                 <p>Полный цикл производства подкастов</p>
@@ -277,9 +258,8 @@
         </div>
     </section>
 
-    <!-- ✅ ДОБАВЛЕН ID portfolio ДЛЯ СТИЛЕЙ -->
-    <section class="section portfolio" id="portfolio" data-speed="0.25">
-        <div class="parallax-content container">
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
             <div class="section-title fade-in">
                 <h2>Примеры работ</h2>
                 <p>Посмотрите, как выглядят подкасты наших клиентов</p>
@@ -326,8 +306,8 @@
         </div>
     </section>
 
-    <section class="section" data-speed="0.45" id="contact">
-        <div class="parallax-content container">
+    <section class="section" id="contact">
+        <div class="container">
             <div class="section-title fade-in">
                 <h2>Контакты</h2>
                 <p>Свяжитесь с нами для обсуждения вашего проекта</p>
@@ -397,7 +377,6 @@
     </section>
 
     <footer>
-        <div class="footer-logo">🎙️ Студия 513</div>
         <div class="footer-links">
             <a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a>
         </div>
@@ -462,28 +441,13 @@
             }
         }
 
-        // ===== ПАРАЛЛАКС НАВИГАЦИИ =====
+        // ===== НАВИГАЦИЯ (ПРОСТОЕ ИСЧЕЗНОВЕНИЕ) =====
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const opacity = Math.max(0, 1 - scrollY / 50);
             nav.style.opacity = opacity;
             nav.style.transform = `translateY(${-20 * (1 - opacity)}px)`;
-        }, { passive: true });
-
-        // ===== ПАРАЛЛАКС СЕКЦИЙ =====
-        window.addEventListener('scroll', () => {
-            const scrollY = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            document.querySelectorAll('.section').forEach(section => {
-                const speed = parseFloat(section.dataset.speed) || 0.3;
-                const rect = section.getBoundingClientRect();
-                if (rect.top < windowHeight && rect.bottom > 0) {
-                    const offset = (scrollY - (rect.top + scrollY - windowHeight * 0.5)) * speed * 0.4;
-                    const content = section.querySelector('.parallax-content');
-                    if (content) content.style.transform = `translate3d(0, ${offset}px, 0)`;
-                }
-            });
         }, { passive: true });
 
         // ===== КАРУСЕЛЬ =====
@@ -494,16 +458,11 @@
         let target = 0, current = 0;
         let isDragging = false, startX = 0, startY = 0, startTarget = 0;
         let isVerticalSwipe = false;
-        
-        // Для трекпада
         let wheelAccumulator = 0;
-        const WHEEL_THRESHOLD = 50; 
+        const WHEEL_THRESHOLD = 50;
         const WHEEL_FACTOR = 0.5;
 
-        function getOffset(i, anim) { 
-            let d = i - anim; 
-            return ((d + total/2) % total + total) % total - total/2; 
-        }
+        function getOffset(i, anim) { let d = i - anim; return ((d + total/2) % total + total) % total - total/2; }
         
         function updateCarousel() {
             current += (target - current) * 0.12;
@@ -530,7 +489,6 @@
             target += diff;
         }
 
-        // Touch события
         track.addEventListener('touchstart', function(e) {
             isDragging = true;
             startX = e.touches[0].clientX;
@@ -542,17 +500,14 @@
 
         track.addEventListener('touchmove', function(e) {
             if (!isDragging) return;
-            
             const currentX = e.touches[0].clientX;
             const currentY = e.touches[0].clientY;
             const diffX = currentX - startX;
             const diffY = currentY - startY;
-            
             if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
                 isVerticalSwipe = true;
                 return;
             }
-            
             if (Math.abs(diffX) > 10) {
                 e.preventDefault();
                 target = startTarget - (diffX / 200);
@@ -563,13 +518,10 @@
             if (isDragging) {
                 isDragging = false;
                 track.style.cursor = 'grab';
-                if (!isVerticalSwipe) {
-                    target = Math.round(target);
-                }
+                if (!isVerticalSwipe) target = Math.round(target);
             }
         });
 
-        // Wheel события (трекпад)
         track.addEventListener('wheel', function(e) {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) {
                 e.preventDefault();
@@ -582,43 +534,21 @@
             }
         }, { passive: false });
 
-        // Mouse события
-        track.addEventListener('mousedown', e => { 
-            isDragging = true; 
-            startX = e.pageX; 
-            startTarget = target; 
-            track.style.cursor = 'grabbing'; 
-        });
-        track.addEventListener('mousemove', e => { 
-            if (isDragging) target = startTarget - (e.pageX - startX)/200; 
-        });
-        track.addEventListener('mouseup', () => { 
-            isDragging = false; 
-            track.style.cursor = 'grab'; 
-            target = Math.round(target); 
-        });
-        track.addEventListener('mouseleave', () => { 
-            if (isDragging) { 
-                isDragging = false; 
-                track.style.cursor = 'grab'; 
-                target = Math.round(target); 
-            }
-        });
-
-        document.addEventListener('keydown', e => { 
-            if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
-            if (e.key === 'ArrowRight') target = Math.round(target)-1; 
-        });
+        track.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
+        track.addEventListener('mousemove', e => { if (isDragging) target = startTarget - (e.pageX - startX)/200; });
+        track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
+        track.addEventListener('mouseleave', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
 
         window.addEventListener('load', updateCarousel);
 
-        // Анимации
+        // ===== АНИМАЦИИ ПОЯВЛЕНИЯ =====
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Мобильное меню
+        // ===== МОБИЛЬНОЕ МЕНЮ =====
         document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
             const nav = document.querySelector('.nav-links');
             if (nav.style.display === 'flex') { nav.style.display = 'none'; }
