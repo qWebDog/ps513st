@@ -62,7 +62,26 @@
         .nav-links a:hover { color: white; background: var(--green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
-        .section { position: relative; padding: 10rem 5%; background: transparent; width: 100%; }
+        /* ✅ ИСПРАВЛЕНИЕ: Добавлена подложка и отступы */
+        .section { 
+            position: relative; 
+            padding: 10rem 5%; 
+            /* Легкий фон, чтобы текст не накладывался на текст */
+            background: rgba(10, 10, 15, 0.4); 
+            width: 100%; 
+        }
+        
+        /* ✅ ИСПРАВЛЕНИЕ: Разделяем блоки услугами и примерами */
+        #services {
+            margin-bottom: 150px; /* Большой отступ снизу */
+            z-index: 10; /* Услуги всегда выше */
+        }
+        #portfolio {
+            z-index: 5; /* Примеры ниже */
+            position: relative;
+            padding-top: 5rem; /* Чуть меньше отступ сверху, так как есть margin у services */
+        }
+
         .parallax-content { will-change: transform; }
 
         .hero { min-height: 100vh; display: flex; align-items: center; }
@@ -164,7 +183,7 @@
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
 
-        footer { padding: 5rem 5%; text-align: center; width: 100%; }
+        footer { padding: 5rem 5%; text-align: center; width: 100%; background: rgba(10, 10, 15, 0.8); }
         .footer-logo { font-size: 2rem; font-weight: 800; color: var(--green); margin-bottom: 1rem; }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
@@ -231,7 +250,8 @@
         </div>
     </section>
 
-    <section class="section" data-speed="0.35" id="services">
+    <!-- ✅ ДОБАВЛЕН ID services ДЛЯ СТИЛЕЙ -->
+    <section class="section" id="services" data-speed="0.35">
         <div class="parallax-content container">
             <div class="section-title fade-in">
                 <h2>Наши услуги</h2>
@@ -257,7 +277,8 @@
         </div>
     </section>
 
-    <section class="section portfolio" data-speed="0.25" id="portfolio">
+    <!-- ✅ ДОБАВЛЕН ID portfolio ДЛЯ СТИЛЕЙ -->
+    <section class="section portfolio" id="portfolio" data-speed="0.25">
         <div class="parallax-content container">
             <div class="section-title fade-in">
                 <h2>Примеры работ</h2>
@@ -465,21 +486,19 @@
             });
         }, { passive: true });
 
-        // ===== КАРУСЕЛЬ С ПОДДЕРЖКОЙ ТРЕКПАДА И МОБИЛЬНЫХ =====
+        // ===== КАРУСЕЛЬ =====
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
         const total = slides.length;
         let target = 0, current = 0;
-        
-        // Для мыши/тача
         let isDragging = false, startX = 0, startY = 0, startTarget = 0;
         let isVerticalSwipe = false;
         
-        // Для трекпада (wheel)
+        // Для трекпада
         let wheelAccumulator = 0;
-        const WHEEL_THRESHOLD = 50; // Порог срабатывания свайпа
-        const WHEEL_FACTOR = 0.5; // Коэффициент чувствительности
+        const WHEEL_THRESHOLD = 50; 
+        const WHEEL_FACTOR = 0.5;
 
         function getOffset(i, anim) { 
             let d = i - anim; 
@@ -511,7 +530,7 @@
             target += diff;
         }
 
-        // ===== TOUCH СОБЫТИЯ (МОБИЛЬНЫЕ) =====
+        // Touch события
         track.addEventListener('touchstart', function(e) {
             isDragging = true;
             startX = e.touches[0].clientX;
@@ -529,13 +548,11 @@
             const diffX = currentX - startX;
             const diffY = currentY - startY;
             
-            // Определяем направление свайпа
             if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
                 isVerticalSwipe = true;
                 return;
             }
             
-            // Горизонтальный свайп
             if (Math.abs(diffX) > 10) {
                 e.preventDefault();
                 target = startTarget - (diffX / 200);
@@ -552,29 +569,20 @@
             }
         });
 
-        // ===== WHEEL СОБЫТИЯ (ТРЕКПАД) =====
+        // Wheel события (трекпад)
         track.addEventListener('wheel', function(e) {
-            // Проверяем, что это горизонтальный жест (трекпад)
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) {
-                e.preventDefault(); // Блокируем скролл страницы
-                
-                // Накопление дельты для плавности
+                e.preventDefault();
                 wheelAccumulator += e.deltaX * WHEEL_FACTOR;
-                
-                // Если накопили достаточно - переключаем слайд
                 if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) {
-                    if (wheelAccumulator > 0) {
-                        target += 1; // Свайп влево -> следующий слайд
-                    } else {
-                        target -= 1; // Свайп вправо -> предыдущий слайд
-                    }
-                    wheelAccumulator = 0; // Сброс накопителя
+                    if (wheelAccumulator > 0) target += 1;
+                    else target -= 1;
+                    wheelAccumulator = 0;
                 }
             }
-            // Если вертикальный скролл - не блокируем, пусть страница скроллится
         }, { passive: false });
 
-        // ===== MOUSE СОБЫТИЯ (ДЕСКТОП) =====
+        // Mouse события
         track.addEventListener('mousedown', e => { 
             isDragging = true; 
             startX = e.pageX; 
@@ -597,7 +605,6 @@
             }
         });
 
-        // Клавиатура
         document.addEventListener('keydown', e => { 
             if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
             if (e.key === 'ArrowRight') target = Math.round(target)-1; 
@@ -605,13 +612,13 @@
 
         window.addEventListener('load', updateCarousel);
 
-        // ===== АНИМАЦИИ =====
+        // Анимации
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // ===== МОБИЛЬНОЕ МЕНЮ =====
+        // Мобильное меню
         document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
             const nav = document.querySelector('.nav-links');
             if (nav.style.display === 'flex') { nav.style.display = 'none'; }
