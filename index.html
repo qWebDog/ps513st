@@ -153,10 +153,10 @@
             bottom: 20px;
             right: 20px;
             z-index: 999;
-            background: rgba(248, 113, 113, 0.85); /* нежно-красный */
+            background: rgba(248, 113, 113, 0.85);
             color: white;
             border: 1px solid rgba(248, 113, 113, 0.4);
-            border-radius: 50px; /* pill shape */
+            border-radius: 50px;
             padding: 0.6rem 1.2rem;
             font-size: 0.85rem;
             font-weight: 600;
@@ -168,16 +168,11 @@
             box-shadow: 0 4px 15px rgba(248, 113, 113, 0.3);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            /* Скрыта по умолчанию */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
+            opacity: 0; visibility: hidden; transform: translateY(20px);
             pointer-events: none;
         }
         .fab-record-btn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            opacity: 1; visibility: visible; transform: translateY(0);
             pointer-events: auto;
         }
         .fab-record-btn:hover {
@@ -236,18 +231,12 @@
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
             
-            /* ✅ МОБИЛЬНАЯ КНОПКА — ВНИЗУ ПО ЦЕНТРУ */
             .fab-record-btn {
-                bottom: 15px;
-                right: 50%;
-                left: auto;
+                bottom: 15px; right: 50%; left: auto;
                 transform: translateX(50%) translateY(20px);
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.6rem 1rem; font-size: 0.8rem;
             }
-            .fab-record-btn.visible {
-                transform: translateX(50%) translateY(0);
-            }
+            .fab-record-btn.visible { transform: translateX(50%) translateY(0); }
         }
     </style>
 </head>
@@ -316,7 +305,8 @@
             <div class="hero-content">
                 <p>Профессиональная запись и производство подкастов в Москве.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
+                    <!-- ✅ ID КНОПКИ ДЛЯ ОТСЛЕЖИВАНИЯ -->
+                    <a href="#contact" class="btn btn-primary" id="heroCtaBtn">Записаться на съёмку →</a>
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
                 </div>
             </div>
@@ -346,6 +336,7 @@
         <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
     </section>
 
+    <!-- ✅ ID КОНТАКТНОЙ СЕКЦИИ -->
     <section class="section" id="contact">
         <div class="container">
             <div class="section-title fade-in"><h2>Контакты</h2><p>Свяжитесь с нами для обсуждения вашего проекта</p></div>
@@ -404,23 +395,33 @@
         recordModal.addEventListener('click', (e) => { if (e.target === recordModal) closeRecordModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeRecordModal(); closeMobileMenu(); }});
 
-        // ✅ ПОЯВЛЕНИЕ/СКРЫТИЕ КНОПКИ ПРИ СКРОЛЛЕ
-        const servicesSection = document.getElementById('services');
+        // ✅ ПОЯВЛЕНИЕ/СКРЫТИЕ КНОПКИ ПО ЛОГИКЕ ВИДИМОСТИ
+        const heroCtaBtn = document.getElementById('heroCtaBtn');
         const contactSection = document.getElementById('contact');
-        
-        const fabObserver = new IntersectionObserver((entries) => {
+
+        // Отслеживаем кнопку "Записаться на съёмку" в hero
+        const heroBtnObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.target.id === 'services') {
-                    if (entry.isIntersecting) fabRecordBtn.classList.add('visible');
-                }
-                if (entry.target.id === 'contact') {
-                    if (entry.isIntersecting) fabRecordBtn.classList.remove('visible');
+                // Если кнопка НЕ видна (ушла с экрана) → показываем плавающую кнопку
+                if (!entry.isIntersecting) {
+                    fabRecordBtn.classList.add('visible');
                 }
             });
-        }, { threshold: 0.3 });
-        
-        fabObserver.observe(servicesSection);
-        fabObserver.observe(contactSection);
+        }, { threshold: 0.1 }); // 10% видимости
+
+        // Отслеживаем секцию контактов
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Если секция контактов видна → скрываем плавающую кнопку
+                if (entry.isIntersecting) {
+                    fabRecordBtn.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        // Запускаем наблюдение
+        heroBtnObserver.observe(heroCtaBtn);
+        contactObserver.observe(contactSection);
 
         // ✅ ОТПРАВКА ИЗ МОДАЛКИ
         async function sendFromModal() {
