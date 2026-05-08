@@ -45,65 +45,65 @@
 
         /* === НАВИГАЦИЯ === */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 5%;
             background: transparent;
             z-index: 1000;
-            transition: padding 0.3s ease;
         }
         .nav-container { 
+            position: relative;
             max-width: 1400px; margin: 0 auto; 
-            display: flex; justify-content: space-between; align-items: center; 
+            display: flex; justify-content: space-between; align-items: center;
+            min-height: 60px;
         }
 
-        /* Группа: Лого + Ссылки (для десктопа) */
-        .nav-group {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            /* Плавное скрытие */
-            opacity: 1;
-            transform: translateY(0);
+        /* ЛОГОТИПО ПО ЦЕНТРУ */
+        .nav-brand {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
             pointer-events: auto;
         }
-        /* Скрытое состояние */
-        .nav-group.hidden {
+        .nav-brand.scrolled {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translate(-50%, -30px);
             pointer-events: none;
         }
+        .logo img { height: 90px; width: auto; }
 
-        .logo img { height: 100px; width: auto; }
-        
-        .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; }
+        /* ЭЛЕМЕНТЫ СПРАВА */
+        .nav-controls {
+            margin-left: auto;
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .nav-links { display: flex; gap: 0.8rem; list-style: none; }
         .nav-links a {
-            display: inline-block; padding: 0.6rem 1.5rem; color: var(--green);
-            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            display: inline-block; padding: 0.5rem 1.2rem; color: var(--green);
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
             border: 2px solid var(--green); border-radius: 30px;
             transition: all 0.3s; background: rgba(34, 197, 94, 0.05);
         }
         .nav-links a:hover { color: white; background: var(--green); }
 
-        /* Кнопка бургер (по умолчанию скрыта на десктопе, показывается при скролле) */
+        /* БУРГЕР КНОПКА */
         .burger-btn { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            display: none;
+            flex-direction: column; align-items: center; justify-content: center;
             background: none; border: none; cursor: pointer;
-            width: 48px; height: 48px; position: relative; z-index: 1002;
-            /* Скрыта по умолчанию */
-            opacity: 0; transform: translateY(10px); pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .burger-btn.visible {
-            opacity: 1; transform: translateY(0); pointer-events: auto;
+            width: 44px; height: 44px;
+            opacity: 0; pointer-events: none;
+            transition: all 0.3s ease;
         }
         .burger-btn span {
-            display: block; width: 24px; height: 2px;
-            background: var(--green); margin: 5px auto;
+            display: block; width: 22px; height: 2px;
+            background: var(--green); margin: 4px auto;
             transition: all 0.3s ease; border-radius: 2px;
         }
-        .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .burger-btn.active span:nth-child(2) { opacity: 0; }
-        .burger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .burger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
         /* === МОБИЛЬНОЕ МЕНЮ (ШТОРКА) === */
         .mobile-menu-overlay {
@@ -126,11 +126,10 @@
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
         
-        /* ✅ УБРАНЫ ПОДЧЕРКИВАНИЯ */
         .mobile-nav-item a {
             padding: 1.5rem 2rem; color: var(--text-primary);
             text-decoration: none; font-size: 1.5rem; font-weight: 700;
-            transition: all 0.3s; border: none; /* Убрана линия */
+            transition: all 0.3s; border: none;
             width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px;
         }
         .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); border-radius: 12px; }
@@ -234,16 +233,15 @@
         .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+        /* АДАПТИВ */
         @media (max-width: 968px) {
             .hero-content h1 { font-size: 2.5rem; }
             .carousel-stage { height: 360px; }
             .carousel-slide { width: 270px; height: 330px; margin-left: -135px; margin-top: -165px; }
             .portfolio-image { height: 150px; font-size: 2.5rem; }
             .nav-links { display: none; }
-            .logo img { height: 80px; }
-            /* На мобильных бургер всегда виден */
-            .burger-btn { opacity: 1; transform: translateY(0); pointer-events: auto; display: flex; }
+            .logo img { height: 70px; }
+            .burger-btn { display: flex; opacity: 1; pointer-events: auto; } /* На мобильных всегда виден */
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
         }
@@ -257,7 +255,7 @@
             .carousel-slide { width: 240px; height: 290px; margin-left: -120px; margin-top: -145px; }
             .portfolio-image { height: 120px; font-size: 2rem; }
             .portfolio-content { padding: 0.8rem 1rem; }
-            .logo img { height: 70px; }
+            .logo img { height: 60px; }
         }
     </style>
 </head>
@@ -267,25 +265,26 @@
 
     <nav id="mainNav">
         <div class="nav-container">
-            <!-- Группируем Лого и Ссылки -->
-            <div class="nav-group" id="navGroup">
-                <div class="logo"><img src="logo.png" alt="Студия 513"></div>
+            <!-- ЛОГОТИП ПО ЦЕНТРУ -->
+            <div class="nav-brand" id="navBrand">
+                <a href="#" class="logo"><img src="logo.png" alt="Студия 513"></a>
+            </div>
+            
+            <!-- ЭЛЕМЕНТЫ СПРАВА -->
+            <div class="nav-controls">
                 <ul class="nav-links">
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#portfolio">Примеры работ</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <!-- Бургер кнопка (для десктопа при скролле) -->
-            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Мобильное меню -->
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
@@ -311,94 +310,34 @@
 
     <section class="section" id="services">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>Наши услуги</h2>
-                <p>Полный цикл производства подкастов</p>
-            </div>
+            <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎬</div>
-                    <h3>Съёмка</h3>
-                    <p>Профессиональная видеосъёмка в студии. 2-4 камеры, свет, звукоизоляция.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">✂️</div>
-                    <h3>Монтаж</h3>
-                    <p>Видеомонтаж и звукорежиссура. Чистка звука, цветокоррекция, графика.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎯</div>
-                    <h3>Под ключ</h3>
-                    <p>Полное производство: от идеи до публикации. Помощь с концепцией.</p>
-                </div>
+                <div class="service-card fade-in"><div class="service-icon">🎬</div><h3>Съёмка</h3><p>Профессиональная видеосъёмка в студии. 2-4 камеры, свет, звукоизоляция.</p></div>
+                <div class="service-card fade-in"><div class="service-icon">✂️</div><h3>Монтаж</h3><p>Видеомонтаж и звукорежиссура. Чистка звука, цветокоррекция, графика.</p></div>
+                <div class="service-card fade-in"><div class="service-icon">🎯</div><h3>Под ключ</h3><p>Полное производство: от идеи до публикации. Помощь с концепцией.</p></div>
             </div>
         </div>
     </section>
 
     <section class="section portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Примеры работ</h2>
-                <p>Посмотрите, как выглядят подкасты наших клиентов</p>
-            </div>
-        </div>
+        <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">🎙️</div>
-                        <div class="portfolio-content">
-                            <h3>Бизнес-подкаст</h3>
-                            <p>Интервью с предпринимателями о развитии бизнеса.</p>
-                            <div class="portfolio-tags"><span class="tag">Видео</span><span class="tag">Монтаж</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">🎵</div>
-                        <div class="portfolio-content">
-                            <h3>Музыкальное шоу</h3>
-                            <p>Обсуждение новой музыки и интервью с музыкантами.</p>
-                            <div class="portfolio-tags"><span class="tag">Под ключ</span><span class="tag">Графика</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">💡</div>
-                        <div class="portfolio-content">
-                            <h3>Образовательный</h3>
-                            <p>Научпоп и образовательный контент для широкой аудитории.</p>
-                            <div class="portfolio-tags"><span class="tag">Съёмка</span><span class="tag">Монтаж</span></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">🎙️</div><div class="portfolio-content"><h3>Бизнес-подкаст</h3><p>Интервью с предпринимателями.</p><div class="portfolio-tags"><span class="tag">Видео</span><span class="tag">Монтаж</span></div></div></div></div>
+                <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">🎵</div><div class="portfolio-content"><h3>Музыкальное шоу</h3><p>Обсуждение музыки и интервью.</p><div class="portfolio-tags"><span class="tag">Под ключ</span><span class="tag">Графика</span></div></div></div></div>
+                <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">💡</div><div class="portfolio-content"><h3>Образовательный</h3><p>Научпоп и контент для аудитории.</p><div class="portfolio-tags"><span class="tag">Съёмка</span><span class="tag">Монтаж</span></div></div></div></div>
             </div>
         </div>
-        <div class="carousel-dots">
-            <div class="dot active" onclick="goToSlide(0)"></div>
-            <div class="dot" onclick="goToSlide(1)"></div>
-            <div class="dot" onclick="goToSlide(2)"></div>
-        </div>
+        <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
     </section>
 
     <section class="section" id="contact">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>Контакты</h2>
-                <p>Свяжитесь с нами для обсуждения вашего проекта</p>
-            </div>
+            <div class="section-title fade-in"><h2>Контакты</h2><p>Свяжитесь с нами для обсуждения вашего проекта</p></div>
             <div class="contact-container">
                 <div class="contact-info fade-in">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div>
-                    </div>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div></div>
                     <div class="map-container">
                         <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb540496b97a45cd18f618eb007d4fcf7b0b1a8a4c2969f391d63d84c050d814&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
                     </div>
@@ -419,20 +358,15 @@
     </section>
 
     <footer>
-        <div class="footer-links">
-            <a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a>
-        </div>
-        <div class="social-links">
-            <a href="https://t.me/podcast513" target="_blank">TG</a>
-            <a href="https://vk.com/podcast513" target="_blank">VK</a>
-        </div>
+        <div class="footer-links"><a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a></div>
+        <div class="social-links"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
         <p>© 2026 Студия Подкаста 513</p>
     </footer>
 
     <script>
         // === ЛОГИКА МЕНЮ ===
+        const navBrand = document.getElementById('navBrand');
         const burgerBtn = document.getElementById('burgerBtn');
-        const navGroup = document.getElementById('navGroup');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
 
@@ -452,28 +386,27 @@
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
 
-        // === СКРЫТИЕ ЛОГО/ССЫЛОК И ПОЯВЛЕНИЕ БУРГЕРА НА ДЕСКТОПЕ ===
-        const isDesktop = window.matchMedia('(min-width: 969px)');
+        // === СКРЫТИЕ ЛОГО И ПОЯВЛЕНИЕ БУРГЕРА НА ДЕСКТОПЕ ===
         const scrollThreshold = 50;
         let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
 
-            if (isDesktop.matches) {
-                // Логика только для десктопа
-                if (currentScrollY < scrollThreshold) {
-                    // В самом верху: показываем лого+ссылки, скрываем бургер
-                    navGroup.classList.remove('hidden');
-                    burgerBtn.classList.remove('visible');
-                } else {
-                    // При скролле вниз: скрываем лого+ссылки, показываем бургер
-                    navGroup.classList.add('hidden');
-                    burgerBtn.classList.add('visible');
-                }
+            // Логотип скрывается при скролле на ЛЮБЫХ устройствах
+            if (currentScrollY >= scrollThreshold) {
+                navBrand.classList.add('scrolled');
             } else {
-                // На мобильных бургер всегда виден, navGroup скрыт через CSS
-                navGroup.classList.add('hidden');
+                navBrand.classList.remove('scrolled');
+            }
+
+            // Бургер появляется ТОЛЬКО на десктопе при скролле
+            if (window.innerWidth >= 969) {
+                if (currentScrollY >= scrollThreshold) {
+                    burgerBtn.classList.add('visible');
+                } else {
+                    burgerBtn.classList.remove('visible');
+                }
             }
             
             lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
@@ -577,6 +510,7 @@
         document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
         window.addEventListener('load', updateCarousel);
 
+        // === АНИМАЦИИ ===
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
