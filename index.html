@@ -19,18 +19,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { 
             scroll-behavior: smooth;
-            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+            overflow-x: hidden;
             width: 100%;
         }
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+            overflow-x: hidden;
             background-color: var(--bg-primary);
             width: 100%;
             position: relative;
-            touch-action: pan-y; /* Разрешаем вертикальный скролл по умолчанию */
+            touch-action: pan-y;
         }
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -99,13 +99,13 @@
             margin-left: calc(50% - 50vw); 
             height: 460px; 
             perspective: 1200px; 
-            overflow: hidden; /* Скрываем выходящий контент */
-            touch-action: pan-y; /* Разрешаем вертикальный скролл */
+            overflow: hidden;
+            touch-action: pan-y;
         }
         .carousel-track { 
             position: absolute; left: 0; top: 0; width: 100%; height: 100%; 
             cursor: grab; 
-            touch-action: none; /* Карусель сама обрабатывает свайпы */
+            touch-action: none;
         }
         .carousel-track:active { cursor: grabbing; }
         .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; }
@@ -465,14 +465,21 @@
             });
         }, { passive: true });
 
-        // ===== КАРУСЕЛЬ С ИСПРАВЛЕННЫМИ TOUCH-СОБЫТИЯМИ =====
+        // ===== КАРУСЕЛЬ С ПОДДЕРЖКОЙ ТРЕКПАДА И МОБИЛЬНЫХ =====
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
         const total = slides.length;
         let target = 0, current = 0;
+        
+        // Для мыши/тача
         let isDragging = false, startX = 0, startY = 0, startTarget = 0;
         let isVerticalSwipe = false;
+        
+        // Для трекпада (wheel)
+        let wheelAccumulator = 0;
+        const WHEEL_THRESHOLD = 50; // Порог срабатывания свайпа
+        const WHEEL_FACTOR = 0.5; // Коэффициент чувствительности
 
         function getOffset(i, anim) { 
             let d = i - anim; 
@@ -504,7 +511,7 @@
             target += diff;
         }
 
-        // Touch события с определением направления свайпа
+        // ===== TOUCH СОБЫТИЯ (МОБИЛЬНЫЕ) =====
         track.addEventListener('touchstart', function(e) {
             isDragging = true;
             startX = e.touches[0].clientX;
@@ -524,14 +531,13 @@
             
             // Определяем направление свайпа
             if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
-                // Вертикальный свайп - позволяем странице скроллиться
                 isVerticalSwipe = true;
                 return;
             }
             
-            // Горизонтальный свайп - управляем каруселью
+            // Горизонтальный свайп
             if (Math.abs(diffX) > 10) {
-                e.preventDefault(); // Предотвращаем скролл страницы
+                e.preventDefault();
                 target = startTarget - (diffX / 200);
             }
         }, { passive: false });
@@ -546,7 +552,29 @@
             }
         });
 
-        // Mouse события (для десктопа)
+        // ===== WHEEL СОБЫТИЯ (ТРЕКПАД) =====
+        track.addEventListener('wheel', function(e) {
+            // Проверяем, что это горизонтальный жест (трекпад)
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) {
+                e.preventDefault(); // Блокируем скролл страницы
+                
+                // Накопление дельты для плавности
+                wheelAccumulator += e.deltaX * WHEEL_FACTOR;
+                
+                // Если накопили достаточно - переключаем слайд
+                if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) {
+                    if (wheelAccumulator > 0) {
+                        target += 1; // Свайп влево -> следующий слайд
+                    } else {
+                        target -= 1; // Свайп вправо -> предыдущий слайд
+                    }
+                    wheelAccumulator = 0; // Сброс накопителя
+                }
+            }
+            // Если вертикальный скролл - не блокируем, пусть страница скроллится
+        }, { passive: false });
+
+        // ===== MOUSE СОБЫТИЯ (ДЕСКТОП) =====
         track.addEventListener('mousedown', e => { 
             isDragging = true; 
             startX = e.pageX; 
@@ -569,6 +597,7 @@
             }
         });
 
+        // Клавиатура
         document.addEventListener('keydown', e => { 
             if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
             if (e.key === 'ArrowRight') target = Math.round(target)-1; 
