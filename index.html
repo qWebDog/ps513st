@@ -34,7 +34,6 @@
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
         .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 12, 0.75); backdrop-filter: blur(8px); z-index: -1; }
 
-        /* ✅ ЛОГО УБРАНО ИЗ NAV, ОСТАЛИСЬ ТОЛЬКО КНОПКИ */
         nav { position: fixed; top: 0; left: 0; width: 100%; padding: 0.5rem 5%; background: transparent; z-index: 1000; }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; min-height: 50px; gap: 0.5rem; }
 
@@ -64,13 +63,11 @@
         .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
-        /* ✅ УМЕНЬШЕНЫ ВСЕ ОТСТУПЫ ЕЩЁ В 2 РАЗА */
+        /* ✅ ЛОГО УВЕЛИЧЕНО В 3 РАЗА (было 160px → теперь 480px) */
         .section { position: relative; padding: 1.2rem 5%; width: 100%; }
-        .hero { min-height: 65vh; display: flex; align-items: center; justify-content: center; }
+        .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; }
         .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
-        
-        /* ✅ ЛОГО ВМЕСТО ТЕКСТА В HERO */
-        .hero-logo { height: 160px; width: auto; margin-bottom: 0.6rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); }
+        .hero-logo { height: 480px; width: auto; margin-bottom: 0.6rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); }
         .hero-content { max-width: 700px; margin: 0 auto; }
         .hero-content p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 550px; line-height: 1.5; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
@@ -150,8 +147,8 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .hero { min-height: 75vh; padding-top: 2rem; }
-            .hero-logo { height: 120px; }
+            .hero { min-height: 85vh; padding-top: 2rem; }
+            .hero-logo { height: 360px; } /* ✅ 120 * 3 = 360 */
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -170,7 +167,7 @@
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
             .portfolio-content { padding: 0.6rem; }
-            .hero-logo { height: 90px; }
+            .hero-logo { height: 270px; } /* ✅ 90 * 3 = 270 */
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
         }
@@ -180,7 +177,6 @@
     <div class="bg-fixed"></div>
     <div class="bg-overlay"></div>
 
-    <!-- ✅ ЛОГО УБРАНО ИЗ NAV, ТОЛЬКО КНОПКИ -->
     <nav id="mainNav">
         <div class="nav-container">
             <ul class="nav-links" id="navLinks">
@@ -199,7 +195,6 @@
         <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
     </div>
 
-    <!-- ✅ ЛОГО ВМЕСТО ТЕКСТА В HERO -->
     <section class="section hero">
         <div class="hero-container fade-in">
             <img src="logo.png" alt="Студия 513" class="hero-logo">
