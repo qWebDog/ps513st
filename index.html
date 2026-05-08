@@ -34,7 +34,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-        /* ✅ БЛОКИРОВКА СКРОЛЛА ПРИ ОТКРЫТОМ МОДАЛЬНОМ ОКНЕ */
         body.modal-open { overflow: hidden; }
 
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
@@ -64,22 +63,7 @@
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
         
         .mobile-nav-item a {
-            padding: 0.8rem 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            transition: all 0.3s;
-            border: none;
-            width: auto;
-            max-width: 280px;
-            text-align: center;
-            letter-spacing: 0.5px;
-            margin: 0.4rem 0;
-            border-radius: 10px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0.8rem 1.5rem; color: var(--text-primary); text-decoration: none; font-size: 1.3rem; font-weight: 700; transition: all 0.3s; border: none; width: auto; max-width: 280px; text-align: center; letter-spacing: 0.5px; margin: 0.4rem 0; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
         }
         .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); }
         
@@ -175,38 +159,33 @@
         .fade-in { opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* ✅ ПЛАВАЮЩАЯ КНОПКА ЗАПИСИ (ЛЕВЫЙ НИЖНИЙ УГОЛ) */
+        /* ✅ ПЛАВАЮЩАЯ КНОПКА ЗАПИСИ (ПРАВЫЙ НИЖНИЙ УГОЛ, ПОЛУПРОЗРАЧНАЯ, ЦИАН, ТЕЛЕФОН) */
         .fab-record-btn {
             position: fixed;
             bottom: 20px;
-            left: 20px;
+            right: 20px;
+            left: auto;
             z-index: 999;
-            background: var(--green);
-            color: #0a0a0f;
-            border: none;
-            border-radius: 50px;
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
+            background: rgba(6, 182, 212, 0.85);
+            color: white;
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            font-size: 1.3rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.5);
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
         .fab-record-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
-        }
-        .fab-record-btn .fab-icon {
-            font-size: 1rem;
-            line-height: 1;
-        }
-        .fab-record-btn .fab-text {
-            letter-spacing: 0.5px;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+            background: rgba(6, 182, 212, 0.95);
         }
 
         /* ✅ МОДАЛЬНОЕ ОКНО ЗАПИСИ */
@@ -225,14 +204,10 @@
             transform: scale(0.95);
             transition: all 0.3s ease;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; transform: scale(1); }
         .modal-content {
             background: rgba(20, 25, 35, 0.95);
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            border: 1px solid rgba(6, 182, 212, 0.3);
             border-radius: var(--radius);
             padding: 1.5rem;
             max-width: 450px;
@@ -243,48 +218,14 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         .modal-close {
-            position: absolute;
-            top: 0.8rem;
-            right: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            transition: all 0.2s;
+            position: absolute; top: 0.8rem; right: 0.8rem;
+            background: rgba(255, 255, 255, 0.1); border: none; border-radius: 50%;
+            width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text-secondary); font-size: 1.1rem; transition: all 0.2s;
         }
-        .modal-close:hover {
-            background: rgba(248, 113, 113, 0.3);
-            color: var(--red);
-            transform: rotate(90deg);
-        }
-        .modal-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--green);
-            padding-right: 2rem;
-        }
+        .modal-close:hover { background: rgba(248, 113, 113, 0.3); color: var(--red); transform: rotate(90deg); }
+        .modal-content h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cyan); padding-right: 2rem; }
         .modal-content .btn { margin-top: 0.5rem; }
-
-        /* Адаптив для кнопки и модалки */
-        @media (max-width: 640px) {
-            .fab-record-btn {
-                bottom: 15px;
-                left: 15px;
-                padding: 0.5rem 0.8rem;
-                font-size: 0.75rem;
-            }
-            .fab-record-btn .fab-text { display: none; } /* На маленьких экранах только иконка */
-            .fab-record-btn { padding: 0.6rem; border-radius: 50%; }
-            .modal-content { padding: 1.2rem; }
-            .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
-        }
 
         @media (max-width: 968px) {
             .hero { min-height: 85vh; padding-top: 2rem; }
@@ -312,6 +253,17 @@
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
+            .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
+            
+            /* ✅ МОБИЛЬНАЯ ВЕРСИЯ КНОПКИ — БОЛЬШЕ И РОВНЕЕ */
+            .fab-record-btn {
+                bottom: 15px;
+                right: 15px;
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+                box-shadow: 0 4px 18px rgba(6, 182, 212, 0.5);
+            }
         }
     </style>
 </head>
@@ -340,10 +292,9 @@
         </div>
     </div>
 
-    <!-- ✅ ПЛАВАЮЩАЯ КНОПКА ЗАПИСИ -->
-    <button class="fab-record-btn" id="fabRecordBtn" onclick="openRecordModal()">
-        <span class="fab-icon">📝</span>
-        <span class="fab-text">Записаться</span>
+    <!-- ✅ КНОПКА ЗАПИСИ (ПРАВО, ЦИАН, ТЕЛЕФОН) -->
+    <button class="fab-record-btn" id="fabRecordBtn" onclick="openRecordModal()" aria-label="Записаться">
+        📞
     </button>
 
     <!-- ✅ МОДАЛЬНОЕ ОКНО ЗАПИСИ -->
@@ -465,203 +416,81 @@
     </footer>
 
     <script>
-        // ✅ ЛОГИКА МОДАЛЬНОГО ОКНА ЗАПИСИ
         const recordModal = document.getElementById('recordModal');
         const fabRecordBtn = document.getElementById('fabRecordBtn');
 
-        function openRecordModal() {
-            recordModal.classList.add('active');
-            document.body.classList.add('modal-open');
-        }
-        function closeRecordModal() {
-            recordModal.classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-        // Закрытие по клику на фон
-        recordModal.addEventListener('click', (e) => {
-            if (e.target === recordModal) closeRecordModal();
-        });
-        // Закрытие по Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeRecordModal();
-                closeMobileMenu();
-            }
-        });
+        function openRecordModal() { recordModal.classList.add('active'); document.body.classList.add('modal-open'); }
+        function closeRecordModal() { recordModal.classList.remove('active'); document.body.classList.remove('modal-open'); }
+        recordModal.addEventListener('click', (e) => { if (e.target === recordModal) closeRecordModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeRecordModal(); closeMobileMenu(); }});
 
-        // Отправка из модального окна
         async function sendFromModal() {
-            const btn = document.getElementById('modal-btn-send');
-            const originalText = btn.textContent;
+            const btn = document.getElementById('modal-btn-send'), originalText = btn.textContent;
             btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...';
             const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev';
-            
             const name = (document.getElementById('modal-name').value || '').trim();
-            const phone = document.getElementById('modal-phone').value.trim();
-            const tgId = document.getElementById('modal-tg-id').value.trim();
+            const phone = document.getElementById('modal-phone').value.trim(), tgId = document.getElementById('modal-tg-id').value.trim();
             const service = document.getElementById('modal-service').value || 'Не выбрано';
             const message = (document.getElementById('modal-message').value || '').trim();
-
             if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
             if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
-
             const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
             try {
                 const controller = new AbortController(), timeoutId = setTimeout(() => controller.abort(), 10000);
                 const response = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message, time: timeStr }), signal: controller.signal });
                 clearTimeout(timeoutId);
-                if (response.ok) {
-                    btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success');
-                    document.getElementById('modalContactForm').reset();
-                    document.getElementById('modal-phone').value = '+7';
-                    document.getElementById('modal-tgHint').classList.remove('hidden');
-                    setTimeout(() => { closeRecordModal(); btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 1500);
-                } else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); }
+                if (response.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('modalContactForm').reset(); document.getElementById('modal-phone').value = '+7'; document.getElementById('modal-tgHint').classList.remove('hidden'); setTimeout(() => { closeRecordModal(); btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 1500); }
+                else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); }
             } catch (error) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); }
         }
 
-        // Маска телефона для модального окна
         const modalPhoneInput = document.getElementById('modal-phone');
         const modalTgInput = document.getElementById('modal-tg-id');
         const modalTgHint = document.getElementById('modal-tgHint');
-
-        modalPhoneInput.addEventListener('input', (e) => {
-            let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; }
-            let digits = val.replace(/\D/g, '');
-            if (digits.startsWith('8')) digits = '7' + digits.slice(1);
-            if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits;
-            let formatted = '+7';
-            if (digits.length > 1) formatted += '(' + digits.slice(1, 4);
-            if (digits.length >= 4) formatted += ')';
-            if (digits.length > 4) formatted += digits.slice(4, 7);
-            if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
-            if (digits.length > 9) formatted += '-' + digits.slice(9, 11);
-            e.target.value = formatted;
-        });
+        modalPhoneInput.addEventListener('input', (e) => { let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; } let digits = val.replace(/\D/g, ''); if (digits.startsWith('8')) digits = '7' + digits.slice(1); if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits; let f = '+7'; if (digits.length > 1) f += '(' + digits.slice(1, 4); if (digits.length >= 4) f += ')'; if (digits.length > 4) f += digits.slice(4, 7); if (digits.length > 7) f += '-' + digits.slice(7, 9); if (digits.length > 9) f += '-' + digits.slice(9, 11); e.target.value = f; });
         modalPhoneInput.addEventListener('focus', (e) => { if (e.target.value === '' || e.target.value === '+7') e.target.value = '+7'; });
         modalPhoneInput.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && modalPhoneInput.value.length <= 2) e.preventDefault(); });
-        modalTgInput.addEventListener('input', (e) => {
-            let val = e.target.value.replace(/\s/g, '');
-            if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, '');
-            if (e.target.value === '@') e.target.value = '';
-            e.target.value.length > 0 ? modalTgHint.classList.add('hidden') : modalTgHint.classList.remove('hidden');
-        });
+        modalTgInput.addEventListener('input', (e) => { let val = e.target.value.replace(/\s/g, ''); if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, ''); if (e.target.value === '@') e.target.value = ''; e.target.value.length > 0 ? modalTgHint.classList.add('hidden') : modalTgHint.classList.remove('hidden'); });
         modalTgInput.addEventListener('focus', () => modalTgHint.classList.add('hidden'));
         modalTgInput.addEventListener('blur', () => { if (modalTgInput.value === '') modalTgHint.classList.remove('hidden'); });
 
-        // Логика бургер меню
         document.querySelector('.logo-wrapper')?.addEventListener('contextmenu', (e) => { e.preventDefault(); return false; });
-        const navLinks = document.getElementById('navLinks');
-        const burgerBtn = document.getElementById('burgerBtn');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const navLinks = document.getElementById('navLinks'), burgerBtn = document.getElementById('burgerBtn'), mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
-
         function openMobileMenu() { isMenuOpen = true; burgerBtn.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeMobileMenu() { isMenuOpen = false; burgerBtn.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
         burgerBtn.addEventListener('click', () => isMenuOpen ? closeMobileMenu() : openMobileMenu());
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
+        window.addEventListener('scroll', () => { const c = window.scrollY; if (window.innerWidth >= 969) { if (c >= 30) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); } else { navLinks.classList.remove('scrolled'); burgerBtn.classList.remove('visible'); } } }, { passive: true });
 
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            if (window.innerWidth >= 969) {
-                if (currentScrollY >= 30) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); }
-                else { navLinks.classList.remove('scrolled'); burgerBtn.classList.remove('visible'); }
-            }
-        }, { passive: true });
-
-        // Маска телефона для основной формы
-        const phoneInput = document.getElementById('input-phone');
-        const tgInput = document.getElementById('input-tg-id');
-        const tgHint = document.getElementById('tgHint');
-
-        function formatPhone(value) {
-            let digits = value.replace(/\D/g, '');
-            if (digits.startsWith('8')) digits = '7' + digits.slice(1);
-            if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits;
-            let formatted = '+7';
-            if (digits.length > 1) formatted += '(' + digits.slice(1, 4);
-            if (digits.length >= 4) formatted += ')';
-            if (digits.length > 4) formatted += digits.slice(4, 7);
-            if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
-            if (digits.length > 9) formatted += '-' + digits.slice(9, 11);
-            return formatted;
-        }
-
-        phoneInput.addEventListener('input', (e) => {
-            let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; }
-            let cursorPos = e.target.selectionStart, oldLength = val.length, formatted = formatPhone(val);
-            e.target.value = formatted;
-            let newLength = formatted.length; if (oldLength < newLength && cursorPos > 0) cursorPos += (newLength - oldLength);
-            if (cursorPos > formatted.length) cursorPos = formatted.length;
-            if (formatted[cursorPos] === '(' || formatted[cursorPos] === ')' || formatted[cursorPos] === '-') cursorPos++;
-            e.target.setSelectionRange(cursorPos, cursorPos);
-        });
+        const phoneInput = document.getElementById('input-phone'), tgInput = document.getElementById('input-tg-id'), tgHint = document.getElementById('tgHint');
+        phoneInput.addEventListener('input', (e) => { let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; } let cursorPos = e.target.selectionStart, oldLen = val.length, f = formatPhone(val); e.target.value = f; let newLen = f.length; if (oldLen < newLen && cursorPos > 0) cursorPos += (newLen - oldLen); if (cursorPos > f.length) cursorPos = f.length; if (f[cursorPos] === '(' || f[cursorPos] === ')' || f[cursorPos] === '-') cursorPos++; e.target.setSelectionRange(cursorPos, cursorPos); });
         phoneInput.addEventListener('focus', (e) => { if (e.target.value === '' || e.target.value === '+7') e.target.value = '+7'; });
         phoneInput.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && phoneInput.value.length <= 2) e.preventDefault(); });
-
-        tgInput.addEventListener('input', (e) => {
-            let val = e.target.value.replace(/\s/g, '');
-            if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, '');
-            if (e.target.value === '@') e.target.value = '';
-            e.target.value.length > 0 ? tgHint.classList.add('hidden') : tgHint.classList.remove('hidden');
-        });
+        function formatPhone(value) { let d = value.replace(/\D/g, ''); if (d.startsWith('8')) d = '7' + d.slice(1); if (!d.startsWith('7') && d.length > 0) d = '7' + d; let f = '+7'; if (d.length > 1) f += '(' + d.slice(1, 4); if (d.length >= 4) f += ')'; if (d.length > 4) f += d.slice(4, 7); if (d.length > 7) f += '-' + d.slice(7, 9); if (d.length > 9) f += '-' + d.slice(9, 11); return f; }
+        tgInput.addEventListener('input', (e) => { let val = e.target.value.replace(/\s/g, ''); if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, ''); if (e.target.value === '@') e.target.value = ''; e.target.value.length > 0 ? tgHint.classList.add('hidden') : tgHint.classList.remove('hidden'); });
         tgInput.addEventListener('focus', () => tgHint.classList.add('hidden'));
         tgInput.addEventListener('blur', () => { if (tgInput.value === '') tgHint.classList.remove('hidden'); });
 
-        // Отправка из основной формы
-        async function sendToTelegram() {
-            const btn = document.getElementById('btn-send'), originalText = btn.textContent;
-            btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...';
-            const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev';
-            const name = (document.getElementById('input-name').value || '').trim();
-            const phone = phoneInput.value.trim(), tgId = tgInput.value.trim();
-            const service = document.getElementById('input-service').value || 'Не выбрано';
-            const message = (document.getElementById('input-message').value || '').trim();
+        async function sendToTelegram() { const btn = document.getElementById('btn-send'), orig = btn.textContent; btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...'; const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev'; const name = (document.getElementById('input-name').value || '').trim(); const phone = phoneInput.value.trim(), tgId = tgInput.value.trim(); const service = document.getElementById('input-service').value || 'Не выбрано'; const msg = (document.getElementById('input-message').value || '').trim(); if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }); try { const ctrl = new AbortController(), tid = setTimeout(() => ctrl.abort(), 10000); const resp = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message: msg, time: timeStr }), signal: ctrl.signal }); clearTimeout(tid); if (resp.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('contactForm').reset(); phoneInput.value = '+7'; tgHint.classList.remove('hidden'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000); } else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } } catch (err) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } }
 
-            if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
-            if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; }
-
-            const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            try {
-                const controller = new AbortController(), timeoutId = setTimeout(() => controller.abort(), 10000);
-                const response = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message, time: timeStr }), signal: controller.signal });
-                clearTimeout(timeoutId);
-                if (response.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('contactForm').reset(); phoneInput.value = '+7'; tgHint.classList.remove('hidden'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000); }
-                else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); }
-            } catch (error) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); }
-        }
-
-        // Карусель
         const track = document.getElementById('carouselTrack'), slides = document.querySelectorAll('.carousel-slide'), dots = document.querySelectorAll('.dot'), total = slides.length;
-        let target = 0, current = 0, isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false, wheelAccumulator = 0;
-        const WHEEL_THRESHOLD = 50, WHEEL_FACTOR = 0.5;
-
-        function getOffset(i, anim) { let d = i - anim; return ((d + total/2) % total + total) % total - total/2; }
-        function updateCarousel() {
-            current += (target - current) * 0.12;
-            slides.forEach((s, i) => {
-                const off = getOffset(i, current), abs = Math.abs(off);
-                s.style.transform = `translate3d(${off*380}px,0,${-abs*200}px) rotateY(${off*15}deg) scale(${1-abs*0.12})`;
-                s.style.opacity = Math.max(0.15, 1 - abs*0.7); s.style.filter = `blur(${Math.min(10, abs*12)}px)`;
-                s.style.zIndex = Math.round(50 - abs*15); s.style.pointerEvents = abs < 0.5 ? 'auto' : 'none'; s.classList.toggle('active', abs < 0.4);
-            });
-            const active = Math.round(((current % total) + total) % total);
-            dots.forEach((d, i) => d.classList.toggle('active', i === active));
-            requestAnimationFrame(updateCarousel);
-        }
-        function goToSlide(idx) { let cur = Math.round(((current % total) + total) % total), diff = idx - cur; if (diff > total/2) diff -= total; if (diff < -total/2) diff += total; target += diff; }
+        let target = 0, current = 0, isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false, wheelAcc = 0;
+        const WHEEL_THR = 50, WHEEL_FACT = 0.5;
+        function getOff(i, a) { let d = i - a; return ((d + total/2) % total + total) % total - total/2; }
+        function updateCarousel() { current += (target - current) * 0.12; slides.forEach((s, i) => { const o = getOff(i, current), a = Math.abs(o); s.style.transform = `translate3d(${o*380}px,0,${-a*200}px) rotateY(${o*15}deg) scale(${1-a*0.12})`; s.style.opacity = Math.max(0.15, 1 - a*0.7); s.style.filter = `blur(${Math.min(10, a*12)}px)`; s.style.zIndex = Math.round(50 - a*15); s.style.pointerEvents = a < 0.5 ? 'auto' : 'none'; s.classList.toggle('active', a < 0.4); }); const act = Math.round(((current % total) + total) % total); dots.forEach((d, i) => d.classList.toggle('active', i === act)); requestAnimationFrame(updateCarousel); }
+        function goToSlide(idx) { let c = Math.round(((current % total) + total) % total), d = idx - c; if (d > total/2) d -= total; if (d < -total/2) d += total; target += d; }
         track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; }, { passive: true });
-        track.addEventListener('touchmove', e => { if (!isDragging) return; const diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY; if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) { isVerticalSwipe = true; return; } if (Math.abs(diffX) > 10) { e.preventDefault(); target = startTarget - (diffX / 200); } }, { passive: false });
+        track.addEventListener('touchmove', e => { if (!isDragging) return; const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY; if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { isVerticalSwipe = true; return; } if (Math.abs(dx) > 10) { e.preventDefault(); target = startTarget - (dx / 200); } }, { passive: false });
         track.addEventListener('touchend', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); } });
-        track.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) { e.preventDefault(); wheelAccumulator += e.deltaX * WHEEL_FACTOR; if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) { target += wheelAccumulator > 0 ? 1 : -1; wheelAccumulator = 0; } } }, { passive: false });
+        track.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) { e.preventDefault(); wheelAcc += e.deltaX * WHEEL_FACT; if (Math.abs(wheelAcc) > WHEEL_THR) { target += wheelAcc > 0 ? 1 : -1; wheelAcc = 0; } } }, { passive: false });
         track.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
         track.addEventListener('mousemove', e => { if (isDragging) target = startTarget - (e.pageX - startX)/200; });
         track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
         track.addEventListener('mouseleave', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
         document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
         window.addEventListener('load', updateCarousel);
-
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
