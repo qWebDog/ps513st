@@ -63,7 +63,6 @@
         .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
-        /* ✅ ЛОГО УВЕЛИЧЕНО В 3 РАЗА (было 160px → теперь 480px) */
         .section { position: relative; padding: 1.2rem 5%; width: 100%; }
         .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; }
         .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
@@ -116,8 +115,38 @@
         .contact-text h4 { margin-bottom: 0.1rem; font-size: 0.95rem; }
         .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.85rem; }
         .contact-text a:hover { color: var(--green); }
-        .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 220px; }
-        .map-container iframe, .map-container script { width: 100%; height: 100%; border: none; display: block; }
+        
+        /* ✅ ОБНОВЛЁННЫЙ СТИЛЬ ДЛЯ ССЫЛКИ НА КАРТУ */
+        .map-container { 
+            border-radius: var(--radius); 
+            overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(25,30,40,0.4);
+        }
+        .map-container a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.5rem;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--green);
+            border-radius: 30px;
+            background: rgba(34, 197, 94, 0.1);
+            transition: all 0.3s;
+        }
+        .map-container a:hover {
+            background: var(--green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+        }
 
         .contact-form { background: rgba(25,30,40,0.4); padding: 1.2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
         .contact-form h3 { margin-bottom: 0.8rem; font-size: 1.1rem; }
@@ -148,7 +177,7 @@
 
         @media (max-width: 968px) {
             .hero { min-height: 85vh; padding-top: 2rem; }
-            .hero-logo { height: 360px; } /* ✅ 120 * 3 = 360 */
+            .hero-logo { height: 360px; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -167,9 +196,10 @@
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
             .portfolio-content { padding: 0.6rem; }
-            .hero-logo { height: 270px; } /* ✅ 90 * 3 = 270 */
+            .hero-logo { height: 270px; }
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
+            .map-container a { font-size: 0.85rem; padding: 0.8rem 1.2rem; }
         }
     </style>
 </head>
@@ -238,7 +268,10 @@
                 <div class="contact-info fade-in">
                     <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div></div>
                     <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div></div>
-                    <div class="map-container"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb540496b97a45cd18f618eb007d4fcf7b0b1a8a4c2969f391d63d84c050d814&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script></div>
+                    <!-- ✅ ЗАМЕНЕНА КАРТА НА ССЫЛКУ -->
+                    <div class="map-container">
+                        <a href="https://yandex.ru/maps/org/86072455044" target="_blank">СТУДИЯ ПОДКАСТОВ 513</a>
+                    </div>
                 </div>
 
                 <div class="contact-form fade-in">
