@@ -29,6 +29,11 @@
             width: 100%;
             position: relative;
             touch-action: pan-y;
+            /* ✅ ЗАПРЕТ ВЫДЕЛЕНИЯ И КОНТЕКСТНОГО МЕНЮ НА ВСЁМ САЙТЕ */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
@@ -66,7 +71,33 @@
         .section { position: relative; padding: 1.2rem 5%; width: 100%; }
         .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; }
         .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
-        .hero-logo { height: 480px; width: auto; margin-bottom: 0.6rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); }
+        
+        /* ✅ ЗАЩИТА ЛОГОТИПА */
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+        .hero-logo { 
+            height: 480px; 
+            width: auto; 
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); 
+            pointer-events: none; /* Запрет взаимодействия с самой картинкой */
+            -webkit-user-drag: none; /* Запрет перетаскивания */
+        }
+        /* ✅ ПРОЗРАЧНЫЙ БЛОК ПОВЕРХ ЛОГО */
+        .logo-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: transparent;
+            z-index: 10;
+            /* Блокируем все действия с изображением под ним */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
         .hero-content { max-width: 700px; margin: 0 auto; }
         .hero-content p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 550px; line-height: 1.5; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
@@ -116,16 +147,14 @@
         .contact-text p, .contact-text a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; font-size: 0.85rem; }
         .contact-text a:hover { color: var(--green); }
         
-        /* ✅ СТИЛИ ДЛЯ КАРТЫ ЯНДЕКС */
         .map-container { 
             border-radius: var(--radius); 
             overflow: hidden; 
             border: 1px solid rgba(255,255,255,0.1); 
-            height: 322px; /* Высота из скрипта конструктора */
+            height: 322px;
             background: rgba(25,30,40,0.4);
             width: 100%;
         }
-        /* Адаптивность карты */
         .map-container iframe, 
         .map-container script,
         .map-container .ymaps-2-1-79-map {
@@ -215,7 +244,13 @@
 
     <section class="section hero">
         <div class="hero-container fade-in">
-            <img src="logo.png" alt="Студия 513" class="hero-logo">
+            <!-- ✅ ОБЁРТКА ЛОГО С ЗАЩИТНЫМ СЛОЕМ -->
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Студия 513" class="hero-logo">
+                <!-- ✅ ПРОЗРАЧНЫЙ БЛОК ПОВЕРХ ЛОГО -->
+                <div class="logo-overlay" aria-hidden="true"></div>
+            </div>
+            
             <div class="hero-content">
                 <p>Профессиональная запись и производство подкастов в Москве.</p>
                 <div class="hero-buttons">
@@ -257,7 +292,6 @@
                     <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div></div>
                     <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div></div>
                     
-                    <!-- ✅ ОБНОВЛЁННАЯ КАРТА ЯНДЕКС -->
                     <div class="map-container">
                         <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A779276dd9613d80ba01503b9a2de13b96f1c5cf4ceb6925907bd189cb7fda264&amp;width=100%25&amp;height=100%25&amp;lang=ru_RU&amp;scroll=true"></script>
                     </div>
@@ -300,6 +334,12 @@
     </footer>
 
     <script>
+        // ✅ БЛОКИРОВКА КОНТЕКСТНОГО МЕНЮ (ПРАВЫЙ КЛИК) НА ЛОГОТИПЕ
+        document.querySelector('.logo-wrapper')?.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
         const navLinks = document.getElementById('navLinks');
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
