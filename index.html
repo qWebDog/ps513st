@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Студия Подкаста 513 — Профессиональная запись подкастов в Москве</title>
+    <title>Студия Подкаста 513</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,10 +16,8 @@
             --cyan: #06b6d4;
             --radius: 16px;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
@@ -28,8 +25,6 @@
             overflow-x: hidden;
             background-color: var(--bg-primary);
         }
-
-        /* Фон и оверлей */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('images/studio-background.jpg') center/cover no-repeat;
@@ -39,48 +34,41 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(8, 8, 12, 0.6);
             backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
             z-index: -1;
         }
-
-        /* Навигация */
         nav {
-            position: fixed; top: 0; width: 100%; 
-            padding: 2rem 5%; 
+            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
             background: transparent;
-            backdrop-filter: none;
             z-index: 1000;
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; }
-        .logo img { height: 180px; width: auto; vertical-align: middle; }
-
+        .logo img { height: 180px; width: auto; }
         .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; }
-        .nav-links a { 
-            display: inline-block; padding: 0.6rem 1.5rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.95rem;
-            border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05);
+        .nav-links a {
+            display: inline-block; padding: 0.6rem 1.5rem; color: var(--green);
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            border: 2px solid var(--green); border-radius: 30px;
+            transition: all 0.3s; background: rgba(34, 197, 94, 0.05);
         }
-        .nav-links a:hover { color: white; background: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); transform: translateY(-2px); }
+        .nav-links a:hover { color: white; background: var(--green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
-        /* Секции */
         .section { position: relative; padding: 10rem 5%; background: transparent; }
         .parallax-content { will-change: transform; }
 
-        /* Hero */
         .hero { min-height: 100vh; display: flex; align-items: center; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .hero-content { max-width: 700px; }
         .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-primary); }
         .hero-content p { font-size: 1.35rem; color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        
-        /* Кнопки */
+
         .btn { padding: 1.1rem 2.5rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1.05rem; }
         .btn-primary { background: var(--red); color: white; box-shadow: 0 10px 30px rgba(248, 113, 113, 0.3); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(248, 113, 113, 0.5); }
-        .btn-secondary { background: rgba(34,197,94,0.15); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(10px); }
+        .btn-secondary { background: rgba(34,197,94,0.15); color: var(--green); border: 2px solid var(--green); }
         .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-3px); }
 
         .container { max-width: 1400px; margin: 0 auto; }
@@ -88,25 +76,21 @@
         .section-title h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--green); }
         .section-title p { color: var(--text-secondary); font-size: 1.125rem; }
 
-        /* Услуги */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .service-card { background: rgba(25,30,40,0.5); padding: 3rem 2.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(4px); position: relative; overflow: hidden; }
-        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transition: transform 0.3s; }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover { transform: translateY(-8px); border-color: var(--cyan); background: rgba(30,35,45,0.7); }
-        .service-icon { width: 90px; height: 90px; margin: 0 auto 2rem; background: var(--green); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2); }
+        .service-card { background: rgba(25,30,40,0.5); padding: 3rem 2.5rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); backdrop-filter: blur(4px); }
+        .service-card:hover { transform: translateY(-8px); border-color: var(--cyan); }
+        .service-icon { width: 90px; height: 90px; margin: 0 auto 2rem; background: var(--green); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
         .service-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
 
-        /* Карусель */
         .portfolio { padding: 8rem 0; overflow: visible !important; }
         .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 460px; perspective: 1200px; overflow: visible; }
         .carousel-track { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: grab; }
         .carousel-track:active { cursor: grabbing; }
-        .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; will-change: transform, filter, opacity; }
-        .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.7); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.15); backdrop-filter: blur(4px); display: flex; flex-direction: column; transition: border-color 0.4s, box-shadow 0.4s; }
+        .carousel-slide { position: absolute; width: 320px; height: 380px; left: 50%; top: 50%; margin-left: -160px; margin-top: -190px; }
+        .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.7); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.15); backdrop-filter: blur(4px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--cyan); box-shadow: 0 0 40px rgba(6, 182, 212, 0.25); }
-        .portfolio-image { width: 100%; height: 180px; background: rgba(31,41,55,0.6); display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+        .portfolio-image { width: 100%; height: 180px; background: rgba(31,41,55,0.6); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
         .portfolio-content { padding: 1.2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
         .portfolio-content h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
         .portfolio-content p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.8rem; line-height: 1.5; flex: 1; }
@@ -115,12 +99,10 @@
         .tag-green { background: rgba(34,197,94,0.15); border: 1px solid var(--green); color: var(--green); }
         .tag-cyan { background: rgba(6,182,212,0.15); border: 1px solid var(--cyan); color: var(--cyan); }
         .tag-red { background: rgba(248,113,113,0.15); border: 1px solid var(--red); color: var(--red); }
-
         .carousel-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 3rem; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(34,197,94,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(34,197,94,0.3); border: 2px solid transparent; cursor: pointer; }
         .dot.active { background: var(--cyan); border-color: var(--green); transform: scale(1.2); }
 
-        /* Контакты */
         .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
         .contact-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--green); }
         .contact-details { margin-bottom: 2rem; }
@@ -131,49 +113,47 @@
         .contact-text a:hover { color: var(--cyan); }
         .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(6,182,212,0.2); background: rgba(20,25,35,0.4); }
         .map-container iframe, .map-container script { width: 100%; height: 400px; border: none; display: block; }
-        
-        /* ИСПРАВЛЕНИЕ ФОРМЫ */
-        .contact-form { 
-            background: rgba(25,30,40,0.5); 
-            padding: 2.5rem; 
-            border-radius: var(--radius); 
-            border: 1px solid rgba(6,182,212,0.2); 
-            backdrop-filter: blur(6px); 
-            position: relative; 
-            z-index: 10; /* Чтобы форма была поверх всего и кликалась */
+
+        /* ✅ ИСПРАВЛЕННАЯ ФОРМА - КЛИКАБЕЛЬНАЯ */
+        .contact-form {
+            background: rgba(25,30,40,0.5);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(6,182,212,0.2);
+            backdrop-filter: blur(6px);
+            position: relative;
+            z-index: 20; /* Чтобы форма была поверх всего */
         }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea { 
-            width: 100%; 
-            padding: 1rem; 
-            background: rgba(10,10,15,0.5); 
-            border: 1px solid rgba(6,182,212,0.2); 
-            border-radius: 8px; 
-            color: var(--text-primary); 
-            font-family: inherit; 
-            font-size: 1rem; 
-            transition: all 0.3s; 
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10,10,15,0.5);
+            border: 1px solid rgba(6,182,212,0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
         }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
-            outline: none; 
-            border-color: var(--cyan); 
-            box-shadow: 0 0 0 3px rgba(6,182,212,0.15); 
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(6,182,212,0.15);
         }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
-        
+
         .btn-submitting { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
 
-        /* Футер */
-        footer { padding: 5rem 5%; text-align: center; position: relative; }
+        footer { padding: 5rem 5%; text-align: center; }
         .footer-logo { font-size: 2rem; font-weight: 800; color: var(--green); margin-bottom: 1rem; }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
         .footer-links a:hover { color: var(--cyan); }
         .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
         .social-links a { width: 50px; height: 50px; background: rgba(30,35,45,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; transition: all 0.3s; border: 1px solid rgba(6,182,212,0.2); }
-        .social-links a:hover { background: var(--red); color: white; transform: translateY(-3px); border-color: var(--red); }
+        .social-links a:hover { background: var(--red); color: white; transform: translateY(-3px); }
         footer p { color: var(--text-secondary); font-size: 0.95rem; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
@@ -203,15 +183,12 @@
     </style>
 </head>
 <body>
-
     <div class="bg-fixed"></div>
     <div class="bg-overlay"></div>
 
     <nav id="mainNav">
         <div class="nav-container">
-            <div class="logo">
-                <img src="logo.png" alt="Студия Подкаста 513">
-            </div>
+            <div class="logo"><img src="logo.png" alt="Студия 513"></div>
             <ul class="nav-links">
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#portfolio">Примеры работ</a></li>
@@ -225,7 +202,7 @@
         <div class="parallax-content hero-container">
             <div class="hero-content fade-in">
                 <h1>Студия Подкаста 513</h1>
-                <p>Профессиональная запись и производство подкастов в Москве. Современное оборудование, комфортная атмосфера и полный цикл производства.</p>
+                <p>Профессиональная запись и производство подкастов в Москве.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
@@ -238,23 +215,23 @@
         <div class="parallax-content container">
             <div class="section-title fade-in">
                 <h2>Наши услуги</h2>
-                <p>Полный цикл производства подкастов любого формата</p>
+                <p>Полный цикл производства подкастов</p>
             </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon">🎬</div>
                     <h3>Съёмка</h3>
-                    <p>Профессиональная видеосъёмка подкаста в нашей студии. 2-4 камеры, профессиональный свет, звукоизоляция.</p>
+                    <p>Профессиональная видеосъёмка в студии. 2-4 камеры, свет, звукоизоляция.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">✂️</div>
                     <h3>Монтаж</h3>
-                    <p>Профессиональный видеомонтаж и звукорежиссура. Чистка звука, цветокоррекция, графика.</p>
+                    <p>Видеомонтаж и звукорежиссура. Чистка звука, цветокоррекция, графика.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">🎯</div>
-                    <h3>Съёмка под ключ</h3>
-                    <p>Полное производство вашего подкаста: от идеи до публикации. Помощь с концепцией и дистрибуцией.</p>
+                    <h3>Под ключ</h3>
+                    <p>Полное производство: от идеи до публикации. Помощь с концепцией.</p>
                 </div>
             </div>
         </div>
@@ -293,7 +270,7 @@
                     <div class="portfolio-item">
                         <div class="portfolio-image">💡</div>
                         <div class="portfolio-content">
-                            <h3>Образовательный подкаст</h3>
+                            <h3>Образовательный</h3>
                             <p>Научпоп и образовательный контент для широкой аудитории.</p>
                             <div class="portfolio-tags"><span class="tag tag-red">Съёмка</span><span class="tag tag-green">Монтаж</span></div>
                         </div>
@@ -320,7 +297,7 @@
                         <div class="contact-item">
                             <div class="contact-icon">📍</div>
                             <div class="contact-text">
-                                <h4>Адрес студии</h4>
+                                <h4>Адрес</h4>
                                 <p>Москва, ул. Примерная, 123</p>
                             </div>
                         </div>
@@ -334,7 +311,7 @@
                         <div class="contact-item">
                             <div class="contact-icon">🕐</div>
                             <div class="contact-text">
-                                <h4>Режим работы</h4>
+                                <h4>Режим</h4>
                                 <p>Ежедневно с 10:00 до 22:00</p>
                             </div>
                         </div>
@@ -344,32 +321,33 @@
                     </div>
                 </div>
 
-                <!-- ✅ ИСПРАВЛЕННАЯ ФОРМА -->
+                <!-- ✅ ПРОСТАЯ И РАБОЧАЯ ФОРМА -->
                 <div class="contact-form fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Ваше имя</label>
+                            <label>Ваше имя</label>
                             <input type="text" id="name" placeholder="Иван Иванов" required>
                         </div>
                         <div class="form-group">
-                            <label for="contact">Телефон или Telegram</label>
+                            <label>Телефон или Telegram</label>
                             <input type="text" id="contact" placeholder="+7 (___) ___-__-__ или @username" required>
                         </div>
                         <div class="form-group">
-                            <label for="service">Выберите услугу</label>
+                            <label>Услуга</label>
                             <select id="service" required>
-                                <option value="">Выберите из списка</option>
+                                <option value="">Выберите</option>
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
-                                <option>Съёмка под ключ</option>
-                                <option>Нужна консультация</option>
+                                <option>Под ключ</option>
+                                <option>Консультация</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Комментарий</label>
-                            <textarea id="message" placeholder="Расскажите о вашем проекте..."></textarea>
+                            <label>Комментарий</label>
+                            <textarea id="message" placeholder="О проекте..."></textarea>
                         </div>
+                        <!-- ✅ КНОПКА С type="button" -->
                         <button type="button" class="btn btn-primary" id="submitBtn" onclick="sendToTelegram()">
                             Отправить заявку →
                         </button>
@@ -380,113 +358,100 @@
     </section>
 
     <footer>
-        <div class="footer-logo">🎙️ Студия Подкаста 513</div>
+        <div class="footer-logo">🎙️ Студия 513</div>
         <div class="footer-links">
-            <a href="#services">Услуги</a><a href="#portfolio">Примеры работ</a><a href="#contact">Контакты</a><a href="#">Политика конфиденциальности</a>
+            <a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a>
         </div>
         <div class="social-links">
             <a href="https://t.me/podcast513" target="_blank">TG</a>
             <a href="https://vk.com/podcast513" target="_blank">VK</a>
         </div>
-        <p>© 2026 Студия Подкаста 513. Все права защищены.</p>
+        <p>© 2026 Студия Подкаста 513</p>
     </footer>
 
     <script>
-        // ===== ОТПРАВКА В TELEGRAM =====
+        // ===== ОТПРАВКА В TELEGRAM (ПРОСТАЯ И НАДЁЖНАЯ) =====
         async function sendToTelegram() {
+            console.log('🚀 Начинаем отправку...');
+            
             const BOT_TOKEN = '8725488476:AAFO2MR7RqFv9XbSJ_B3ZvDC5h_hBsTNVjw';
             const CHAT_ID = '673594120';
-
-            // Получаем элементы по ID
-            const nameInput = document.getElementById('name');
-            const contactInput = document.getElementById('contact');
-            const serviceInput = document.getElementById('service');
-            const messageInput = document.getElementById('message');
-            const submitBtn = document.getElementById('submitBtn');
-
-            // Проверка на случай если элементы не найдены
-            if (!nameInput || !contactInput || !serviceInput || !messageInput) {
-                console.error('Элементы формы не найдены!');
+            
+            // Получаем элементы
+            const nameEl = document.getElementById('name');
+            const contactEl = document.getElementById('contact');
+            const serviceEl = document.getElementById('service');
+            const messageEl = document.getElementById('message');
+            const btn = document.getElementById('submitBtn');
+            
+            // Проверка
+            if (!nameEl || !contactEl || !serviceEl || !messageEl) {
+                console.error('❌ Элементы формы не найдены!');
+                alert('Ошибка: форма не загружена. Обновите страницу.');
                 return;
             }
-
-            const name = nameInput.value.trim();
-            const contact = contactInput.value.trim();
-            const service = serviceInput.value;
-            const message = messageInput.value.trim();
-
+            
+            // Получаем значения
+            const name = nameEl.value.trim();
+            const contact = contactEl.value.trim();
+            const service = serviceEl.value;
+            const message = messageEl.value.trim();
+            
+            console.log('📝 Данные:', { name, contact, service, message });
+            
             // Валидация
-            if (!name) {
-                alert('Пожалуйста, введите ваше имя.');
-                nameInput.focus();
-                return;
-            }
-            if (!contact) {
-                alert('Пожалуйста, введите телефон или Telegram.');
-                contactInput.focus();
-                return;
-            }
-
-            const text = `
-🎙️ <b>НОВАЯ ЗАЯВКА С САЙТА</b>
-
-👤 <b>Имя:</b> ${name}
-📱 <b>Контакты:</b> ${contact}
-🎯 <b>Услуга:</b> ${service}
-💬 <b>Комментарий:</b> ${message || 'Не указан'}
-
-📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU')}
-            `.trim();
-
+            if (!name) { alert('Введите имя'); nameEl.focus(); return; }
+            if (!contact) { alert('Введите контакты'); contactEl.focus(); return; }
+            
+            // Формируем сообщение
+            const text = `🎙️ <b>ЗАЯВКА</b>\n\n👤 ${name}\n📱 ${contact}\n🎯 ${service}\n💬 ${message || '-'}\n📅 ${new Date().toLocaleString('ru-RU')}`;
+            
             // Блокируем кнопку
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.classList.add('btn-submitting');
-
+            btn.disabled = true;
+            btn.textContent = 'Отправка...';
+            btn.classList.add('btn-submitting');
+            
             try {
+                console.log('📡 Отправка в Telegram...');
                 const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
                 });
-
+                
                 if (response.ok) {
-                    alert('✅ Заявка успешно отправлена! Мы свяжемся с вами.');
+                    console.log('✅ Успешно отправлено!');
+                    alert('✅ Заявка отправлена!');
                     document.getElementById('contactForm').reset();
                 } else {
                     const err = await response.json();
-                    alert('❌ Ошибка Telegram:\n' + (err.description || 'Неизвестная ошибка'));
+                    console.error('❌ Telegram error:', err);
+                    alert('❌ Ошибка: ' + (err.description || response.statusText));
                 }
             } catch (error) {
-                alert('❌ Ошибка сети.\n\nСовет: Если открыли файл двойным кликом (file:///), браузер может блокировать запросы. Используйте локальный сервер.');
-                console.error(error);
+                console.error('❌ Network error:', error);
+                alert('❌ Ошибка сети.\n\n💡 Если открыли файл двойным кликом (file://), браузер блокирует запросы. Используйте локальный сервер.');
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить заявку →';
-                submitBtn.classList.remove('btn-submitting');
+                btn.disabled = false;
+                btn.textContent = 'Отправить заявку →';
+                btn.classList.remove('btn-submitting');
             }
         }
 
         // ===== ПАРАЛЛАКС НАВИГАЦИИ =====
         const nav = document.getElementById('mainNav');
-        const fadeThreshold = 50;
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const opacity = Math.max(0, 1 - (scrollY / fadeThreshold));
+            const opacity = Math.max(0, 1 - scrollY / 50);
             nav.style.opacity = opacity;
             nav.style.transform = `translateY(${-20 * (1 - opacity)}px)`;
         }, { passive: true });
 
         // ===== ПАРАЛЛАКС СЕКЦИЙ =====
-        const parallaxSections = document.querySelectorAll('.section');
         window.addEventListener('scroll', () => {
             const scrollY = window.pageYOffset;
             const windowHeight = window.innerHeight;
-            parallaxSections.forEach(section => {
+            document.querySelectorAll('.section').forEach(section => {
                 const speed = parseFloat(section.dataset.speed) || 0.3;
                 const rect = section.getBoundingClientRect();
                 if (rect.top < windowHeight && rect.bottom > 0) {
@@ -497,63 +462,69 @@
             });
         }, { passive: true });
 
-        // ===== 3D КАРУСЕЛЬ =====
+        // ===== КАРУСЕЛЬ =====
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-        let targetIndex = 0, currentAnim = 0;
-        let isDragging = false, startX = 0, startAnim = 0;
+        const total = slides.length;
+        let target = 0, current = 0;
+        let dragging = false, startX = 0, startTarget = 0;
 
-        function getOffset(i, anim) { let raw = i - anim; return ((raw + totalSlides / 2) % totalSlides + totalSlides) % totalSlides - totalSlides / 2; }
-        
+        function getOffset(i, anim) {
+            let d = i - anim;
+            return ((d + total/2) % total + total) % total - total/2;
+        }
+
         function updateCarousel() {
-            currentAnim += (targetIndex - currentAnim) * 0.12;
-            slides.forEach((slide, i) => {
-                const offset = getOffset(i, currentAnim);
-                const absOff = Math.abs(offset);
-                slide.style.transform = `translate3d(${offset * 380}px, 0, ${-absOff * 200}px) rotateY(${offset * 15}deg) scale(${1 - absOff * 0.12})`;
-                slide.style.opacity = Math.max(0.15, 1 - absOff * 0.7);
-                slide.style.filter = `blur(${Math.min(10, absOff * 12)}px)`;
-                slide.style.zIndex = Math.round(50 - absOff * 15);
-                slide.style.pointerEvents = absOff < 0.5 ? 'auto' : 'none';
-                slide.classList.toggle('active', absOff < 0.4);
+            current += (target - current) * 0.12;
+            slides.forEach((s, i) => {
+                const off = getOffset(i, current);
+                const abs = Math.abs(off);
+                s.style.transform = `translate3d(${off*380}px,0,${-abs*200}px) rotateY(${off*15}deg) scale(${1-abs*0.12})`;
+                s.style.opacity = Math.max(0.15, 1 - abs*0.7);
+                s.style.filter = `blur(${Math.min(10, abs*12)}px)`;
+                s.style.zIndex = Math.round(50 - abs*15);
+                s.style.pointerEvents = abs < 0.5 ? 'auto' : 'none';
+                s.classList.toggle('active', abs < 0.4);
             });
-            const activeDot = Math.round(((currentAnim % totalSlides) + totalSlides) % totalSlides);
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === activeDot));
+            const active = Math.round(((current % total) + total) % total);
+            dots.forEach((d, i) => d.classList.toggle('active', i === active));
             requestAnimationFrame(updateCarousel);
         }
 
-        function goToSlide(index) { 
-            let currentWrapped = Math.round(((currentAnim % totalSlides) + totalSlides) % totalSlides); 
-            let diff = index - currentWrapped; 
-            if (diff > totalSlides / 2) diff -= totalSlides; 
-            if (diff < -totalSlides / 2) diff += totalSlides; 
-            targetIndex += diff; 
+        function goToSlide(idx) {
+            let cur = Math.round(((current % total) + total) % total);
+            let diff = idx - cur;
+            if (diff > total/2) diff -= total;
+            if (diff < -total/2) diff += total;
+            target += diff;
         }
-        
-        track.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; startAnim = targetIndex; track.style.cursor = 'grabbing'; });
-        track.addEventListener('mousemove', e => { if(isDragging) targetIndex = startAnim - ((e.pageX - startX)/200); });
-        track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; targetIndex = Math.round(targetIndex); });
-        track.addEventListener('mouseleave', () => { if(isDragging) { isDragging = false; track.style.cursor = 'grab'; targetIndex = Math.round(targetIndex); }});
-        track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startAnim = targetIndex; }, {passive:true});
-        track.addEventListener('touchmove', e => { if(isDragging) targetIndex = startAnim - ((e.touches[0].clientX - startX)/200); }, {passive:true});
-        track.addEventListener('touchend', () => { isDragging = false; targetIndex = Math.round(targetIndex); });
+
+        track.addEventListener('mousedown', e => { dragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
+        track.addEventListener('mousemove', e => { if (dragging) target = startTarget - (e.pageX - startX)/200; });
+        track.addEventListener('mouseup', () => { dragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
+        track.addEventListener('mouseleave', () => { if (dragging) { dragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
+        track.addEventListener('touchstart', e => { dragging = true; startX = e.touches[0].clientX; startTarget = target; }, {passive:true});
+        track.addEventListener('touchmove', e => { if (dragging) target = startTarget - (e.touches[0].clientX - startX)/200; }, {passive:true});
+        track.addEventListener('touchend', () => { dragging = false; target = Math.round(target); });
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
 
         window.addEventListener('load', updateCarousel);
-        
+
+        // ===== АНИМАЦИИ =====
         const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            if (navLinks.style.display === 'flex') { navLinks.style.display = 'none'; }
+        // ===== МОБИЛЬНОЕ МЕНЮ =====
+        document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
+            const nav = document.querySelector('.nav-links');
+            if (nav.style.display === 'flex') { nav.style.display = 'none'; }
             else {
-                navLinks.style.display = 'flex'; navLinks.style.flexDirection = 'column'; navLinks.style.position = 'absolute'; 
-                navLinks.style.top = '100%'; navLinks.style.left = '0'; navLinks.style.right = '0';
-                navLinks.style.background = 'rgba(10,10,15,0.95)'; navLinks.style.padding = '2rem'; navLinks.style.backdropFilter = 'blur(20px)';
+                nav.style.display = 'flex'; nav.style.flexDirection = 'column'; nav.style.position = 'absolute';
+                nav.style.top = '100%'; nav.style.left = '0'; nav.style.right = '0';
+                nav.style.background = 'rgba(10,10,15,0.95)'; nav.style.padding = '2rem'; nav.style.backdropFilter = 'blur(20px)';
             }
         });
     </script>
