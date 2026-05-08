@@ -31,72 +31,30 @@
             touch-action: pan-y;
         }
 
-        .bg-fixed {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/studio-background.jpg') center/cover no-repeat;
-            z-index: -2;
-        }
-        .bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 8, 12, 0.75);
-            backdrop-filter: blur(8px);
-            z-index: -1;
-        }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('images/studio-background.jpg') center/cover no-repeat; z-index: -2; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 12, 0.75); backdrop-filter: blur(8px); z-index: -1; }
 
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%;
-            background: transparent; z-index: 1000;
-        }
-        .nav-container { 
-            position: relative; max-width: 1400px; margin: 0 auto; 
-            display: flex; justify-content: space-between; align-items: center; min-height: 80px;
-        }
+        nav { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%; background: transparent; z-index: 1000; }
+        .nav-container { position: relative; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 80px; }
 
-        .nav-brand {
-            position: absolute; left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 1; pointer-events: auto;
-        }
+        .nav-brand { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; pointer-events: auto; }
         .nav-brand.scrolled { opacity: 0; transform: translate(-50%, -30px); pointer-events: none; }
         .logo img { height: 360px; width: auto; }
 
         .nav-controls { margin-left: auto; display: flex; align-items: center; gap: 1rem; }
-        .nav-links { 
-            display: flex; gap: 0.8rem; list-style: none;
-            transition: all 0.3s ease; opacity: 1; transform: translateY(0); pointer-events: auto;
-        }
+        .nav-links { display: flex; gap: 0.8rem; list-style: none; transition: all 0.3s ease; opacity: 1; transform: translateY(0); pointer-events: auto; }
         .nav-links.scrolled { opacity: 0; transform: translateY(-10px); pointer-events: none; }
-        .nav-links a {
-            display: inline-block; padding: 0.5rem 1.2rem; color: var(--green);
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            border: 2px solid var(--green); border-radius: 30px;
-            transition: all 0.3s; background: rgba(34, 197, 94, 0.05);
-        }
+        .nav-links a { display: inline-block; padding: 0.5rem 1.2rem; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 2px solid var(--green); border-radius: 30px; transition: all 0.3s; background: rgba(34, 197, 94, 0.05); }
         .nav-links a:hover { color: white; background: var(--green); }
 
-        .burger-btn { 
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            background: none; border: none; cursor: pointer; width: 44px; height: 44px;
-            opacity: 0; pointer-events: none; transition: all 0.3s ease;
-        }
+        .burger-btn { display: none; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; width: 44px; height: 44px; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
         .burger-btn.visible { display: flex; opacity: 1; pointer-events: auto; }
-        .burger-btn span {
-            display: block; width: 22px; height: 2px;
-            background: var(--green); margin: 4px auto;
-            transition: all 0.3s ease; border-radius: 2px;
-        }
+        .burger-btn span { display: block; width: 22px; height: 2px; background: var(--green); margin: 4px auto; transition: all 0.3s ease; border-radius: 2px; }
         .burger-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .burger-btn.active span:nth-child(2) { opacity: 0; }
         .burger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
-        .mobile-menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(25px); z-index: 1001;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transform: translateY(-100%);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(25px); z-index: 1001; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(-100%); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; transform: translateY(0); }
         
         .mobile-nav-item { opacity: 0; transform: translateY(-30px); transition: all 0.5s ease; }
@@ -105,24 +63,12 @@
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
         .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
         
-        .mobile-nav-item a {
-            padding: 1.5rem 2rem; color: var(--text-primary);
-            text-decoration: none; font-size: 1.5rem; font-weight: 700;
-            transition: all 0.3s; border: none; width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px;
-        }
+        .mobile-nav-item a { padding: 1.5rem 2rem; color: var(--text-primary); text-decoration: none; font-size: 1.5rem; font-weight: 700; transition: all 0.3s; border: none; width: 100%; max-width: 350px; text-align: center; letter-spacing: 1px; }
         .mobile-nav-item a:hover { color: var(--green); background: rgba(34, 197, 94, 0.1); border-radius: 12px; }
         
-        .mobile-nav-socials {
-            display: flex; gap: 1rem; margin-top: 2rem;
-            opacity: 0; transform: translateY(20px); transition: all 0.5s ease;
-        }
+        .mobile-nav-socials { display: flex; gap: 1rem; margin-top: 2rem; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .mobile-menu-overlay.active .mobile-nav-socials { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
-        .mobile-nav-socials a {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s;
-        }
+        .mobile-nav-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--green); text-decoration: none; font-weight: 700; transition: all 0.3s; }
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
         .section { position: relative; padding: 5rem 5%; width: 100%; }
@@ -180,57 +126,17 @@
         .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); height: 300px; }
         .map-container iframe, .map-container script { width: 100%; height: 100%; border: none; display: block; }
 
-        /* === ФОРМА КОНТАКТОВ === */
-        .contact-form {
-            background: rgba(25,30,40,0.4); padding: 2rem; border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20;
-        }
+        .contact-form { background: rgba(25,30,40,0.4); padding: 2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); position: relative; z-index: 20; }
         .form-group { margin-bottom: 1.5rem; position: relative; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 1rem 1rem; background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem;
-        }
-        /* Поле телефона с маской */
-        .input-wrapper {
-            position: relative;
-        }
-        .input-wrapper input {
-            padding-right: 120px; /* Место для подсказки справа */
-        }
-        .input-hint {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            opacity: 0.6;
-            pointer-events: none;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
-        .input-wrapper input:focus + .input-hint,
-        .input-wrapper input:not(:placeholder-shown) + .input-hint {
-            opacity: 0;
-        }
-        /* Подсказка для Telegram */
-        .tg-hint {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            opacity: 0.6;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
+        .input-wrapper { position: relative; }
+        .input-wrapper input { width: 100%; padding: 1rem; padding-right: 130px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem; }
+        .input-wrapper select, .form-group select, .form-group textarea { width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem; }
+        .input-hint { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.85rem; opacity: 0.6; pointer-events: none; white-space: nowrap; transition: opacity 0.3s; }
+        .input-wrapper input:focus + .input-hint, .input-wrapper input:not(:placeholder-shown) + .input-hint { opacity: 0; }
+        .tg-hint { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.9rem; opacity: 0.6; pointer-events: none; transition: opacity 0.3s; }
         .tg-hint.hidden { opacity: 0; }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
-        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; justify-content: center; }
 
@@ -268,6 +174,7 @@
             .portfolio-image { height: 120px; font-size: 2rem; }
             .portfolio-content { padding: 0.8rem 1rem; }
             .logo img { height: 100px; }
+            .input-wrapper input { padding-right: 100px; }
             .input-hint { right: 0.5rem; font-size: 0.75rem; }
         }
     </style>
@@ -278,18 +185,14 @@
 
     <nav id="mainNav">
         <div class="nav-container">
-            <div class="nav-brand" id="navBrand">
-                <a href="#" class="logo"><img src="logo.png" alt="Студия 513"></a>
-            </div>
+            <div class="nav-brand" id="navBrand"><a href="#" class="logo"><img src="logo.png" alt="Студия 513"></a></div>
             <div class="nav-controls">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#portfolio">Примеры работ</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
-                <button class="burger-btn" id="burgerBtn" aria-label="Меню">
-                    <span></span><span></span><span></span>
-                </button>
+                <button class="burger-btn" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
@@ -298,23 +201,11 @@
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
         <div class="mobile-nav-item"><a href="#contact" onclick="closeMobileMenu()">Контакты</a></div>
-        <div class="mobile-nav-socials">
-            <a href="https://t.me/podcast513" target="_blank">TG</a>
-            <a href="https://vk.com/podcast513" target="_blank">VK</a>
-        </div>
+        <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
     </div>
 
     <section class="section hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <h1>Студия Подкаста 513</h1>
-                <p>Профессиональная запись и производство подкастов в Москве.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
-                    <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
-                </div>
-            </div>
-        </div>
+        <div class="hero-container"><div class="hero-content fade-in"><h1>Студия Подкаста 513</h1><p>Профессиональная запись и производство подкастов в Москве.</p><div class="hero-buttons"><a href="#contact" class="btn btn-primary">Записаться на съёмку →</a><a href="#portfolio" class="btn btn-secondary">Наши работы</a></div></div></div>
     </section>
 
     <section class="section" id="services">
@@ -347,48 +238,32 @@
                 <div class="contact-info fade-in">
                     <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Адрес</h4><p>Москва, ул. Примерная, 123</p></div></div>
                     <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Телефон</h4><a href="tel:+79991234567">+7 (999) 123-45-67</a></div></div>
-                    <div class="map-container">
-                        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb540496b97a45cd18f618eb007d4fcf7b0b1a8a4c2969f391d63d84c050d814&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
-                    </div>
+                    <div class="map-container"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb540496b97a45cd18f618eb007d4fcf7b0b1a8a4c2969f391d63d84c050d814&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script></div>
                 </div>
 
-                <!-- ✅ ОБНОВЛЁННАЯ ФОРМА -->
                 <div class="contact-form fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Записаться на съёмку</h3>
                     <form id="contactForm">
+                        <div class="form-group"><label>Ваше имя</label><input type="text" id="input-name" placeholder="Иван Иванов" required></div>
                         <div class="form-group">
-                            <label for="input-name">Ваше имя</label>
-                            <input type="text" id="input-name" placeholder="Иван Иванов" required>
-                        </div>
-                        <!-- ✅ Поле телефона с маской -->
-                        <div class="form-group">
-                            <label for="input-phone">Телефон</label>
-                            <div class="input-wrapper">
-                                <input type="tel" id="input-phone" placeholder="+7" required maxlength="18">
-                                <span class="input-hint">+7(___)___-__-__</span>
-                            </div>
-                        </div>
-                        <!-- ✅ Отдельное поле Telegram ID -->
-                        <div class="form-group">
-                            <label for="input-tg-id">Telegram <span style="opacity:0.5; font-weight:400;">(необязательно)</span></label>
-                            <div class="input-wrapper">
-                                <input type="text" id="input-tg-id" placeholder="@username" maxlength="32">
-                                <span class="tg-hint" id="tgHint">@</span>
-                            </div>
+                            <label>Телефон</label>
+                            <div class="input-wrapper"><input type="tel" id="input-phone" placeholder="+7" required><span class="input-hint">+7(___)___-__-__</span></div>
                         </div>
                         <div class="form-group">
-                            <label for="input-service">Услуга</label>
+                            <label>Telegram <span style="opacity:0.5; font-weight:400;">(необязательно)</span></label>
+                            <div class="input-wrapper"><input type="text" id="input-tg-id" placeholder="@username"><span class="tg-hint" id="tgHint">@</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Услуга</label>
                             <select id="input-service" required>
                                 <option value="">Выберите</option>
                                 <option>Съёмка</option>
                                 <option>Монтаж</option>
                                 <option>Под ключ</option>
+                                <option>Консультация</option> <!-- ✅ Вернул пункт -->
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="input-message">Комментарий</label>
-                            <textarea id="input-message" placeholder="О проекте..."></textarea>
-                        </div>
+                        <div class="form-group"><label>Комментарий</label><textarea id="input-message" placeholder="О проекте..."></textarea></div>
                         <button type="button" class="btn btn-primary" id="btn-send" onclick="sendToTelegram()">Отправить заявку →</button>
                     </form>
                 </div>
@@ -410,34 +285,21 @@
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
 
-        function openMobileMenu() {
-            isMenuOpen = true;
-            burgerBtn.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeMobileMenu() {
-            isMenuOpen = false;
-            burgerBtn.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        function openMobileMenu() { isMenuOpen = true; burgerBtn.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { isMenuOpen = false; burgerBtn.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
         burgerBtn.addEventListener('click', () => isMenuOpen ? closeMobileMenu() : openMobileMenu());
         document.querySelectorAll('.mobile-nav-item a').forEach(link => link.addEventListener('click', closeMobileMenu));
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
 
         // === СКРЫТИЕ ЭЛЕМЕНТОВ ПРИ СКРОЛЛЕ ===
-        let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY >= 50) {
-                navBrand.classList.add('scrolled');
-            } else { navBrand.classList.remove('scrolled'); }
+            if (currentScrollY >= 50) navBrand.classList.add('scrolled');
+            else navBrand.classList.remove('scrolled');
             if (window.innerWidth >= 969) {
                 if (currentScrollY >= 50) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); }
                 else { navLinks.classList.remove('scrolled'); burgerBtn.classList.remove('visible'); }
             }
-            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
         }, { passive: true });
 
         // === МАСКА ТЕЛЕФОНА И TELEGRAM ===
@@ -445,108 +307,54 @@
         const tgInput = document.getElementById('input-tg-id');
         const tgHint = document.getElementById('tgHint');
 
-        // Форматирование телефона: +7(___)___-__-__
         function formatPhone(value) {
-            // Оставляем только цифры
             let digits = value.replace(/\D/g, '');
-            // Если начинается с 8, заменяем на 7
             if (digits.startsWith('8')) digits = '7' + digits.slice(1);
-            // Если не начинается с 7, добавляем 7
             if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits;
             
             let formatted = '+7';
-            if (digits.length > 1) {
-                formatted += '(' + digits.slice(1, 4);
-            }
-            if (digits.length >= 4) {
-                formatted += ')';
-            }
-            if (digits.length > 4) {
-                formatted += digits.slice(4, 7);
-            }
-            if (digits.length > 7) {
-                formatted += '-' + digits.slice(7, 9);
-            }
-            if (digits.length > 9) {
-                formatted += '-' + digits.slice(9, 11);
-            }
+            if (digits.length > 1) formatted += '(' + digits.slice(1, 4);
+            if (digits.length >= 4) formatted += ')';
+            if (digits.length > 4) formatted += digits.slice(4, 7);
+            if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
+            if (digits.length > 9) formatted += '-' + digits.slice(9, 11);
             return formatted;
         }
 
         phoneInput.addEventListener('input', (e) => {
             let val = e.target.value;
-            // Если пользователь стирает всё, разрешаем пустое
             if (val.length === 0) { e.target.value = ''; return; }
-            
             let cursorPos = e.target.selectionStart;
             let oldLength = val.length;
             let formatted = formatPhone(val);
             e.target.value = formatted;
-            
-            // Корректируем позицию курсора
             let newLength = formatted.length;
-            if (oldLength < newLength && cursorPos > 0) {
-                cursorPos += (newLength - oldLength);
-            }
-            // Не даём курсору уходить за конец
+            if (oldLength < newLength && cursorPos > 0) cursorPos += (newLength - oldLength);
             if (cursorPos > formatted.length) cursorPos = formatted.length;
-            // Не даём курсору вставать на скобки и дефисы
-            if (formatted[cursorPos] === '(' || formatted[cursorPos] === ')' || formatted[cursorPos] === '-') {
-                cursorPos++;
-            }
+            if (formatted[cursorPos] === '(' || formatted[cursorPos] === ')' || formatted[cursorPos] === '-') cursorPos++;
             e.target.setSelectionRange(cursorPos, cursorPos);
         });
+        phoneInput.addEventListener('focus', (e) => { if (e.target.value === '' || e.target.value === '+7') e.target.value = '+7'; });
+        phoneInput.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && phoneInput.value.length <= 2) e.preventDefault(); });
 
-        phoneInput.addEventListener('focus', (e) => {
-            if (e.target.value === '' || e.target.value === '+7') {
-                e.target.value = '+7';
-            }
-        });
-
-        phoneInput.addEventListener('keydown', (e) => {
-            // Запрещаем удалять +7
-            if (e.key === 'Backspace' && phoneInput.value.length <= 2) {
-                e.preventDefault();
-            }
-        });
-
-        // Telegram ID: автоматически добавляем @
         tgInput.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\s/g, '');
-            if (val.length > 0 && !val.startsWith('@')) {
-                e.target.value = '@' + val.replace(/^@+/, '');
-            }
-            if (val === '@') {
-                e.target.value = '';
-            }
-            // Скрываем подсказку при вводе
-            if (e.target.value.length > 0) {
-                tgHint.classList.add('hidden');
-            } else {
-                tgHint.classList.remove('hidden');
-            }
+            if (val.length > 0 && !val.startsWith('@')) e.target.value = '@' + val.replace(/^@+/, '');
+            if (e.target.value === '@') e.target.value = '';
+            if (e.target.value.length > 0) tgHint.classList.add('hidden'); else tgHint.classList.remove('hidden');
         });
-
-        tgInput.addEventListener('focus', () => {
-            tgHint.classList.add('hidden');
-        });
-        tgInput.addEventListener('blur', () => {
-            if (tgInput.value === '') {
-                tgHint.classList.remove('hidden');
-            }
-        });
+        tgInput.addEventListener('focus', () => tgHint.classList.add('hidden'));
+        tgInput.addEventListener('blur', () => { if (tgInput.value === '') tgHint.classList.remove('hidden'); });
 
         // === ОТПРАВКА В TELEGRAM ===
         async function sendToTelegram() {
             const btn = document.getElementById('btn-send');
             const originalText = btn.textContent;
-            
             btn.classList.remove('btn-success', 'btn-error');
             btn.disabled = true;
             btn.textContent = '⏳ Отправка...';
 
             const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev';
-            
             const name = (document.getElementById('input-name').value || '').trim();
             const phone = phoneInput.value.trim();
             const tgId = tgInput.value.trim();
@@ -554,52 +362,35 @@
             const message = (document.getElementById('input-message').value || '').trim();
 
             if (!name) {
-                btn.textContent = '⚠️ Введите имя';
-                btn.classList.add('btn-error');
-                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000);
-                return;
+                btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error');
+                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return;
             }
-            // Проверяем, что телефон введён полностью (18 символов: +7(___)___-__-__)
-            if (phone.length < 18) {
-                btn.textContent = '⚠️ Введите полный номер';
-                btn.classList.add('btn-error');
-                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000);
-                return;
+            // ✅ ИСПРАВЛЕНИЕ: проверяем количество цифр (11 штук), а не длину строки маски
+            if (phone.replace(/\D/g, '').length < 11) {
+                btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error');
+                setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return;
             }
 
-            // Формируем время без секунд
             const now = new Date();
-            const timeStr = now.toLocaleString('ru-RU', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit' // Без секунд
-            });
-
+            const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
             const formData = { name, phone, tgId, service, message, time: timeStr };
 
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
-                const response = await fetch(PROXY_URL, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData), signal: controller.signal
-                });
+                const response = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData), signal: controller.signal });
                 clearTimeout(timeoutId);
                 if (response.ok) {
-                    btn.textContent = '✅ Отправлено!';
-                    btn.classList.add('btn-success');
+                    btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success');
                     document.getElementById('contactForm').reset();
-                    // Сброс подсказок
-                    phoneInput.value = '+7';
-                    tgHint.classList.remove('hidden');
+                    phoneInput.value = '+7'; tgHint.classList.remove('hidden');
                     setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000);
                 } else {
-                    btn.textContent = '❌ Ошибка';
-                    btn.classList.add('btn-error');
+                    btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error');
                     setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000);
                 }
             } catch (error) {
-                btn.textContent = '❌ Ошибка сети';
-                btn.classList.add('btn-error');
+                btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error');
                 setTimeout(() => { btn.textContent = originalText; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000);
             }
         }
@@ -630,24 +421,11 @@
             dots.forEach((d, i) => d.classList.toggle('active', i === active));
             requestAnimationFrame(updateCarousel);
         }
-        function goToSlide(idx) {
-            let cur = Math.round(((current % total) + total) % total);
-            let diff = idx - cur; if (diff > total/2) diff -= total; if (diff < -total/2) diff += total; target += diff;
-        }
+        function goToSlide(idx) { let cur = Math.round(((current % total) + total) % total); let diff = idx - cur; if (diff > total/2) diff -= total; if (diff < -total/2) diff += total; target += diff; }
         track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; }, { passive: true });
-        track.addEventListener('touchmove', e => {
-            if (!isDragging) return;
-            const diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY;
-            if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) { isVerticalSwipe = true; return; }
-            if (Math.abs(diffX) > 10) { e.preventDefault(); target = startTarget - (diffX / 200); }
-        }, { passive: false });
+        track.addEventListener('touchmove', e => { if (!isDragging) return; const diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY; if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) { isVerticalSwipe = true; return; } if (Math.abs(diffX) > 10) { e.preventDefault(); target = startTarget - (diffX / 200); } }, { passive: false });
         track.addEventListener('touchend', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); } });
-        track.addEventListener('wheel', e => {
-            if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) {
-                e.preventDefault(); wheelAccumulator += e.deltaX * WHEEL_FACTOR;
-                if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) { target += wheelAccumulator > 0 ? 1 : -1; wheelAccumulator = 0; }
-            }
-        }, { passive: false });
+        track.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) { e.preventDefault(); wheelAccumulator += e.deltaX * WHEEL_FACTOR; if (Math.abs(wheelAccumulator) > WHEEL_THRESHOLD) { target += wheelAccumulator > 0 ? 1 : -1; wheelAccumulator = 0; } } }, { passive: false });
         track.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
         track.addEventListener('mousemove', e => { if (isDragging) target = startTarget - (e.pageX - startX)/200; });
         track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
