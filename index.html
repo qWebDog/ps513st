@@ -160,9 +160,15 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .hero { min-height: 85vh; padding-top: 0; } /* ✅ Убран отступ сверху */
-            .hero-container { padding-top: 1rem; } /* ✅ Минимальный отступ для контента */
-            .hero-logo { height: 240px; }
+            /* ✅ ИСПРАВЛЕНИЕ: ЛОГОТИП ВВЕРХУ */
+            .hero { 
+                min-height: 90vh; 
+                padding-top: 4.5rem; /* Отступ под меню */
+                align-items: flex-start; /* Выравнивание по верху */
+                padding-bottom: 2rem;
+            }
+            .hero-container { padding-top: 0; }
+            .hero-logo { height: 200px; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -171,9 +177,14 @@
             .contact-container { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
             .map-container { height: 280px; }
-            .logo-wrapper { margin-bottom: 0.3rem; } /* ✅ Уменьшен отступ после лого */
+            .logo-wrapper { margin-bottom: 0.3rem; }
         }
         @media (max-width: 640px) {
+            /* ✅ МОБИЛЬНЫЕ: ЕЩЁ БЛИЖЕ К ВЕРХУ */
+            .hero { 
+                min-height: 80vh; 
+                padding-top: 3.5rem; 
+            }
             .hero-content p { font-size: 0.95rem; }
             .section-title h2 { font-size: 1.3rem; }
             .section { padding: 1rem 4%; }
@@ -183,7 +194,7 @@
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
             .portfolio-content { padding: 0.6rem; }
-            .hero-logo { height: 90px; }
+            .hero-logo { height: 130px; } /* Уменьшенный размер */
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
