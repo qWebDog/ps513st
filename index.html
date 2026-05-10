@@ -64,7 +64,8 @@
         .mobile-nav-socials a:hover { background: var(--green); color: white; transform: scale(1.1); }
 
         .section { position: relative; padding: 1.2rem 5%; width: 100%; }
-        .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; }
+        /* ✅ ЦЕНТРИРОВАНИЕ ПО ВЕРТИКАЛИ НА ВСЕХ УСТРОЙСТВАХ */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
         .hero-container { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 2; text-align: center; }
         .logo-wrapper { 
             position: relative; 
@@ -101,7 +102,8 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
         .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
-        .service-icon { width: 60px; height: 60px; margin: 0 auto 1rem; background: var(--green); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .service-icon { width: 100%; height: 180px; margin: 0 auto 1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .service-icon img { width: 100%; height: 100%; object-fit: cover; }
         .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
         .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
@@ -160,15 +162,17 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            /* ✅ ИСПРАВЛЕНИЕ: ЛОГОТИП ВВЕРХУ */
+            /* ✅ НА ПЛАНШЕТАХ ТОЖЕ ЦЕНТРИРОВАНИЕ */
             .hero { 
-                min-height: 90vh; 
-                padding-top: 4.5rem; /* Отступ под меню */
-                align-items: flex-start; /* Выравнивание по верху */
-                padding-bottom: 2rem;
+                min-height: 85vh; 
+                align-items: center; 
+                justify-content: center;
+                padding-top: 0;
+                padding-bottom: 0;
             }
-            .hero-container { padding-top: 0; }
+            .hero-container { padding-top: 1rem; padding-bottom: 1rem; }
             .hero-logo { height: 200px; }
+            .service-icon { height: 140px; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -180,21 +184,28 @@
             .logo-wrapper { margin-bottom: 0.3rem; }
         }
         @media (max-width: 640px) {
-            /* ✅ МОБИЛЬНЫЕ: ЕЩЁ БЛИЖЕ К ВЕРХУ */
+            /* ✅ НА МОБИЛЬНЫХ — СТРОГО ПО ЦЕНТРУ */
             .hero { 
-                min-height: 80vh; 
-                padding-top: 3.5rem; 
+                min-height: 85vh; 
+                align-items: center; 
+                justify-content: center;
+                padding-top: 0;
+            }
+            .hero-container { 
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
             }
             .hero-content p { font-size: 0.95rem; }
             .section-title h2 { font-size: 1.3rem; }
             .section { padding: 1rem 4%; }
             .contact-form { padding: 1rem; }
             .service-card { padding: 1.2rem; }
+            .service-icon { height: 120px; }
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
             .portfolio-content { padding: 0.6rem; }
-            .hero-logo { height: 130px; } /* Уменьшенный размер */
+            .hero-logo { height: 130px; }
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
@@ -246,18 +257,21 @@
         <div class="container">
             <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
             <div class="services-grid">
+                <!-- ✅ ФОТО ВМЕСТО ИКОНКИ -->
                 <div class="service-card fade-in">
-                    <div class="service-icon">🎬</div>
+                    <div class="service-icon">
+                        <img src="camera-studio.jpg" alt="Съёмка">
+                    </div>
                     <h3>Съёмка</h3>
                     <p>Качественная съёмка в студии<br>от 1 до 3 камер с настроенным светом и микрофонами.</p>
                 </div>
                 <div class="service-card fade-in">
-                    <div class="service-icon">✂️</div>
+                    <div class="service-icon" style="background: var(--green);">✂️</div>
                     <h3>Монтаж</h3>
                     <p>Видеомонтаж и звукорежиссура.<br>Чистка звука, цветокоррекция, графика.</p>
                 </div>
                 <div class="service-card fade-in">
-                    <div class="service-icon">🎯</div>
+                    <div class="service-icon" style="background: var(--green);">🎯</div>
                     <h3>Подкаст под ключ</h3>
                     <p>Двухчасовая съёмка на 3 камеры<br>плюс полный видеомонтаж материалов.<br>От вас нужно только прийти и сесть за стол.</p>
                 </div>
