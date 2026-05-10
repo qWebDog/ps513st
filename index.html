@@ -70,7 +70,7 @@
         .hero-logo { height: 480px; width: auto; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5)); pointer-events: none; -webkit-user-drag: none; }
         .logo-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: transparent; z-index: 10; -webkit-user-select: none; user-select: none; }
         .hero-content { max-width: 800px; margin: 0 auto; }
-        .hero-content p { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 700px; line-height: 1.6; margin-left: auto; margin-right: auto; }
+        .hero-content p { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 750px; line-height: 1.6; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
         .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
@@ -205,7 +205,9 @@
                 <div class="logo-overlay" aria-hidden="true"></div>
             </div>
             <div class="hero-content">
-                <p>Видеопроизводство без головной боли. Мы создали студию формата "заходи и записывай". Вам не нужно вникать в настройки оборудования — просто сфокусируйтесь на контенте, а мы обеспечим техническую реализацию на высшем уровне</p>
+                <p>Видеопроизводство без головной боли.<br>
+                Мы создали студию формата «заходи и записывай».<br>
+                Вам не нужно вникать в настройки оборудования — просто сфокусируйтесь на контенте, а мы обеспечим техническую реализацию на высшем уровне.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
@@ -218,9 +220,21 @@
         <div class="container">
             <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
             <div class="services-grid">
-                <div class="service-card fade-in"><div class="service-icon">🎬</div><h3>Съёмка</h3><p>Качественная съемка в студии от 1-ой до 3-х камер с настроенным светом и микрофонами</p></div>
-                <div class="service-card fade-in"><div class="service-icon">✂️</div><h3>Монтаж</h3><p>Видеомонтаж и звукорежиссура. Чистка звука, цветокоррекция, графика.</p></div>
-                <div class="service-card fade-in"><div class="service-icon">🎯</div><h3>Подкаст под ключ</h3><p>2-ух часовая съёмка на 3 камеры плюс видеомонтаж материалов от вас нужно только прийти и сесть за стол</p></div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎬</div>
+                    <h3>Съёмка</h3>
+                    <p>Качественная съёмка в студии<br>от 1 до 3 камер с настроенным светом и микрофонами.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">✂️</div>
+                    <h3>Монтаж</h3>
+                    <p>Видеомонтаж и звукорежиссура.<br>Чистка звука, цветокоррекция, графика.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎯</div>
+                    <h3>Подкаст под ключ</h3>
+                    <p>Двухчасовая съёмка на 3 камеры<br>плюс полный видеомонтаж материалов.<br>От вас нужно только прийти и сесть за стол.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -286,7 +300,6 @@
     </footer>
 
     <script>
-        // Бургер меню
         document.querySelector('.logo-wrapper')?.addEventListener('contextmenu', (e) => { e.preventDefault(); return false; });
         const navLinks = document.getElementById('navLinks'), burgerBtn = document.getElementById('burgerBtn'), mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
@@ -297,7 +310,6 @@
         mobileMenuOverlay.addEventListener('click', (e) => { if (e.target === mobileMenuOverlay) closeMobileMenu(); });
         window.addEventListener('scroll', () => { const c = window.scrollY; if (window.innerWidth >= 969) { if (c >= 30) { navLinks.classList.add('scrolled'); burgerBtn.classList.add('visible'); } else { navLinks.classList.remove('scrolled'); burgerBtn.classList.remove('visible'); } } }, { passive: true });
 
-        // Маска телефона
         const phoneInput = document.getElementById('input-phone'), tgInput = document.getElementById('input-tg-id'), tgHint = document.getElementById('tgHint');
         phoneInput.addEventListener('input', (e) => { let val = e.target.value; if (val.length === 0) { e.target.value = ''; return; } let cursorPos = e.target.selectionStart, oldLen = val.length, f = formatPhone(val); e.target.value = f; let newLen = f.length; if (oldLen < newLen && cursorPos > 0) cursorPos += (newLen - oldLen); if (cursorPos > f.length) cursorPos = f.length; if (f[cursorPos] === '(' || f[cursorPos] === ')' || f[cursorPos] === '-') cursorPos++; e.target.setSelectionRange(cursorPos, cursorPos); });
         phoneInput.addEventListener('focus', (e) => { if (e.target.value === '' || e.target.value === '+7') e.target.value = '+7'; });
@@ -307,10 +319,8 @@
         tgInput.addEventListener('focus', () => tgHint.classList.add('hidden'));
         tgInput.addEventListener('blur', () => { if (tgInput.value === '') tgHint.classList.remove('hidden'); });
 
-        // Отправка в Telegram
         async function sendToTelegram() { const btn = document.getElementById('btn-send'), orig = btn.textContent; btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...'; const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev'; const name = (document.getElementById('input-name').value || '').trim(); const phone = phoneInput.value.trim(), tgId = tgInput.value.trim(); const service = document.getElementById('input-service').value || 'Не выбрано'; const msg = (document.getElementById('input-message').value || '').trim(); if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }); try { const ctrl = new AbortController(), tid = setTimeout(() => ctrl.abort(), 10000); const resp = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message: msg, time: timeStr }), signal: ctrl.signal }); clearTimeout(tid); if (resp.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('contactForm').reset(); phoneInput.value = '+7'; tgHint.classList.remove('hidden'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000); } else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } } catch (err) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } }
 
-        // Карусель
         const track = document.getElementById('carouselTrack'), slides = document.querySelectorAll('.carousel-slide'), dots = document.querySelectorAll('.dot'), total = slides.length;
         let target = 0, current = 0, isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false, wheelAcc = 0;
         const WHEEL_THR = 50, WHEEL_FACT = 0.5;
