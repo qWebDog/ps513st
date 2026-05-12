@@ -88,7 +88,6 @@
 
         .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
         
-        /* ✅ КНОПКА ЗАПИСАТЬСЯ (СТИЛЬ "НАШИ РАБОТЫ") */
         .btn-primary { 
             background: rgba(34, 197, 94, 0.1); 
             color: var(--green); 
@@ -109,8 +108,28 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
         .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
-        .service-icon { width: 100%; height: 180px; margin: 0 auto 1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
-        .service-icon img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* ✅ ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ ФОТО УСЛУГ */
+        .service-icon { 
+            width: 100%; 
+            height: 220px; /* ✅ Увеличена высота для комфортного размещения */
+            margin: 0 auto 1rem; 
+            border-radius: 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+            padding: 12px; /* ✅ Отступы, чтобы фото не прилипало к краям */
+            box-sizing: border-box; 
+        }
+        .service-icon img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* ✅ Фото помещается полностью без обрезки */
+            border-radius: 8px;
+        }
+        
         .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
         .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
@@ -122,7 +141,6 @@
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
         
-        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
         .portfolio-item.clickable {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -138,7 +156,6 @@
             cursor: pointer;
         }
         
-        /* ✅ КНОПКА PLAY (ДЕСКТОП: 60px) */
         .portfolio-image-overlay {
             position: absolute;
             top: 50%;
@@ -161,27 +178,24 @@
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* ✅ БЛОК КОНТЕНТА: ЗАГОЛОВОК СВЕРХУ */
         .portfolio-content { 
             padding: 0.8rem 1rem; 
             flex: 1; 
             display: flex; 
             flex-direction: column;
-            align-items: center;     /* По горизонтали */
+            align-items: center;
             text-align: center;
         }
         
-        /* ✅ ЗАГОЛОВОК */
         .portfolio-content h4 {
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.6rem;
             letter-spacing: 0.5px;
-            margin-top: 0; /* ✅ ГАРАНТИРУЕМ, ЧТО ЗАГОЛОВОК СВЕРХУ */
+            margin-top: 0;
         }
         
-        /* ✅ ТЕГИ: В СТОЛБИК */
         .portfolio-tags { 
             display: flex; 
             flex-direction: column; 
@@ -241,16 +255,10 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .hero { 
-                min-height: 85vh; 
-                align-items: center; 
-                justify-content: center;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
+            .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
             .hero-container { padding-top: 1rem; padding-bottom: 1rem; }
             .hero-logo { height: 200px; }
-            .service-icon { height: 140px; }
+            .service-icon { height: 160px; } /* ✅ Адаптивная высота для планшетов */
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -260,32 +268,17 @@
             .services-grid { grid-template-columns: 1fr; }
             .map-container { height: 280px; }
             .logo-wrapper { margin-bottom: 0.3rem; }
-            
-            /* ✅ МОБИЛЬНАЯ КНОПКА PLAY (40px) */
-            .portfolio-image-overlay {
-                width: 40px !important;
-                height: 40px !important;
-                max-width: 40px !important;
-                max-height: 40px !important;
-            }
+            .portfolio-image-overlay { width: 40px !important; height: 40px !important; max-width: 40px !important; max-height: 40px !important; }
         }
         @media (max-width: 640px) {
-            .hero { 
-                min-height: 85vh; 
-                align-items: center; 
-                justify-content: center;
-                padding-top: 0;
-            }
-            .hero-container { 
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
+            .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; }
+            .hero-container { padding-top: 0.5rem; padding-bottom: 0.5rem; }
             .hero-content p { font-size: 0.95rem; }
             .section-title h2 { font-size: 1.3rem; }
             .section { padding: 1rem 4%; }
             .contact-form { padding: 1rem; }
             .service-card { padding: 1.2rem; }
-            .service-icon { height: 120px; }
+            .service-icon { height: 140px; } /* ✅ Адаптивная высота для мобильных */
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
@@ -295,11 +288,7 @@
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
-            
-            .tag {
-                font-size: 0.7rem;
-                padding: 0.15rem 0.5rem;
-            }
+            .tag { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
         }
     </style>
 </head>
@@ -378,7 +367,6 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ СЛАЙД 1: RASKOL -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -397,8 +385,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- ✅ СЛАЙД 2: АНДРЕЙ ПРЕДЕЛИН -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=8ler-Hm8jjA&t=258s" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -416,8 +402,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- ✅ СЛАЙД 3: ДЖЕКСОН -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=V1f24KOQkiA&t=140s" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -439,7 +423,6 @@
         <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
     </section>
 
-    <!-- ✅ НОВЫЙ БЛОК: НАША СТУДИЯ -->
     <section class="section" id="studio">
         <div class="container">
             <div class="section-title fade-in">
@@ -447,7 +430,6 @@
                 <p>Пространство, созданное для комфортной работы</p>
             </div>
             <div class="services-grid">
-                <!-- Гримерная -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/makeup-room.jpg" alt="Гримерная">
@@ -455,7 +437,6 @@
                     <h3>Гримерная</h3>
                     <p>Просторная зона с профессиональным освещением и зеркалами. Всё необходимое для подготовки к съёмке.</p>
                 </div>
-                <!-- Студия -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/studio-room.jpg" alt="Студия">
