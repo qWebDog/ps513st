@@ -215,6 +215,15 @@
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
+            
+            /* ✅ КНОПКА PLAY ДЛЯ ПЛАНШЕТОВ */
+            .portfolio-item.clickable .portfolio-image::after {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                border-width: 2px;
+            }
+            
             .nav-links { display: none !important; }
             .burger-btn { display: flex; opacity: 1; pointer-events: auto; }
             .contact-container { grid-template-columns: 1fr; }
@@ -248,6 +257,14 @@
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
+            
+            /* ✅ КНОПКА PLAY ДЛЯ МОБИЛЬНЫХ */
+            .portfolio-item.clickable .portfolio-image::after {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                border-width: 2px;
+            }
         }
     </style>
 </head>
