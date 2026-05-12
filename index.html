@@ -114,7 +114,7 @@
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
         
-        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
+        /* ✅ ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
         .portfolio-item.clickable {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -130,23 +130,24 @@
             cursor: pointer;
         }
         
-        /* ✅ КАРТИНКА-ОВЕРЛЕЙ (ПЛЕЙ) - 20px */
+        /* ✅ ЖЕСТКАЯ ФИКСАЦИЯ РАЗМЕРА КНОПКИ PLAY (20px) */
         .portfolio-image-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 20px; /* ✅ В 4 РАЗА МЕНЬШЕ */
-            height: auto;
+            transform: translate(-50%, -50%);
+            width: 20px !important;
+            height: 20px !important;
+            max-width: 20px !important;
+            max-height: 20px !important;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease;
             pointer-events: none;
             z-index: 2;
-            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
+            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
         }
         .portfolio-item.clickable:hover .portfolio-image-overlay {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
         }
         
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
@@ -159,7 +160,6 @@
             flex-direction: column; 
             text-align: center;
         }
-        /* ✅ ЗАГОЛОВОК */
         .portfolio-content h4 {
             font-size: 0.85rem;
             font-weight: 700;
@@ -351,17 +351,17 @@
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
                             <div class="portfolio-image">
                                 <img src="images/raskol-preview.jpg" alt="RASKOL">
+                                <!-- ✅ КНОПКА PLAY 20px -->
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                         </a>
-                        <!-- ✅ ЗАГОЛОВОК + ПРОФЕССИОНАЛЬНОЕ ОПИСАНИЕ -->
+                        <!-- ✅ ЗАГОЛОВОК + НОВОЕ ОПИСАНИЕ -->
                         <div class="portfolio-content">
                             <h4>ЯРОСЛАВ АМИНОКИСЛОТНЫЙ</h4>
                             <ul>
-                                <li>Многокамерная студийная запись</li>
-                                <li>Профессиональная звукорежиссура</li>
+                                <li>Студийная запись</li>
+                                <li>Звукорежиссура</li>
                                 <li>Комплексный видеомонтаж</li>
-                                <li>Кинематографическая цветокоррекция</li>
                             </ul>
                             <div class="portfolio-tags">
                                 <span class="tag">Съёмка</span>
