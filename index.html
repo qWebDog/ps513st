@@ -87,12 +87,16 @@
         .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
         .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
+        
+        /* ✅ КНОПКА ЗАПИСАТЬСЯ (ТЕПЕРЬ КАК "НАШИ РАБОТЫ") */
         .btn-primary { 
-            background: var(--green); 
-            color: white; 
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); 
+            background: rgba(34, 197, 94, 0.1); 
+            color: var(--green); 
+            border: 2px solid var(--green); 
+            backdrop-filter: blur(5px);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6); }
+        .btn-primary:hover { transform: translateY(-2px); background: rgba(34,197,94,0.25); }
+        
         .btn-secondary { background: rgba(34,197,94,0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
         .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-2px); }
         .btn-success { background: #22c55e !important; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4) !important; pointer-events: none; }
@@ -134,7 +138,7 @@
             cursor: pointer;
         }
         
-        /* ✅ КНОПКА PLAY (ДЕСКТОП: 60px - 3x) */
+        /* ✅ КНОПКА PLAY (ДЕСКТОП: 60px) */
         .portfolio-image-overlay {
             position: absolute;
             top: 50%;
@@ -157,50 +161,31 @@
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
         
+        /* ✅ БЛОК КОНТЕНТА: ЦЕНТРИРОВАНИЕ ПО ВЕРТИКАЛИ И ГОРИЗОНТАЛИ */
         .portfolio-content { 
             padding: 0.8rem 1rem; 
             flex: 1; 
             display: flex; 
-            flex-direction: column;
-            justify-content: space-between; /* ✅ ТЕГИ ВНИЗУ */
-            text-align: center;
-        }
-        .portfolio-content h4 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-        .portfolio-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            margin-bottom: 0.5rem;
-        }
-        .portfolio-content li {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-            line-height: 1.4;
+            justify-content: center; /* По горизонтали */
+            align-items: center;     /* По вертикали */
         }
         
-        /* ✅ ТЕГИ ЗЕЛЁНЫЕ */
+        /* ✅ ТЕГИ: В СТОЛБИК */
         .portfolio-tags { 
             display: flex; 
-            gap: 0.3rem; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            margin-top: auto; /* ✅ ПРИЖИМАЕТ ТЕГИ К НИЗУ */
+            flex-direction: column; 
+            gap: 0.5rem; 
+            align-items: center; 
         }
         .tag { 
-            padding: 0.15rem 0.4rem; 
+            padding: 0.2rem 0.6rem; 
             border-radius: 10px; 
-            font-size: 0.65rem; 
+            font-size: 0.75rem; 
             font-weight: 600; 
             background: rgba(34, 197, 94, 0.2); 
             color: var(--green); 
             border: 1px solid rgba(34, 197, 94, 0.4);
+            white-space: nowrap; /* Чтобы текст не переносился внутри тега */
         }
         
         .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
@@ -265,7 +250,7 @@
             .map-container { height: 280px; }
             .logo-wrapper { margin-bottom: 0.3rem; }
             
-            /* ✅ МОБИЛЬНАЯ КНОПКА PLAY (40px - 2x) */
+            /* ✅ МОБИЛЬНАЯ КНОПКА PLAY (40px) */
             .portfolio-image-overlay {
                 width: 40px !important;
                 height: 40px !important;
@@ -293,17 +278,16 @@
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
-            .portfolio-content { padding: 0.6rem; text-align: center; } /* ✅ ТЕКСТ ПО ЦЕНТРУ */
+            .portfolio-content { padding: 0.6rem; text-align: center; }
             .hero-logo { height: 130px; }
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
             
-            /* ✅ УВЕЛИЧЕННЫЕ ТЕГИ НА МОБИЛЬНЫХ */
             .tag {
-                font-size: 0.7rem;
-                padding: 0.2rem 0.5rem;
+                font-size: 0.75rem;
+                padding: 0.2rem 0.6rem;
             }
         }
     </style>
@@ -341,6 +325,7 @@
                 Мы создали студию формата «заходи и записывай».<br>
                 Вам не нужно вникать в настройки оборудования — просто сфокусируйтесь на контенте, а мы обеспечим техническую реализацию на высшем уровне.</p>
                 <div class="hero-buttons">
+                    <!-- ✅ КНОПКА ТЕПЕРЬ В СТИЛЕ "НАШИ РАБОТЫ" -->
                     <a href="#contact" class="btn btn-primary">Записаться на съёмку →</a>
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
                 </div>
@@ -379,7 +364,7 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО (только картинка) -->
+                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -388,19 +373,12 @@
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                         </a>
-                        <!-- ✅ ЗАГОЛОВОК + ОПИСАНИЕ -->
+                        <!-- ✅ ТЕГИ В ЦЕНТРЕ, ПО 1 В СТРОКУ -->
                         <div class="portfolio-content">
-                            <div>
-                                <h4>ЯРОСЛАВ АМИНОКИСЛОТНЫЙ</h4>
-                                <ul>
-                                    <li>Студийная запись</li>
-                                    <li>Звукорежиссура</li>
-                                    <li>Комплексный видеомонтаж</li>
-                                </ul>
-                            </div>
                             <div class="portfolio-tags">
-                                <span class="tag">Съёмка</span>
-                                <span class="tag">Монтаж</span>
+                                <span class="tag">Студийная запись</span>
+                                <span class="tag">Звукорежиссура</span>
+                                <span class="tag">Комплексный видеомонтаж</span>
                             </div>
                         </div>
                     </div>
