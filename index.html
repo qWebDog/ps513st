@@ -151,7 +151,7 @@
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-content { padding: 0.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
         .portfolio-content h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-        .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.3; flex: 1; }
+        .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.4; flex: 1; }
         .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
         .tag { padding: 0.15rem 0.3rem; border-radius: 10px; font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
         .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
@@ -316,21 +316,25 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО С НОВОЙ КАРТИНКОЙ -->
+                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО С НОВЫМ ОПИСАНИЕМ -->
                 <div class="carousel-slide">
                     <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
                         <div class="portfolio-item clickable">
                             <div class="portfolio-image">
                                 <img src="images/raskol-preview.jpg" alt="RASKOL" style="width: 100%; height: 100%; object-fit: cover;">
-                                <!-- ✅ НОВАЯ КАРТИНКА-ОВЕРЛЕЙ -->
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                             <div class="portfolio-content">
                                 <h3>RASKOL</h3>
-                                <p>БАТЯ АНДЕГРАУНДА</p>
+                                <!-- ✅ НОВОЕ ОПИСАНИЕ РАБОТЫ -->
+                                <p>
+                                    ✅ Профессиональная съемка<br>
+                                    ✅ Чистка и обработка звука<br>
+                                    ✅ Динамичный видеомонтаж<br>
+                                    ✅ Стильная цветокоррекция
+                                </p>
                                 <div class="portfolio-tags">
-                                    <span class="tag">Видео</span>
-                                    <span class="tag">Монтаж</span>
+                                    <span class="tag" style="background: var(--green);">Проект завершен</span>
                                     <span class="tag" style="background: var(--cyan);">▶ Смотреть</span>
                                 </div>
                             </div>
