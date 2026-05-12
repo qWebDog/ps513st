@@ -114,7 +114,7 @@
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
         
-        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
+        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО (только по картинке) */
         .portfolio-item.clickable {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -125,8 +125,9 @@
             box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
         }
         .portfolio-item.clickable .portfolio-image {
-            position: relative; /* Для позиционирования оверлея */
+            position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         
         /* ✅ КАРТИНКА-ОВЕРЛЕЙ (ПЛЕЙ) */
@@ -149,6 +150,7 @@
         }
         
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+        .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
         .portfolio-content { padding: 0.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
         .portfolio-content h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
         .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.4; flex: 1; }
@@ -316,30 +318,28 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО С НОВЫМ ОПИСАНИЕМ -->
+                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО (только картинка) -->
                 <div class="carousel-slide">
-                    <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-                        <div class="portfolio-item clickable">
+                    <div class="portfolio-item clickable">
+                        <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
                             <div class="portfolio-image">
-                                <img src="images/raskol-preview.jpg" alt="RASKOL" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="images/raskol-preview.jpg" alt="RASKOL">
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
-                            <div class="portfolio-content">
-                                <h3>RASKOL</h3>
-                                <!-- ✅ НОВОЕ ОПИСАНИЕ РАБОТЫ -->
-                                <p>
-                                    ✅ Профессиональная съемка<br>
-                                    ✅ Чистка и обработка звука<br>
-                                    ✅ Динамичный видеомонтаж<br>
-                                    ✅ Стильная цветокоррекция
-                                </p>
-                                <div class="portfolio-tags">
-                                    <span class="tag" style="background: var(--green);">Проект завершен</span>
-                                    <span class="tag" style="background: var(--cyan);">▶ Смотреть</span>
-                                </div>
+                        </a>
+                        <div class="portfolio-content">
+                            <p>
+                                Профессиональная съемка<br>
+                                Чистка и обработка звука<br>
+                                Динамичный видеомонтаж<br>
+                                Стильная цветокоррекция
+                            </p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Съёмка</span>
+                                <span class="tag">Монтаж</span>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">🎵</div><div class="portfolio-content"><h3>Музыкальное шоу</h3><p>Обсуждение музыки и интервью.</p><div class="portfolio-tags"><span class="tag">Под ключ</span><span class="tag">Графика</span></div></div></div></div>
                 <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">💡</div><div class="portfolio-content"><h3>Образовательный</h3><p>Научпоп и контент для аудитории.</p><div class="portfolio-tags"><span class="tag">Съёмка</span><span class="tag">Монтаж</span></div></div></div></div>
@@ -418,22 +418,49 @@
 
         async function sendToTelegram() { const btn = document.getElementById('btn-send'), orig = btn.textContent; btn.classList.remove('btn-success', 'btn-error'); btn.disabled = true; btn.textContent = '⏳ Отправка...'; const PROXY_URL = 'https://tg-proxy.qwebdog.workers.dev'; const name = (document.getElementById('input-name').value || '').trim(); const phone = phoneInput.value.trim(), tgId = tgInput.value.trim(); const service = document.getElementById('input-service').value || 'Не выбрано'; const msg = (document.getElementById('input-message').value || '').trim(); if (!name) { btn.textContent = '⚠️ Введите имя'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } if (phone.replace(/\D/g, '').length < 11) { btn.textContent = '⚠️ Введите полный номер'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 2000); return; } const now = new Date(); const timeStr = now.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }); try { const ctrl = new AbortController(), tid = setTimeout(() => ctrl.abort(), 10000); const resp = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, tgId, service, message: msg, time: timeStr }), signal: ctrl.signal }); clearTimeout(tid); if (resp.ok) { btn.textContent = '✅ Отправлено!'; btn.classList.add('btn-success'); document.getElementById('contactForm').reset(); phoneInput.value = '+7'; tgHint.classList.remove('hidden'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-success'); btn.disabled = false; }, 3000); } else { btn.textContent = '❌ Ошибка'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } } catch (err) { btn.textContent = '❌ Ошибка сети'; btn.classList.add('btn-error'); setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-error'); btn.disabled = false; }, 3000); } }
 
+        // ✅ ИСПРАВЛЕННАЯ КАРУСЕЛЬ
         const track = document.getElementById('carouselTrack'), slides = document.querySelectorAll('.carousel-slide'), dots = document.querySelectorAll('.dot'), total = slides.length;
         let target = 0, current = 0, isDragging = false, startX = 0, startY = 0, startTarget = 0, isVerticalSwipe = false, wheelAcc = 0;
         const WHEEL_THR = 50, WHEEL_FACT = 0.5;
+
         function getOff(i, a) { let d = i - a; return ((d + total/2) % total + total) % total - total/2; }
         function updateCarousel() { current += (target - current) * 0.12; slides.forEach((s, i) => { const o = getOff(i, current), a = Math.abs(o); s.style.transform = `translate3d(${o*380}px,0,${-a*200}px) rotateY(${o*15}deg) scale(${1-a*0.12})`; s.style.opacity = Math.max(0.15, 1 - a*0.7); s.style.filter = `blur(${Math.min(10, a*12)}px)`; s.style.zIndex = Math.round(50 - a*15); s.style.pointerEvents = a < 0.5 ? 'auto' : 'none'; s.classList.toggle('active', a < 0.4); }); const act = Math.round(((current % total) + total) % total); dots.forEach((d, i) => d.classList.toggle('active', i === act)); requestAnimationFrame(updateCarousel); }
         function goToSlide(idx) { let c = Math.round(((current % total) + total) % total), d = idx - c; if (d > total/2) d -= total; if (d < -total/2) d += total; target += d; }
-        track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; }, { passive: true });
-        track.addEventListener('touchmove', e => { if (!isDragging) return; const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY; if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { isVerticalSwipe = true; return; } if (Math.abs(dx) > 10) { e.preventDefault(); target = startTarget - (dx / 200); } }, { passive: false });
+
+        // ✅ ИСПРАВЛЕННАЯ НАВИГАЦИЯ КАРУСЕЛИ
+        track.addEventListener('touchstart', e => { 
+            // Не перехватываем тач если нажали на ссылку
+            if (e.target.closest('a')) return;
+            isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; 
+        }, { passive: true });
+        track.addEventListener('touchmove', e => { 
+            if (!isDragging) return; 
+            const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY; 
+            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { isVerticalSwipe = true; return; } 
+            if (Math.abs(dx) > 10) { e.preventDefault(); target = startTarget - (dx / 200); } 
+        }, { passive: false });
         track.addEventListener('touchend', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; if (!isVerticalSwipe) target = Math.round(target); } });
-        track.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) { e.preventDefault(); wheelAcc += e.deltaX * WHEEL_FACT; if (Math.abs(wheelAcc) > WHEEL_THR) { target += wheelAcc > 0 ? 1 : -1; wheelAcc = 0; } } }, { passive: false });
-        track.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; });
+
+        track.addEventListener('wheel', e => { 
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 5) { e.preventDefault(); wheelAcc += e.deltaX * WHEEL_FACT; if (Math.abs(wheelAcc) > WHEEL_THR) { target += wheelAcc > 0 ? 1 : -1; wheelAcc = 0; } } 
+        }, { passive: false });
+
+        track.addEventListener('mousedown', e => { 
+            if (e.target.closest('a')) return; // Не перетаскиваем если кликнули на ссылку
+            isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; 
+        });
         track.addEventListener('mousemove', e => { if (isDragging) target = startTarget - (e.pageX - startX)/200; });
         track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
         track.addEventListener('mouseleave', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
-        document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') target = Math.round(target)+1; if (e.key === 'ArrowRight') target = Math.round(target)-1; });
+
+        // ✅ СТРЕЛКИ КЛАВИАТУРЫ
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
+            if (e.key === 'ArrowRight') target = Math.round(target)-1; 
+        });
+
         window.addEventListener('load', updateCarousel);
+
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
