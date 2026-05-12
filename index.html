@@ -114,7 +114,7 @@
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
         
-        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО (только по картинке) */
+        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
         .portfolio-item.clickable {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -136,7 +136,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            width: 100px;
+            width: 80px; /* ✅ УМЕНЬШЕНЫЙ РАЗМЕР */
             height: auto;
             opacity: 0;
             transition: all 0.3s ease;
@@ -151,10 +151,29 @@
         
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
-        .portfolio-content { padding: 0.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
-        .portfolio-content h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        
+        .portfolio-content { 
+            padding: 0.8rem 1rem; 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            text-align: center; /* ✅ ВЫРАВНИВАНИЕ ПО ЦЕНТРУ */
+        }
+        .portfolio-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-content li {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+        
         .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.4; flex: 1; }
-        .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: center; /* ✅ ЦЕНТРИРОВАНИЕ ТЕГОВ */ }
         .tag { padding: 0.15rem 0.3rem; border-radius: 10px; font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
         .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
         .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
@@ -327,13 +346,14 @@
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                         </a>
+                        <!-- ✅ НОВЫЙ ПРОФЕССИОНАЛЬНЫЙ ТЕКСТ (МАРКИРОВАННЫЙ СПИСОК) -->
                         <div class="portfolio-content">
-                            <p>
-                                Профессиональная съемка<br>
-                                Чистка и обработка звука<br>
-                                Динамичный видеомонтаж<br>
-                                Стильная цветокоррекция
-                            </p>
+                            <ul>
+                                <li>Многокамерная студийная запись</li>
+                                <li>Профессиональная звукорежиссура</li>
+                                <li>Комплексный видеомонтаж</li>
+                                <li>Кинематографическая цветокоррекция</li>
+                            </ul>
                             <div class="portfolio-tags">
                                 <span class="tag">Съёмка</span>
                                 <span class="tag">Монтаж</span>
@@ -429,7 +449,6 @@
 
         // ✅ ИСПРАВЛЕННАЯ НАВИГАЦИЯ КАРУСЕЛИ
         track.addEventListener('touchstart', e => { 
-            // Не перехватываем тач если нажали на ссылку
             if (e.target.closest('a')) return;
             isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; startTarget = target; isVerticalSwipe = false; track.style.cursor = 'grabbing'; 
         }, { passive: true });
@@ -446,14 +465,13 @@
         }, { passive: false });
 
         track.addEventListener('mousedown', e => { 
-            if (e.target.closest('a')) return; // Не перетаскиваем если кликнули на ссылку
+            if (e.target.closest('a')) return; 
             isDragging = true; startX = e.pageX; startTarget = target; track.style.cursor = 'grabbing'; 
         });
         track.addEventListener('mousemove', e => { if (isDragging) target = startTarget - (e.pageX - startX)/200; });
         track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); });
         track.addEventListener('mouseleave', () => { if (isDragging) { isDragging = false; track.style.cursor = 'grab'; target = Math.round(target); }});
 
-        // ✅ СТРЕЛКИ КЛАВИАТУРЫ
         document.addEventListener('keydown', e => { 
             if (e.key === 'ArrowLeft') target = Math.round(target)+1; 
             if (e.key === 'ArrowRight') target = Math.round(target)-1; 
