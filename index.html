@@ -87,8 +87,12 @@
         .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
         .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
-        .btn-primary { background: var(--red); color: white; box-shadow: 0 4px 15px rgba(248, 113, 113, 0.4); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(248, 113, 113, 0.6); }
+        .btn-primary { 
+            background: var(--green); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); 
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6); }
         .btn-secondary { background: rgba(34,197,94,0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
         .btn-secondary:hover { background: rgba(34,197,94,0.25); transform: translateY(-2px); }
         .btn-success { background: #22c55e !important; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4) !important; pointer-events: none; }
@@ -114,7 +118,7 @@
         .portfolio-item { width: 100%; height: 100%; background: rgba(20,25,35,0.6); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); display: flex; flex-direction: column; }
         .carousel-slide.active .portfolio-item { border-color: var(--green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
         
-        /* ✅ ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
+        /* ✅ СТИЛИ ДЛЯ КЛИКАБЕЛЬНОГО ВИДЕО */
         .portfolio-item.clickable {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -130,21 +134,21 @@
             cursor: pointer;
         }
         
-        /* ✅ ЖЕСТКАЯ ФИКСАЦИЯ РАЗМЕРА КНОПКИ PLAY (20px) */
+        /* ✅ КНОПКА PLAY (ДЕСКТОП: 60px - 3x) */
         .portfolio-image-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 20px !important;
-            height: 20px !important;
-            max-width: 20px !important;
-            max-height: 20px !important;
+            width: 60px !important;
+            height: 60px !important;
+            max-width: 60px !important;
+            max-height: 60px !important;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
             z-index: 2;
-            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
+            filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.8));
         }
         .portfolio-item.clickable:hover .portfolio-image-overlay {
             opacity: 1;
@@ -157,7 +161,8 @@
             padding: 0.8rem 1rem; 
             flex: 1; 
             display: flex; 
-            flex-direction: column; 
+            flex-direction: column;
+            justify-content: space-between; /* ✅ ТЕГИ ВНИЗУ */
             text-align: center;
         }
         .portfolio-content h4 {
@@ -180,9 +185,24 @@
             line-height: 1.4;
         }
         
-        .portfolio-content p { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.5rem; line-height: 1.4; flex: 1; }
-        .portfolio-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: center; }
-        .tag { padding: 0.15rem 0.3rem; border-radius: 10px; font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.1); color: #fff; }
+        /* ✅ ТЕГИ ЗЕЛЁНЫЕ */
+        .portfolio-tags { 
+            display: flex; 
+            gap: 0.3rem; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            margin-top: auto; /* ✅ ПРИЖИМАЕТ ТЕГИ К НИЗУ */
+        }
+        .tag { 
+            padding: 0.15rem 0.4rem; 
+            border-radius: 10px; 
+            font-size: 0.65rem; 
+            font-weight: 600; 
+            background: rgba(34, 197, 94, 0.2); 
+            color: var(--green); 
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+        
         .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
         .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
         .dot.active { background: var(--green); border-color: #fff; transform: scale(1.2); }
@@ -244,6 +264,14 @@
             .services-grid { grid-template-columns: 1fr; }
             .map-container { height: 280px; }
             .logo-wrapper { margin-bottom: 0.3rem; }
+            
+            /* ✅ МОБИЛЬНАЯ КНОПКА PLAY (40px - 2x) */
+            .portfolio-image-overlay {
+                width: 40px !important;
+                height: 40px !important;
+                max-width: 40px !important;
+                max-height: 40px !important;
+            }
         }
         @media (max-width: 640px) {
             .hero { 
@@ -265,12 +293,18 @@
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
-            .portfolio-content { padding: 0.6rem; }
+            .portfolio-content { padding: 0.6rem; text-align: center; } /* ✅ ТЕКСТ ПО ЦЕНТРУ */
             .hero-logo { height: 130px; }
             .input-wrapper input { padding-right: 80px; }
             .input-hint { right: 0.4rem; font-size: 0.65rem; }
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
+            
+            /* ✅ УВЕЛИЧЕННЫЕ ТЕГИ НА МОБИЛЬНЫХ */
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
         }
     </style>
 </head>
@@ -351,18 +385,19 @@
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
                             <div class="portfolio-image">
                                 <img src="images/raskol-preview.jpg" alt="RASKOL">
-                                <!-- ✅ КНОПКА PLAY 20px -->
                                 <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                         </a>
-                        <!-- ✅ ЗАГОЛОВОК + НОВОЕ ОПИСАНИЕ -->
+                        <!-- ✅ ЗАГОЛОВОК + ОПИСАНИЕ -->
                         <div class="portfolio-content">
-                            <h4>ЯРОСЛАВ АМИНОКИСЛОТНЫЙ</h4>
-                            <ul>
-                                <li>Студийная запись</li>
-                                <li>Звукорежиссура</li>
-                                <li>Комплексный видеомонтаж</li>
-                            </ul>
+                            <div>
+                                <h4>ЯРОСЛАВ АМИНОКИСЛОТНЫЙ</h4>
+                                <ul>
+                                    <li>Студийная запись</li>
+                                    <li>Звукорежиссура</li>
+                                    <li>Комплексный видеомонтаж</li>
+                                </ul>
+                            </div>
                             <div class="portfolio-tags">
                                 <span class="tag">Съёмка</span>
                                 <span class="tag">Монтаж</span>
