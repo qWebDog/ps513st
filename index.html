@@ -312,6 +312,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#portfolio">Примеры работ</a></li>
+                <li><a href="#studio">Наша студия</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
             <button class="burger-btn" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
@@ -321,6 +322,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
+        <div class="mobile-nav-item"><a href="#studio" onclick="closeMobileMenu()">Наша студия</a></div>
         <div class="mobile-nav-item"><a href="#contact" onclick="closeMobileMenu()">Контакты</a></div>
         <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
     </div>
@@ -374,7 +376,7 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ СЛАЙД 1: RASKOL (ОБНОВЛЁННЫЕ ТЕГИ) -->
+                <!-- ✅ СЛАЙД 1: RASKOL -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -413,7 +415,7 @@
                     </div>
                 </div>
                 
-                <!-- ✅ СЛАЙД 3: ДЖЕКСОН (НОВЫЙ) -->
+                <!-- ✅ СЛАЙД 3: ДЖЕКСОН -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=V1f24KOQkiA&t=140s" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -433,6 +435,30 @@
             </div>
         </div>
         <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
+    </section>
+
+    <!-- ✅ НОВЫЙ БЛОК: НАША СТУДИЯ -->
+    <section class="section" id="studio">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Наша студия</h2>
+                <p>Пространство, созданное для комфортной работы</p>
+            </div>
+            <div class="services-grid">
+                <!-- Гримерная -->
+                <div class="service-card fade-in">
+                    <div class="service-icon" style="background: var(--green);">💄</div>
+                    <h3>Гримерная</h3>
+                    <p>Просторная зона с профессиональным освещением и зеркалами. Всё необходимое для подготовки к съёмке.</p>
+                </div>
+                <!-- Студия -->
+                <div class="service-card fade-in">
+                    <div class="service-icon" style="background: var(--cyan);">🎙️</div>
+                    <h3>Студия</h3>
+                    <p>Акустически подготовленное помещение с профессиональным оборудованием для записи подкастов.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="section" id="contact">
@@ -478,7 +504,7 @@
     </section>
 
     <footer>
-        <div class="footer-links"><a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a></div>
+        <div class="footer-links"><a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#studio">Студия</a><a href="#contact">Контакты</a></div>
         <div class="social-links"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
         <p>Студия Подкастов 513</p>
     </footer>
