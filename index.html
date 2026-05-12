@@ -161,13 +161,12 @@
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* ✅ БЛОК КОНТЕНТА: ЦЕНТРИРОВАНИЕ */
+        /* ✅ БЛОК КОНТЕНТА: ЗАГОЛОВОК СВЕРХУ */
         .portfolio-content { 
             padding: 0.8rem 1rem; 
             flex: 1; 
             display: flex; 
             flex-direction: column;
-            justify-content: center; /* По вертикали */
             align-items: center;     /* По горизонтали */
             text-align: center;
         }
@@ -179,6 +178,7 @@
             color: var(--text-primary);
             margin-bottom: 0.6rem;
             letter-spacing: 0.5px;
+            margin-top: 0; /* ✅ ГАРАНТИРУЕМ, ЧТО ЗАГОЛОВОК СВЕРХУ */
         }
         
         /* ✅ ТЕГИ: В СТОЛБИК */
@@ -374,7 +374,7 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ СЛАЙД 1: RASKOL -->
+                <!-- ✅ СЛАЙД 1: RASKOL (ОБНОВЛЁННЫЕ ТЕГИ) -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -386,15 +386,15 @@
                         <div class="portfolio-content">
                             <h4>ЯРОСЛАВ АМИНОКИСЛОТНЫЙ</h4>
                             <div class="portfolio-tags">
-                                <span class="tag">Студийная запись</span>
-                                <span class="tag">Звукорежиссура</span>
-                                <span class="tag">Видеомонтаж</span>
+                                <span class="tag">Съемка</span>
+                                <span class="tag">Звукозапись</span>
+                                <span class="tag">Монтаж</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- ✅ СЛАЙД 2: АНДРЕЙ ПРЕДЕЛИН (НОВЫЙ) -->
+                <!-- ✅ СЛАЙД 2: АНДРЕЙ ПРЕДЕЛИН -->
                 <div class="carousel-slide">
                     <div class="portfolio-item clickable">
                         <a href="https://www.youtube.com/watch?v=8ler-Hm8jjA&t=258s" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
@@ -413,8 +413,23 @@
                     </div>
                 </div>
                 
-                <!-- ✅ СЛАЙД 3: ОБРАЗОВАТЕЛЬНЫЙ -->
-                <div class="carousel-slide"><div class="portfolio-item"><div class="portfolio-image">💡</div><div class="portfolio-content"><h3>Образовательный</h3><p>Научпоп и контент для аудитории.</p><div class="portfolio-tags"><span class="tag">Съёмка</span><span class="tag">Монтаж</span></div></div></div></div>
+                <!-- ✅ СЛАЙД 3: ДЖЕКСОН (НОВЫЙ) -->
+                <div class="carousel-slide">
+                    <div class="portfolio-item clickable">
+                        <a href="https://www.youtube.com/watch?v=V1f24KOQkiA&t=140s" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="portfolio-image">
+                                <img src="images/jackson-preview.jpg" alt="Джексон">
+                                <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
+                            </div>
+                        </a>
+                        <div class="portfolio-content">
+                            <h4>ДЖЕКСОН</h4>
+                            <div class="portfolio-tags">
+                                <span class="tag">Монтаж</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
