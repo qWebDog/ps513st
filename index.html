@@ -125,33 +125,27 @@
             box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
         }
         .portfolio-item.clickable .portfolio-image {
-            position: relative;
+            position: relative; /* Для позиционирования оверлея */
             overflow: hidden;
         }
-        .portfolio-item.clickable .portfolio-image::after {
-            content: '▶';
+        
+        /* ✅ КАРТИНКА-ОВЕРЛЕЙ (ПЛЕЙ) */
+        .portfolio-image-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 100px;
+            height: auto;
             opacity: 0;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            z-index: 2;
+            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.6));
         }
-        .portfolio-item.clickable:hover .portfolio-image::after {
+        .portfolio-item.clickable:hover .portfolio-image-overlay {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1.1);
+            transform: translate(-50%, -50%) scale(1);
         }
         
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
@@ -322,12 +316,14 @@
         <div class="container"><div class="section-title fade-in"><h2>Примеры работ</h2><p>Посмотрите, как выглядят подкасты наших клиентов</p></div></div>
         <div class="carousel-stage fade-in">
             <div class="carousel-track" id="carouselTrack">
-                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО -->
+                <!-- ✅ КЛИКАБЕЛЬНОЕ ВИДЕО С НОВОЙ КАРТИНКОЙ -->
                 <div class="carousel-slide">
                     <a href="https://www.youtube.com/watch?v=rfF-6oKPzRU" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
                         <div class="portfolio-item clickable">
                             <div class="portfolio-image">
                                 <img src="images/raskol-preview.jpg" alt="RASKOL" style="width: 100%; height: 100%; object-fit: cover;">
+                                <!-- ✅ НОВАЯ КАРТИНКА-ОВЕРЛЕЙ -->
+                                <img src="images/play-button-hover.png" alt="Play" class="portfolio-image-overlay">
                             </div>
                             <div class="portfolio-content">
                                 <h3>RASKOL</h3>
