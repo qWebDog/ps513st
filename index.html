@@ -109,7 +109,7 @@
         .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
         .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
         
-        /* ✅ СТИЛИ ДЛЯ SVG ИКОНОК */
+        /* ✅ СТИЛИ ДЛЯ SVG ИКОНОК (БЛОК "НАШИ УСЛУГИ") - БЕЗ ФОНА */
         .service-icon { 
             width: 100%; 
             height: 220px;
@@ -119,31 +119,11 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            overflow: hidden; 
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+            overflow: visible; /* ✅ ИЗМЕНЕНО */
+            background: transparent; /* ✅ УБРАН ФОН */
             padding: 20px;
             box-sizing: border-box;
             position: relative;
-        }
-        
-        /* ✅ СВЕЧЕНИЕ ДЛЯ ИКОНОК */
-        .service-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .service-card:hover .service-icon::before {
-            opacity: 1;
         }
         
         /* ✅ SVG ИКОНКИ - КВАДРАТНЫЕ И ПОЛНОСТЬЮ ПОМЕЩАЮТСЯ */
@@ -165,6 +145,46 @@
         
         .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
         .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+        /* ✅ ОТДЕЛЬНЫЕ СТИЛИ ДЛЯ БЛОКА "НАША СТУДИЯ" */
+        #studio .service-card {
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        #studio .service-icon {
+            height: auto;
+            aspect-ratio: 4/3;
+            margin: 0;
+            padding: 0;
+            border-radius: 14px 14px 0 0;
+            background: transparent;
+        }
+        
+        #studio .service-icon img {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            object-fit: cover;
+            filter: none;
+            transition: transform 0.3s ease;
+        }
+        
+        #studio .service-card:hover .service-icon img {
+            transform: scale(1.05);
+        }
+        
+        #studio .service-card h3,
+        #studio .service-card p {
+            padding: 1rem;
+            margin: 0;
+        }
+        
+        #studio .service-card h3 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
 
         .portfolio { padding: 1.2rem 0; overflow: visible !important; width: 100%; }
         .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 380px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
@@ -373,7 +393,6 @@
         <div class="container">
             <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
             <div class="services-grid">
-                <!-- 1. СЪЁМКА - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/camera-studio.svg" alt="Съёмка">
@@ -382,7 +401,6 @@
                     <p>Качественная съёмка в студии<br>от 1 до 3 камер с настроенным светом и микрофонами.</p>
                 </div>
                 
-                <!-- 2. МОНТАЖ - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/montage-preview.svg" alt="Монтаж">
@@ -391,7 +409,6 @@
                     <p>Видеомонтаж и звукорежиссура.<br>Чистка звука, цветокоррекция, графика.</p>
                 </div>
                 
-                <!-- 3. ПОД КЛЮЧ - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/podcast-turnkey.svg" alt="Подкаст под ключ">
