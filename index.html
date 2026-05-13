@@ -109,11 +109,11 @@
         .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
         .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
         
-        /* ✅ ФОТО ЗАПОЛНЯЕТ БЛОК, БЛОК РАСТЯГИВАЕТСЯ ПОД ФОТО */
+        /* ✅ СТИЛИ ДЛЯ SVG ИКОНОК */
         .service-icon { 
             width: 100%; 
-            height: auto;
-            aspect-ratio: 4/3; /* Сохраняет пропорции */
+            height: 220px;
+            aspect-ratio: 1/1;
             margin: 0 auto 1rem; 
             border-radius: 14px; 
             display: flex; 
@@ -121,12 +121,46 @@
             justify-content: center; 
             overflow: hidden; 
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
         }
-        .service-icon img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Фото заполняет весь блок */
-            border-radius: 8px;
+        
+        /* ✅ СВЕЧЕНИЕ ДЛЯ ИКОНОК */
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .service-card:hover .service-icon::before {
+            opacity: 1;
+        }
+        
+        /* ✅ SVG ИКОНКИ - КВАДРАТНЫЕ И ПОЛНОСТЬЮ ПОМЕЩАЮТСЯ */
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            max-width: 160px;
+            max-height: 160px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon img {
+            filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.8)) 
+                    drop-shadow(0 0 30px rgba(6, 182, 212, 0.4));
+            transform: scale(1.05);
         }
         
         .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
@@ -177,7 +211,6 @@
         .portfolio-image { width: 100%; height: 140px; background: rgba(31,41,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .portfolio-image img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* ✅ ЗАГОЛОВОК СВЕРХУ, ТЕГИ ПО ЦЕНТРУ */
         .portfolio-content { 
             padding: 0.8rem 1rem; 
             flex: 1; 
@@ -197,13 +230,12 @@
             width: 100%;
         }
         
-        /* ✅ ТЕГИ ВЫРОВНЕНЫ ПО ЦЕНТРУ ГОРИЗОНТАЛЬНО И ВЕРТИКАЛЬНО */
         .portfolio-tags { 
             display: flex; 
             flex-direction: column; 
             gap: 0.4rem; 
             align-items: center;
-            margin: auto 0; /* Центрирование по вертикали */
+            margin: auto 0;
         }
         .tag { 
             padding: 0.15rem 0.5rem; 
@@ -261,7 +293,7 @@
             .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
             .hero-container { padding-top: 1rem; padding-bottom: 1rem; }
             .hero-logo { height: 200px; }
-            .service-icon { aspect-ratio: 4/3; }
+            .service-icon { height: 200px; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -281,7 +313,7 @@
             .section { padding: 1rem 4%; }
             .contact-form { padding: 1rem; }
             .service-card { padding: 1.2rem; }
-            .service-icon { aspect-ratio: 4/3; }
+            .service-icon { height: 180px; }
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
@@ -341,6 +373,7 @@
         <div class="container">
             <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
             <div class="services-grid">
+                <!-- 1. СЪЁМКА - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/camera-studio.svg" alt="Съёмка">
@@ -348,6 +381,8 @@
                     <h3>Съёмка</h3>
                     <p>Качественная съёмка в студии<br>от 1 до 3 камер с настроенным светом и микрофонами.</p>
                 </div>
+                
+                <!-- 2. МОНТАЖ - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/montage-preview.svg" alt="Монтаж">
@@ -355,6 +390,8 @@
                     <h3>Монтаж</h3>
                     <p>Видеомонтаж и звукорежиссура.<br>Чистка звука, цветокоррекция, графика.</p>
                 </div>
+                
+                <!-- 3. ПОД КЛЮЧ - SVG -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <img src="images/podcast-turnkey.svg" alt="Подкаст под ключ">
