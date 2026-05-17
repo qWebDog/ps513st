@@ -76,14 +76,7 @@
         .hero-content { max-width: 800px; margin: 0 auto; }
         .hero-content p { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; max-width: 750px; line-height: 1.6; margin-left: auto; margin-right: auto; }
         
-        /* ✅ ВОЗВРАЩЕНА ОРИГИНАЛЬНАЯ КОМПОНОВКА КНОПОК В HERO */
-        .hero-buttons { 
-            display: flex; 
-            gap: 0.8rem; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            margin-top: 0.5rem; 
-        }
+        .hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
         .btn { padding: 0.7rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; font-family: var(--font-body); }
         .btn-primary { background: rgba(34, 197, 94, 0.1); color: var(--green); border: 2px solid var(--green); backdrop-filter: blur(5px); }
@@ -122,6 +115,7 @@
             flex-direction: column;
         }
         
+        /* ✅ ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ ФОТО СТУДИИ */
         .studio-image-wrapper,
         .studio-gallery {
             width: 100%;
@@ -142,12 +136,28 @@
             -webkit-user-drag: none;
         }
 
-        .studio-gallery { cursor: grab; touch-action: pan-y; }
+        .studio-gallery { 
+            cursor: grab; 
+            touch-action: pan-y;
+            position: relative;
+        }
         .studio-gallery:active { cursor: grabbing; }
         
-        .gallery-track { display: flex; width: 100%; height: 100%; transition: transform 0.35s ease-out; }
+        .gallery-track { 
+            display: flex; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.35s ease-out;
+        }
         .gallery-track.dragging { transition: none; }
-        .gallery-slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+        
+        .gallery-slide { 
+            min-width: 100%; 
+            height: 100%; 
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
         
         .gallery-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
@@ -297,6 +307,7 @@
             .contact-form { padding: 1rem; }
             .service-card { padding: 1.2rem; }
             .service-icon { height: 180px; }
+            /* ✅ ИСПРАВЛЕНА ВЫСОТА ГАЛЕРЕИ НА МОБИЛЬНЫХ */
             .studio-image-wrapper, .studio-gallery { height: 160px; }
             #studio .service-card { max-height: 320px; }
             #studio .services-grid { grid-template-columns: 1fr; max-width: 100%; }
@@ -355,10 +366,8 @@
                 <p>Видеопроизводство без головной боли.<br>
                 Мы создали студию формата «заходи и записывай».<br>
                 Вам не нужно вникать в настройки оборудования — просто сфокусируйтесь на контенте, а мы обеспечим техническую реализацию на высшем уровне.</p>
-                <!-- ✅ ВОЗВРАЩЕНА ОРИГИНАЛЬНАЯ КОМПОНОВКА КНОПОК -->
                 <div class="hero-buttons">
                     <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
-                    <!-- ✅ ПЕРЕИМЕНОВАНО: "Оставить заявку" -> "Записаться" -->
                     <a href="#contact" class="btn btn-primary">Записаться</a>
                 </div>
             </div>
@@ -493,7 +502,6 @@
                 </div>
 
                 <div class="contact-form fade-in">
-                    <!-- ✅ ПЕРЕИМЕНОВАНО: "Записаться в боте" -> "Записаться" -->
                     <div style="margin-bottom: 1.2rem; text-align: center;">
                         <a href="https://t.me/бот_для_записи" target="_blank" class="btn btn-primary" style="width: 100%; max-width: 300px;">Записаться</a>
                     </div>
@@ -552,7 +560,6 @@
         phoneInput.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && phoneInput.value.length <= 2) e.preventDefault(); });
         function formatPhone(value) { let d = value.replace(/\D/g, ''); if (d.startsWith('8')) d = '7' + d.slice(1); if (!d.startsWith('7') && d.length > 0) d = '7' + d; let f = '+7'; if (d.length > 1) f += '(' + d.slice(1, 4); if (d.length >= 4) f += ')'; if (d.length > 4) f += d.slice(4, 7); if (d.length > 7) f += '-' + d.slice(7, 9); if (d.length > 9) f += '-' + d.slice(9, 11); return f; }
         
-        // ✅ ЛОГИКА TELEGRAM: @ ПОЯВЛЯЕТСЯ ПРИ ФОКУСЕ
         tgInput.addEventListener('focus', (e) => {
             if (!e.target.value || e.target.value === '@') {
                 e.target.value = '@';
@@ -574,7 +581,6 @@
             }
         });
 
-        // ✅ ФУНКЦИИ ДЛЯ УВЕДОМЛЕНИЙ
         const notifyOverlay = document.getElementById('notificationOverlay');
         const notifyBox = document.getElementById('notificationBox');
         const notifyIcon = document.getElementById('notifyIcon');
@@ -628,27 +634,27 @@
             finally { btn.disabled = false; btn.innerHTML = origText; }
         }
 
-        // ✅ ЛОГИКА ГАЛЕРЕИ СТУДИИ
+        // ✅ ИСПРАВЛЕННАЯ ЛОГИКА ГАЛЕРЕИ СТУДИИ
         const galleryState = { studio: { current: 0, total: 5 } };
-        const galleryInstances = {};
 
         function initGallery(galleryName) {
             const gallery = document.querySelector(`[data-gallery="${galleryName}"]`);
             if (!gallery) return;
             const track = gallery.querySelector('.gallery-track');
-            const slides = gallery.querySelectorAll('.gallery-slide');
             const dots = gallery.querySelectorAll('.gallery-dot');
             const counter = gallery.querySelector('.gallery-counter');
             let isDragging = false, startX = 0, startTranslate = 0;
-
-            galleryInstances[galleryName] = { track, slides, dots, counter };
 
             function updateGallery(index) {
                 const state = galleryState[galleryName];
                 if (index < 0) index = 0;
                 if (index >= state.total) index = state.total - 1;
                 state.current = index;
-                track.style.transform = `translateX(-${index * 100}%)`;
+                
+                // ✅ ИСПРАВЛЕННЫЙ ПЕРЕВОД
+                const galleryWidth = gallery.offsetWidth;
+                track.style.transform = `translateX(-${index * galleryWidth}px)`;
+                
                 dots.forEach((d, i) => d.classList.toggle('active', i === index));
                 const curEl = counter.querySelector('.current');
                 if (curEl) curEl.textContent = index + 1;
@@ -663,42 +669,69 @@
                 updateGallery(index);
             };
 
-            track.addEventListener('touchstart', (e) => {
-                isDragging = true; startX = e.touches[0].clientX; startTranslate = galleryState[galleryName].current * 100;
+            // ✅ ИСПРАВЛЕННАЯ ЛОГИКА СВАЙПА
+            let swipeStartX = 0;
+            let swipeThreshold = 50;
+
+            gallery.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                swipeStartX = e.touches[0].clientX;
+                startTranslate = galleryState[galleryName].current * gallery.offsetWidth;
                 track.classList.add('dragging');
             }, { passive: true });
-            track.addEventListener('touchmove', (e) => {
+
+            gallery.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
-                const dx = e.touches[0].clientX - startX;
-                track.style.transform = `translateX(calc(-${startTranslate}% + ${dx}px))`;
+                const currentX = e.touches[0].clientX;
+                const diff = currentX - swipeStartX;
+                track.style.transform = `translateX(calc(-${startTranslate}px + ${diff}px))`;
             }, { passive: true });
-            track.addEventListener('touchend', (e) => {
+
+            gallery.addEventListener('touchend', (e) => {
                 if (!isDragging) return;
-                isDragging = false; track.classList.remove('dragging');
-                const dx = e.changedTouches[0].clientX - startX;
-                if (Math.abs(dx) > 50) {
-                    updateGallery(galleryState[galleryName].current + (dx < 0 ? 1 : -1));
+                isDragging = false;
+                track.classList.remove('dragging');
+                const endX = e.changedTouches[0].clientX;
+                const diff = endX - swipeStartX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff < 0) {
+                        updateGallery(galleryState[galleryName].current + 1);
+                    } else {
+                        updateGallery(galleryState[galleryName].current - 1);
+                    }
                 } else {
                     updateGallery(galleryState[galleryName].current);
                 }
             });
 
-            track.addEventListener('mousedown', (e) => {
-                e.preventDefault(); isDragging = true; startX = e.clientX;
-                startTranslate = galleryState[galleryName].current * 100;
+            // Mouse events
+            gallery.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                isDragging = true;
+                swipeStartX = e.clientX;
+                startTranslate = galleryState[galleryName].current * gallery.offsetWidth;
                 track.classList.add('dragging');
             });
+
             window.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
-                const dx = e.clientX - startX;
-                track.style.transform = `translateX(calc(-${startTranslate}% + ${dx}px))`;
+                const diff = e.clientX - swipeStartX;
+                track.style.transform = `translateX(calc(-${startTranslate}px + ${diff}px))`;
             });
+
             window.addEventListener('mouseup', (e) => {
                 if (!isDragging) return;
-                isDragging = false; track.classList.remove('dragging');
-                const dx = e.clientX - startX;
-                if (Math.abs(dx) > 50) {
-                    updateGallery(galleryState[galleryName].current + (dx < 0 ? 1 : -1));
+                isDragging = false;
+                track.classList.remove('dragging');
+                const diff = e.clientX - swipeStartX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff < 0) {
+                        updateGallery(galleryState[galleryName].current + 1);
+                    } else {
+                        updateGallery(galleryState[galleryName].current - 1);
+                    }
                 } else {
                     updateGallery(galleryState[galleryName].current);
                 }
