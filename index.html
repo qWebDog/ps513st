@@ -247,10 +247,10 @@
             max-height: 300px;
         }
 
-        /* ✅ СТИЛИ ДЛЯ БЛОКА "НАША СТУДИЯ" */
+        /* ✅ ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ БЛОКА "НАША СТУДИЯ" */
         #studio .services-grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            max-width: 900px;
+            grid-template-columns: 1fr;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
@@ -261,10 +261,11 @@
             flex-direction: column;
         }
         
+        /* ✅ УВЕЛИЧЕНА ВЫСОТА И ДОБАВЛЕНА АДАПТИВНОСТЬ */
         .studio-image-wrapper,
         .studio-gallery {
             width: 100%;
-            height: 220px;
+            height: 450px;
             border-radius: 14px 14px 0 0;
             overflow: hidden;
             position: relative;
@@ -283,7 +284,7 @@
 
         .studio-gallery { 
             cursor: grab; 
-            touch-action: pan-y;
+            touch-action: pan-x;
             position: relative;
         }
         .studio-gallery:active { cursor: grabbing; }
@@ -293,8 +294,12 @@
             width: 100%; 
             height: 100%; 
             transition: transform 0.35s ease-out;
+            user-select: none;
         }
-        .gallery-track.dragging { transition: none; }
+        .gallery-track.dragging { 
+            transition: none; 
+            cursor: grabbing;
+        }
         
         .gallery-slide { 
             flex: 0 0 100%;
@@ -306,38 +311,38 @@
         
         .gallery-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 36px; height: 36px; background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+            width: 40px; height: 40px; background: rgba(0,0,0,0.7);
+            border: 2px solid rgba(255,255,255,0.3); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1rem; cursor: pointer; z-index: 10;
+            color: white; font-size: 1.2rem; cursor: pointer; z-index: 10;
             opacity: 0; transition: opacity 0.3s ease, background 0.3s ease;
             backdrop-filter: blur(4px);
         }
-        .gallery-arrow:hover { background: rgba(34, 197, 94, 0.5); }
+        .gallery-arrow:hover { background: rgba(34, 197, 94, 0.7); border-color: var(--green); }
         .studio-gallery:hover .gallery-arrow { opacity: 1; }
-        .gallery-arrow.prev { left: 10px; }
-        .gallery-arrow.next { right: 10px; }
+        .gallery-arrow.prev { left: 15px; }
+        .gallery-arrow.next { right: 15px; }
         
         .gallery-dots {
-            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 6px; z-index: 10;
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 10;
         }
         .gallery-dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.3);
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.5); border: 2px solid rgba(255,255,255,0.3);
             cursor: pointer; transition: all 0.3s ease;
         }
-        .gallery-dot.active { background: var(--green); border-color: #fff; transform: scale(1.2); }
+        .gallery-dot.active { background: var(--green); border-color: #fff; transform: scale(1.3); }
         
         .gallery-counter {
-            position: absolute; top: 12px; right: 12px;
-            background: rgba(0,0,0,0.6); color: white; padding: 2px 10px;
-            border-radius: 12px; font-size: 0.7rem; font-family: var(--font-body);
-            z-index: 10; backdrop-filter: blur(4px);
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(0,0,0,0.7); color: white; padding: 4px 12px;
+            border-radius: 15px; font-size: 0.8rem; font-family: var(--font-body);
+            z-index: 10; backdrop-filter: blur(4px); font-weight: 600;
         }
         
-        #studio .service-card h3 { padding: 0.8rem 1rem 0.3rem; margin: 0; font-size: 1.1rem; }
-        #studio .service-card p { padding: 0 1rem 1rem; margin: 0; font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); }
+        #studio .service-card h3 { padding: 1rem 1.5rem 0.3rem; margin: 0; font-size: 1.3rem; }
+        #studio .service-card p { padding: 0 1.5rem 1.2rem; margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary); }
 
         .portfolio { padding: 1.2rem 0; overflow: visible !important; width: 100%; }
         .carousel-stage { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 380px; perspective: 1200px; overflow: hidden; touch-action: pan-y; }
@@ -428,7 +433,7 @@
             .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
             .hero-container { padding-top: 1rem; padding-bottom: 1rem; }
             .hero-logo { height: 200px; }
-            .studio-image-wrapper, .studio-gallery { height: 180px; }
+            .studio-image-wrapper, .studio-gallery { height: 350px; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
@@ -439,6 +444,8 @@
             .logo-wrapper { margin-bottom: 0.3rem; }
             .portfolio-image-overlay { width: 40px !important; height: 40px !important; max-width: 40px !important; max-height: 40px !important; }
             .service-item { padding: 1.5rem; }
+            #studio .service-card h3 { font-size: 1.1rem; }
+            #studio .service-card p { font-size: 0.9rem; }
         }
         @media (max-width: 640px) {
             .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; }
@@ -447,8 +454,10 @@
             .section-title h2 { font-size: 1.3rem; }
             .section { padding: 1rem 4%; }
             .contact-form { padding: 1rem; }
-            .studio-image-wrapper, .studio-gallery { height: 160px; }
-            .gallery-arrow { width: 30px; height: 30px; font-size: 0.8rem; opacity: 1; }
+            .studio-image-wrapper, .studio-gallery { height: 250px; }
+            .gallery-arrow { width: 35px; height: 35px; font-size: 1rem; opacity: 1; }
+            .gallery-arrow.prev { left: 10px; }
+            .gallery-arrow.next { right: 10px; }
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
             .portfolio-image { height: 90px; font-size: 1.6rem; }
@@ -459,6 +468,8 @@
             .tag { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
             .service-item { padding: 1.2rem; }
             .service-title { font-size: 1.2rem; }
+            #studio .service-card h3 { font-size: 1rem; padding: 0.8rem 1rem 0.3rem; }
+            #studio .service-card p { padding: 0 1rem 1rem; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -515,7 +526,7 @@
         </div>
     </section>
 
-    <!-- ✅ НАША СТУДИЯ - ТЕПЕРЬ ОДНА КАРТОЧКА С 6 ФОТО -->
+    <!-- ✅ НАША СТУДИЯ -->
     <section class="section" id="studio">
         <div class="container">
             <div class="section-title fade-in">
@@ -531,7 +542,6 @@
                             <div class="gallery-slide"><img src="images/studio-3.jpg" alt="Студия 3"></div>
                             <div class="gallery-slide"><img src="images/studio-4.jpg" alt="Студия 4"></div>
                             <div class="gallery-slide"><img src="images/studio-5.jpg" alt="Студия 5"></div>
-                            <!-- ✅ ДОБАВЛЕН 6-Й СЛАЙД С ФОТО ГРИМЕРНОЙ -->
                             <div class="gallery-slide"><img src="images/makeup-1.jpg" alt="Гримерная"></div>
                         </div>
                         <div class="gallery-arrow prev" onclick="slideGallery('studio', -1)">‹</div>
@@ -879,7 +889,7 @@
             if (!isActive) item.classList.add('active');
         }
 
-        // ✅ ГАЛЕРЕЯ ТЕПЕРЬ НА 6 ФОТО
+        // ✅ ИСПРАВЛЕННАЯ ЛОГИКА ГАЛЕРЕИ СТУДИИ
         const galleryState = { studio: { current: 0, total: 6 } };
 
         function initGallery(galleryName) {
@@ -888,7 +898,13 @@
             const track = gallery.querySelector('.gallery-track');
             const dots = gallery.querySelectorAll('.gallery-dot');
             const counter = gallery.querySelector('.gallery-counter');
-            let isDragging = false, startX = 0, startTranslate = 0;
+            
+            let isDragging = false;
+            let startX = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID = null;
+            let dragThreshold = 50;
 
             function updateGallery(index) {
                 const state = galleryState[galleryName];
@@ -897,11 +913,49 @@
                 state.current = index;
                 
                 const galleryWidth = gallery.offsetWidth;
-                track.style.transform = `translateX(-${index * galleryWidth}px)`;
+                currentTranslate = -index * galleryWidth;
+                prevTranslate = currentTranslate;
+                track.style.transform = `translateX(${currentTranslate}px)`;
                 
                 dots.forEach((d, i) => d.classList.toggle('active', i === index));
                 const curEl = counter.querySelector('.current');
                 if (curEl) curEl.textContent = index + 1;
+            }
+
+            function getPositionX(event) {
+                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+            }
+
+            function dragStart(event) {
+                isDragging = true;
+                startX = getPositionX(event);
+                track.classList.add('dragging');
+                if (animationID) cancelAnimationFrame(animationID);
+            }
+
+            function drag(event) {
+                if (!isDragging) return;
+                const currentPosition = getPositionX(event);
+                const diff = currentPosition - startX;
+                currentTranslate = prevTranslate + diff;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function dragEnd() {
+                if (!isDragging) return;
+                isDragging = false;
+                track.classList.remove('dragging');
+                
+                const movedBy = currentTranslate - prevTranslate;
+                const state = galleryState[galleryName];
+                
+                if (movedBy < -dragThreshold && state.current < state.total - 1) {
+                    state.current += 1;
+                } else if (movedBy > dragThreshold && state.current > 0) {
+                    state.current -= 1;
+                }
+                
+                updateGallery(state.current);
             }
 
             window['slideGallery'] = function(name, dir) {
@@ -913,71 +967,22 @@
                 updateGallery(index);
             };
 
-            let swipeStartX = 0;
-            let swipeThreshold = 50;
+            // Touch events
+            track.addEventListener('touchstart', dragStart, { passive: true });
+            track.addEventListener('touchmove', drag, { passive: true });
+            track.addEventListener('touchend', dragEnd);
+            track.addEventListener('touchcancel', dragEnd);
 
-            gallery.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                swipeStartX = e.touches[0].clientX;
-                startTranslate = galleryState[galleryName].current * gallery.offsetWidth;
-                track.classList.add('dragging');
-            }, { passive: true });
+            // Mouse events
+            track.addEventListener('mousedown', dragStart);
+            track.addEventListener('mousemove', drag);
+            track.addEventListener('mouseup', dragEnd);
+            track.addEventListener('mouseleave', dragEnd);
 
-            gallery.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const currentX = e.touches[0].clientX;
-                const diff = currentX - swipeStartX;
-                track.style.transform = `translateX(calc(-${startTranslate}px + ${diff}px))`;
-            }, { passive: true });
+            // Prevent image drag
+            track.addEventListener('dragstart', (e) => e.preventDefault());
 
-            gallery.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.classList.remove('dragging');
-                const endX = e.changedTouches[0].clientX;
-                const diff = endX - swipeStartX;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff < 0) {
-                        updateGallery(galleryState[galleryName].current + 1);
-                    } else {
-                        updateGallery(galleryState[galleryName].current - 1);
-                    }
-                } else {
-                    updateGallery(galleryState[galleryName].current);
-                }
-            });
-
-            gallery.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-                isDragging = true;
-                swipeStartX = e.clientX;
-                startTranslate = galleryState[galleryName].current * gallery.offsetWidth;
-                track.classList.add('dragging');
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const diff = e.clientX - swipeStartX;
-                track.style.transform = `translateX(calc(-${startTranslate}px + ${diff}px))`;
-            });
-
-            window.addEventListener('mouseup', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.classList.remove('dragging');
-                const diff = e.clientX - swipeStartX;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff < 0) {
-                        updateGallery(galleryState[galleryName].current + 1);
-                    } else {
-                        updateGallery(galleryState[galleryName].current - 1);
-                    }
-                } else {
-                    updateGallery(galleryState[galleryName].current);
-                }
-            });
+            updateGallery(0);
         }
 
         initGallery('studio');
