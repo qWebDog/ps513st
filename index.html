@@ -247,16 +247,6 @@
             max-height: 300px;
         }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
-        .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
-        
-        .service-icon { width: 100%; height: 220px; aspect-ratio: 1/1; margin: 0 auto 1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: visible; background: transparent; padding: 20px; box-sizing: border-box; position: relative; }
-        .service-icon img { width: 100%; height: 100%; max-width: 160px; max-height: 160px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6)); transition: all 0.3s ease; }
-        .service-card:hover .service-icon img { filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.8)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.4)); transform: scale(1.05); }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
-        .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
-
         /* ✅ СТИЛИ ДЛЯ БЛОКА "НАША СТУДИЯ" */
         #studio .services-grid {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -267,7 +257,6 @@
         #studio .service-card { 
             padding: 0; 
             overflow: hidden;
-            max-height: 420px;
             display: flex;
             flex-direction: column;
         }
@@ -439,17 +428,13 @@
             .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
             .hero-container { padding-top: 1rem; padding-bottom: 1rem; }
             .hero-logo { height: 200px; }
-            .service-icon { height: 200px; }
             .studio-image-wrapper, .studio-gallery { height: 180px; }
-            #studio .service-card { max-height: 360px; }
-            #studio .services-grid { max-width: 100%; }
             .carousel-stage { height: 320px; }
             .carousel-slide { width: 230px; height: 280px; margin-left: -115px; margin-top: -140px; }
             .portfolio-image { height: 110px; font-size: 2rem; }
             .nav-links { display: none !important; }
             .burger-btn { display: flex; opacity: 1; pointer-events: auto; }
             .contact-container { grid-template-columns: 1fr; }
-            .services-grid { grid-template-columns: 1fr; }
             .map-container { height: 280px; }
             .logo-wrapper { margin-bottom: 0.3rem; }
             .portfolio-image-overlay { width: 40px !important; height: 40px !important; max-width: 40px !important; max-height: 40px !important; }
@@ -462,11 +447,7 @@
             .section-title h2 { font-size: 1.3rem; }
             .section { padding: 1rem 4%; }
             .contact-form { padding: 1rem; }
-            .service-card { padding: 1.2rem; }
-            .service-icon { height: 180px; }
             .studio-image-wrapper, .studio-gallery { height: 160px; }
-            #studio .service-card { max-height: 320px; }
-            #studio .services-grid { grid-template-columns: 1fr; max-width: 100%; }
             .gallery-arrow { width: 30px; height: 30px; font-size: 0.8rem; opacity: 1; }
             .carousel-stage { height: 260px; }
             .carousel-slide { width: 200px; height: 240px; margin-left: -100px; margin-top: -120px; }
@@ -534,7 +515,7 @@
         </div>
     </section>
 
-    <!-- ✅ НАША СТУДИЯ - ПЕРВЫЙ БЛОК ПОСЛЕ HERO -->
+    <!-- ✅ НАША СТУДИЯ - ТЕПЕРЬ ОДНА КАРТОЧКА С 6 ФОТО -->
     <section class="section" id="studio">
         <div class="container">
             <div class="section-title fade-in">
@@ -543,13 +524,6 @@
             </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
-                    <div class="studio-image-wrapper">
-                        <img src="images/makeup-1.jpg" alt="Гримерная">
-                    </div>
-                    <h3>Гримерная</h3>
-                    <p>Просторная зона с профессиональным освещением и зеркалами.<br>Всё необходимое для подготовки к съёмке.</p>
-                </div>
-                <div class="service-card fade-in">
                     <div class="studio-gallery" data-gallery="studio">
                         <div class="gallery-track">
                             <div class="gallery-slide"><img src="images/studio-1.jpg" alt="Студия 1"></div>
@@ -557,16 +531,19 @@
                             <div class="gallery-slide"><img src="images/studio-3.jpg" alt="Студия 3"></div>
                             <div class="gallery-slide"><img src="images/studio-4.jpg" alt="Студия 4"></div>
                             <div class="gallery-slide"><img src="images/studio-5.jpg" alt="Студия 5"></div>
+                            <!-- ✅ ДОБАВЛЕН 6-Й СЛАЙД С ФОТО ГРИМЕРНОЙ -->
+                            <div class="gallery-slide"><img src="images/makeup-1.jpg" alt="Гримерная"></div>
                         </div>
                         <div class="gallery-arrow prev" onclick="slideGallery('studio', -1)">‹</div>
                         <div class="gallery-arrow next" onclick="slideGallery('studio', 1)">›</div>
-                        <div class="gallery-counter"><span class="current">1</span> / <span class="total">5</span></div>
+                        <div class="gallery-counter"><span class="current">1</span> / <span class="total">6</span></div>
                         <div class="gallery-dots">
                             <div class="gallery-dot active" onclick="goToGallerySlide('studio', 0)"></div>
                             <div class="gallery-dot" onclick="goToGallerySlide('studio', 1)"></div>
                             <div class="gallery-dot" onclick="goToGallerySlide('studio', 2)"></div>
                             <div class="gallery-dot" onclick="goToGallerySlide('studio', 3)"></div>
                             <div class="gallery-dot" onclick="goToGallerySlide('studio', 4)"></div>
+                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 5)"></div>
                         </div>
                     </div>
                     <h3>Студия</h3>
@@ -576,7 +553,7 @@
         </div>
     </section>
 
-    <!-- ✅ ПЕРЕДЕЛАННЫЙ БЛОК УСЛУГ -->
+    <!-- ✅ БЛОК УСЛУГ -->
     <section class="section" id="services">
         <div class="container">
             <div class="section-title fade-in">
@@ -585,7 +562,6 @@
             </div>
             
             <div class="services-new">
-                <!-- Подкаст под ключ -->
                 <div class="service-item fade-in">
                     <div class="service-header">
                         <span class="service-icon-large">🎬</span>
@@ -613,7 +589,6 @@
                     <p class="service-note">👉 Подходит для: подкастов, интервью, экспертных шоу</p>
                 </div>
 
-                <!-- Съемка контента -->
                 <div class="service-item fade-in">
                     <div class="service-header">
                         <span class="service-icon-large">🎥</span>
@@ -639,7 +614,7 @@
         </div>
     </section>
 
-    <!-- ✅ НОВЫЙ БЛОК FAQ -->
+    <!-- ✅ FAQ -->
     <section class="section" id="faq">
         <div class="container">
             <div class="section-title fade-in">
@@ -897,24 +872,15 @@
             finally { btn.disabled = false; btn.innerHTML = origText; }
         }
 
-        // ✅ FAQ ФУНКЦИОНАЛ
         function toggleFaq(element) {
             const item = element.parentElement;
             const isActive = item.classList.contains('active');
-            
-            // Закрываем все FAQ
-            document.querySelectorAll('.faq-item').forEach(faq => {
-                faq.classList.remove('active');
-            });
-            
-            // Открываем текущий, если он был закрыт
-            if (!isActive) {
-                item.classList.add('active');
-            }
+            document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
         }
 
-        // ✅ ЛОГИКА ГАЛЕРЕИ СТУДИИ
-        const galleryState = { studio: { current: 0, total: 5 } };
+        // ✅ ГАЛЕРЕЯ ТЕПЕРЬ НА 6 ФОТО
+        const galleryState = { studio: { current: 0, total: 6 } };
 
         function initGallery(galleryName) {
             const gallery = document.querySelector(`[data-gallery="${galleryName}"]`);
