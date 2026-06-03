@@ -90,6 +90,163 @@
         .section-title { text-align: center; margin-bottom: 1.5rem; }
         .section-title h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--green); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .section-title p { color: var(--text-secondary); font-size: 0.95rem; }
+        
+        /* ✅ НОВЫЕ СТИЛИ ДЛЯ БЛОКА УСЛУГ */
+        .services-new {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .service-item {
+            background: rgba(25,30,40,0.4);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+        
+        .service-item:hover {
+            border-color: var(--green);
+            transform: translateY(-2px);
+            background: rgba(25,30,40,0.6);
+        }
+        
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-icon-large {
+            font-size: 2rem;
+        }
+        
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 0;
+        }
+        
+        .service-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .service-list {
+            list-style: none;
+            margin-bottom: 1.2rem;
+        }
+        
+        .service-list li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .service-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+        
+        .service-pricing {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 3px solid var(--green);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .service-pricing h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .service-pricing p {
+            color: var(--text-primary);
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .service-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ✅ СТИЛИ ДЛЯ FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(25,30,40,0.4);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--green);
+        }
+        
+        .faq-question {
+            padding: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(34, 197, 94, 0.05);
+        }
+        
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--green);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.2rem 1.2rem;
+            max-height: 300px;
+        }
+
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .service-card { background: rgba(25,30,40,0.4); padding: 1.8rem; border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
         .service-card:hover { transform: translateY(-4px); border-color: var(--green); background: rgba(25,30,40,0.6); }
@@ -125,12 +282,11 @@
             flex-shrink: 0;
         }
         
-        /* ✅ ИСПРАВЛЕНО: МАСШТАБ ФОТО КАК В ГРИМЕРНОЙ */
         .studio-image-wrapper img,
         .gallery-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Фото заполняет блок, обрезая лишнее, не растягиваясь */
+            object-fit: cover;
             display: block;
             pointer-events: none;
             -webkit-user-drag: none;
@@ -151,9 +307,8 @@
         }
         .gallery-track.dragging { transition: none; }
         
-        /* ✅ ИСПРАВЛЕНО: РАЗМЕРЫ СЛАЙДОВ */
         .gallery-slide { 
-            flex: 0 0 100%; /* Слайд занимает ровно 100% ширины родителя */
+            flex: 0 0 100%;
             width: 100%;
             height: 100%;
             position: relative;
@@ -298,6 +453,7 @@
             .map-container { height: 280px; }
             .logo-wrapper { margin-bottom: 0.3rem; }
             .portfolio-image-overlay { width: 40px !important; height: 40px !important; max-width: 40px !important; max-height: 40px !important; }
+            .service-item { padding: 1.5rem; }
         }
         @media (max-width: 640px) {
             .hero { min-height: 85vh; align-items: center; justify-content: center; padding-top: 0; }
@@ -320,6 +476,8 @@
             .map-container { height: 240px; }
             .mobile-nav-item a { padding: 0.7rem 1.2rem; font-size: 1.2rem; margin: 0.3rem 0; max-width: 240px; }
             .tag { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
+            .service-item { padding: 1.2rem; }
+            .service-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -339,9 +497,10 @@
     <nav id="mainNav">
         <div class="nav-container">
             <ul class="nav-links" id="navLinks">
+                <li><a href="#studio">Студия</a></li>
                 <li><a href="#services">Услуги</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#portfolio">Примеры работ</a></li>
-                <li><a href="#studio">Наша студия</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
             <button class="burger-btn" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
@@ -349,9 +508,10 @@
     </nav>
 
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-nav-item"><a href="#studio" onclick="closeMobileMenu()">Студия</a></div>
         <div class="mobile-nav-item"><a href="#services" onclick="closeMobileMenu()">Услуги</a></div>
+        <div class="mobile-nav-item"><a href="#faq" onclick="closeMobileMenu()">FAQ</a></div>
         <div class="mobile-nav-item"><a href="#portfolio" onclick="closeMobileMenu()">Примеры работ</a></div>
-        <div class="mobile-nav-item"><a href="#studio" onclick="closeMobileMenu()">Наша студия</a></div>
         <div class="mobile-nav-item"><a href="#contact" onclick="closeMobileMenu()">Контакты</a></div>
         <div class="mobile-nav-socials"><a href="https://t.me/podcast513" target="_blank">TG</a><a href="https://vk.com/podcast513" target="_blank">VK</a></div>
     </div>
@@ -374,24 +534,168 @@
         </div>
     </section>
 
-    <section class="section" id="services">
+    <!-- ✅ НАША СТУДИЯ - ПЕРВЫЙ БЛОК ПОСЛЕ HERO -->
+    <section class="section" id="studio">
         <div class="container">
-            <div class="section-title fade-in"><h2>Наши услуги</h2><p>Полный цикл производства подкастов</p></div>
+            <div class="section-title fade-in">
+                <h2>Наша студия</h2>
+                <p>Пространство, созданное для комфортной работы</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
-                    <div class="service-icon"><img src="images/camera-studio.svg" alt="Съёмка"></div>
-                    <h3>Съёмка</h3>
-                    <p>Качественная съёмка в студии<br>от 1 до 3 камер с настроенным светом и микрофонами.</p>
+                    <div class="studio-image-wrapper">
+                        <img src="images/makeup-1.jpg" alt="Гримерная">
+                    </div>
+                    <h3>Гримерная</h3>
+                    <p>Просторная зона с профессиональным освещением и зеркалами.<br>Всё необходимое для подготовки к съёмке.</p>
                 </div>
                 <div class="service-card fade-in">
-                    <div class="service-icon"><img src="images/montage-preview.svg" alt="Монтаж"></div>
-                    <h3>Монтаж</h3>
-                    <p>Видеомонтаж и звукорежиссура.<br>Чистка звука, цветокоррекция, графика.</p>
+                    <div class="studio-gallery" data-gallery="studio">
+                        <div class="gallery-track">
+                            <div class="gallery-slide"><img src="images/studio-1.jpg" alt="Студия 1"></div>
+                            <div class="gallery-slide"><img src="images/studio-2.jpg" alt="Студия 2"></div>
+                            <div class="gallery-slide"><img src="images/studio-3.jpg" alt="Студия 3"></div>
+                            <div class="gallery-slide"><img src="images/studio-4.jpg" alt="Студия 4"></div>
+                            <div class="gallery-slide"><img src="images/studio-5.jpg" alt="Студия 5"></div>
+                        </div>
+                        <div class="gallery-arrow prev" onclick="slideGallery('studio', -1)">‹</div>
+                        <div class="gallery-arrow next" onclick="slideGallery('studio', 1)">›</div>
+                        <div class="gallery-counter"><span class="current">1</span> / <span class="total">5</span></div>
+                        <div class="gallery-dots">
+                            <div class="gallery-dot active" onclick="goToGallerySlide('studio', 0)"></div>
+                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 1)"></div>
+                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 2)"></div>
+                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 3)"></div>
+                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 4)"></div>
+                        </div>
+                    </div>
+                    <h3>Студия</h3>
+                    <p>Акустически подготовленное помещение с профессиональным оборудованием для записи подкастов.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon"><img src="images/podcast-turnkey.svg" alt="Подкаст под ключ"></div>
-                    <h3>Подкаст под ключ</h3>
-                    <p>Двухчасовая съёмка на 3 камеры<br>плюс полный видеомонтаж материалов.<br>От вас нужно только прийти и сесть за стол.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ ПЕРЕДЕЛАННЫЙ БЛОК УСЛУГ -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Наши услуги</h2>
+                <p>Выберите подходящий формат работы</p>
+            </div>
+            
+            <div class="services-new">
+                <!-- Подкаст под ключ -->
+                <div class="service-item fade-in">
+                    <div class="service-header">
+                        <span class="service-icon-large">🎬</span>
+                        <h3 class="service-title">Подкаст под ключ</h3>
+                    </div>
+                    <p class="service-description">
+                        Полный цикл производства подкаста — от съемки до готового выпуска.
+                        Вы приезжаете в студию, мы снимаем и делаем монтаж, чтобы вы получили готовое видео для YouTube, соцсетей или подкаст-платформ.
+                    </p>
+                    
+                    <h4 style="color: var(--green); margin: 1rem 0 0.5rem; font-size: 1rem;">Что входит:</h4>
+                    <ul class="service-list">
+                        <li>Съемка в студии (3 камеры)</li>
+                        <li>Работа со светом и звуком</li>
+                        <li>Монтаж выпуска</li>
+                        <li>Обложка для видео</li>
+                    </ul>
+                    
+                    <div class="service-pricing">
+                        <h4>Тарифы:</h4>
+                        <p>1 час исходного материала — <strong>10 000 ₽</strong></p>
+                        <p>2 часа исходного материала — <strong>15 000 ₽</strong></p>
+                    </div>
+                    
+                    <p class="service-note">👉 Подходит для: подкастов, интервью, экспертных шоу</p>
+                </div>
+
+                <!-- Съемка контента -->
+                <div class="service-item fade-in">
+                    <div class="service-header">
+                        <span class="service-icon-large">🎥</span>
+                        <h3 class="service-title">Съемка контента (без монтажа)</h3>
+                    </div>
+                    <p class="service-description">
+                        Идеально, если вам нужен только исходный материал для дальнейшей обработки или быстрых публикаций.
+                    </p>
+                    
+                    <h4 style="color: var(--green); margin: 1rem 0 0.5rem; font-size: 1rem;">Подходит для:</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">подкастов, Reels, Shorts, talking head, интервью.</p>
+                    
+                    <h4 style="color: var(--green); margin: 1rem 0 0.5rem; font-size: 1rem;">Варианты съемки:</h4>
+                    <div class="service-pricing">
+                        <p>1 камера — <strong>3 000 ₽</strong> / час</p>
+                        <p>2 камеры — <strong>3 500 ₽</strong> / час</p>
+                        <p>3 камеры — <strong>4 000 ₽</strong> / час</p>
+                    </div>
+                    
+                    <p class="service-note">📌 Вы получаете весь отснятый материал в высоком качестве</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ НОВЫЙ БЛОК FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Частые вопросы</h2>
+                <p>Ответы на популярные вопросы о нашей студии</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно ли без опыта?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Да, конечно! Наша студия создана специально для того, чтобы вы могли записывать контент без опыта. Мы помогаем с настройкой оборудования, светом и звуком. Вам нужно только прийти и сесть за стол — всё остальное мы берем на себя.
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Есть ли парковка?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Да, рядом со студией есть бесплатная парковка. Вы сможете оставить машину прямо у входа и не переживать о поиске места.
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Сколько человек?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Студия рассчитана на комфортную работу от 2 до 6 человек. Если у вас больше участников — свяжитесь с нами, мы обсудим детали и подберем оптимальное решение.
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Когда получу материалы?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Если вы заказываете только съемку — материалы получаете в течение 24 часов после записи. Если заказываете подкаст под ключ с монтажом — готовый выпуск будет у вас через 3-5 рабочих дней.
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно ли прямой эфир?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Да, мы предоставляем студию для прямых эфиров. У нас есть всё необходимое оборудование для качественной трансляции. Предварительно согласуйте дату и время — мы поможем с технической организацией.
+                    </div>
                 </div>
             </div>
         </div>
@@ -448,47 +752,6 @@
         <div class="carousel-dots"><div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div></div>
     </section>
 
-    <section class="section" id="studio">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Наша студия</h2>
-                <p>Пространство, созданное для комфортной работы</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="studio-image-wrapper">
-                        <img src="images/makeup-1.jpg" alt="Гримерная">
-                    </div>
-                    <h3>Гримерная</h3>
-                    <p>Просторная зона с профессиональным освещением и зеркалами.<br>Всё необходимое для подготовки к съёмке.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="studio-gallery" data-gallery="studio">
-                        <div class="gallery-track">
-                            <div class="gallery-slide"><img src="images/studio-1.jpg" alt="Студия 1"></div>
-                            <div class="gallery-slide"><img src="images/studio-2.jpg" alt="Студия 2"></div>
-                            <div class="gallery-slide"><img src="images/studio-3.jpg" alt="Студия 3"></div>
-                            <div class="gallery-slide"><img src="images/studio-4.jpg" alt="Студия 4"></div>
-                            <div class="gallery-slide"><img src="images/studio-5.jpg" alt="Студия 5"></div>
-                        </div>
-                        <div class="gallery-arrow prev" onclick="slideGallery('studio', -1)">‹</div>
-                        <div class="gallery-arrow next" onclick="slideGallery('studio', 1)">›</div>
-                        <div class="gallery-counter"><span class="current">1</span> / <span class="total">5</span></div>
-                        <div class="gallery-dots">
-                            <div class="gallery-dot active" onclick="goToGallerySlide('studio', 0)"></div>
-                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 1)"></div>
-                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 2)"></div>
-                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 3)"></div>
-                            <div class="gallery-dot" onclick="goToGallerySlide('studio', 4)"></div>
-                        </div>
-                    </div>
-                    <h3>Студия</h3>
-                    <p>Акустически подготовленное помещение с профессиональным оборудованием для записи подкастов.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="section" id="contact">
         <div class="container">
             <div class="section-title fade-in"><h2>Контакты</h2><p>Свяжитесь с нами для обсуждения вашего проекта</p></div>
@@ -523,10 +786,10 @@
                             <label>Услуга</label>
                             <select id="input-service" required>
                                 <option value="">Выберите</option>
-                                <option>Съёмка</option>
-                                <option>Монтаж</option>
-                                <option>Под ключ</option>
-                                <option>Консультация</option>
+                                <option>Подкаст под ключ</option>
+                                <option>Съемка контента</option>
+                                <option>Прямой эфир</option>
+                                <option>Другое</option>
                             </select>
                         </div>
                         <div class="form-group"><label>Комментарий</label><textarea id="input-message" placeholder="О проекте..."></textarea></div>
@@ -538,7 +801,7 @@
     </section>
 
     <footer>
-        <div class="footer-links"><a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#studio">Студия</a><a href="#contact">Контакты</a></div>
+        <div class="footer-links"><a href="#studio">Студия</a><a href="#services">Услуги</a><a href="#faq">FAQ</a><a href="#portfolio">Работы</a><a href="#contact">Контакты</a></div>
         <p>Студия Подкастов 513</p>
     </footer>
 
@@ -634,7 +897,23 @@
             finally { btn.disabled = false; btn.innerHTML = origText; }
         }
 
-        // ✅ ИСПРАВЛЕННАЯ ЛОГИКА ГАЛЕРЕИ СТУДИИ
+        // ✅ FAQ ФУНКЦИОНАЛ
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Закрываем все FAQ
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Открываем текущий, если он был закрыт
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // ✅ ЛОГИКА ГАЛЕРЕИ СТУДИИ
         const galleryState = { studio: { current: 0, total: 5 } };
 
         function initGallery(galleryName) {
