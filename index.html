@@ -261,7 +261,6 @@
             flex-direction: column;
         }
         
-        /* ✅ УВЕЛИЧЕНА ВЫСОТА И ДОБАВЛЕНА АДАПТИВНОСТЬ */
         .studio-image-wrapper,
         .studio-gallery {
             width: 100%;
@@ -572,13 +571,14 @@
             </div>
             
             <div class="services-new">
+                <!-- ✅ ПОДКАСТ ПОД КЛЮЧ - ИСПРАВЛЕНО ФОРМАТИРОВАНИЕ -->
                 <div class="service-item fade-in">
                     <div class="service-header">
                         <span class="service-icon-large">🎬</span>
                         <h3 class="service-title">Подкаст под ключ</h3>
                     </div>
                     <p class="service-description">
-                        Полный цикл производства подкаста — от съемки до готового выпуска.
+                        Полный цикл производства подкаста — от съемки до готового выпуска.<br>
                         Вы приезжаете в студию, мы снимаем и делаем монтаж, чтобы вы получили готовое видео для YouTube, соцсетей или подкаст-платформ.
                     </p>
                     
@@ -596,16 +596,20 @@
                         <p>2 часа исходного материала — <strong>15 000 ₽</strong></p>
                     </div>
                     
-                    <p class="service-note">👉 Подходит для: подкастов, интервью, экспертных шоу</p>
+                    <!-- ✅ ПРИВЕДЕНО К ЕДИНОМУ ВИДУ СО "СЪЕМКОЙ КОНТЕНТА" -->
+                    <h4 style="color: var(--green); margin: 1rem 0 0.5rem; font-size: 1rem;">Подходит для:</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">подкастов, интервью, экспертных шоу.</p>
                 </div>
 
+                <!-- ✅ СЪЕМКА КОНТЕНТА -->
                 <div class="service-item fade-in">
                     <div class="service-header">
                         <span class="service-icon-large">🎥</span>
                         <h3 class="service-title">Съемка контента (без монтажа)</h3>
                     </div>
                     <p class="service-description">
-                        Идеально, если вам нужен только исходный материал для дальнейшей обработки или быстрых публикаций.
+                        Идеально, если вам нужен только исходный материал<br>
+                        для дальнейшей обработки или быстрых публикаций.
                     </p>
                     
                     <h4 style="color: var(--green); margin: 1rem 0 0.5rem; font-size: 1rem;">Подходит для:</h4>
@@ -618,7 +622,7 @@
                         <p>3 камеры — <strong>4 000 ₽</strong> / час</p>
                     </div>
                     
-                    <p class="service-note">📌 Вы получаете весь отснятый материал в высоком качестве</p>
+                    <p class="service-note">Вы получаете весь отснятый материал в высоком качестве.</p>
                 </div>
             </div>
         </div>
@@ -673,13 +677,14 @@
                     </div>
                 </div>
 
+                <!-- ✅ ИСПРАВЛЕН ОТВЕТ НА "МОЖНО ЛИ ПРЯМОЙ ЭФИР?" -->
                 <div class="faq-item fade-in">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Можно ли прямой эфир?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        Да, мы предоставляем студию для прямых эфиров. У нас есть всё необходимое оборудование для качественной трансляции. Предварительно согласуйте дату и время — мы поможем с технической организацией.
+                        Нет, на данный момент мы не предоставляем возможность проведения прямых эфиров. Наша студия специализируется на записи контента с последующим монтажом и обработкой.
                     </div>
                 </div>
             </div>
@@ -889,7 +894,7 @@
             if (!isActive) item.classList.add('active');
         }
 
-        // ✅ ИСПРАВЛЕННАЯ ЛОГИКА ГАЛЕРЕИ СТУДИИ
+        // ✅ ЛОГИКА ГАЛЕРЕИ СТУДИИ
         const galleryState = { studio: { current: 0, total: 6 } };
 
         function initGallery(galleryName) {
